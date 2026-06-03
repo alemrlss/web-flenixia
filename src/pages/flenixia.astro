@@ -1,0 +1,348 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Sobre Plenixia — El sistema de IA que trabaja contigo, no para ti"
+  description="Somos Plenixia. Un equipo obsesionado con que la inteligencia artificial genere resultados reales para tu empresa — no demos impresionantes."
+>
+  <Navbar />
+
+  <!-- 1 · HERO — oscuro -->
+  <section class="hero-flenixia relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden">
+    <div class="hero-overlay absolute inset-0 z-0"></div>
+    <div class="orb orb-1 absolute z-1"></div>
+    <div class="orb orb-2 absolute z-1"></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-6 lg:px-10 w-full">
+      <div class="max-w-3xl">
+        <div class="reveal mb-7 flex">
+          <span class="dark-label">Sobre nosotros</span>
+        </div>
+        <h1 class="reveal reveal-delay-1 font-display font-extrabold text-white leading-[1.04] tracking-tight mb-7"
+            style="font-size:clamp(3rem,6.5vw,5.2rem)">
+          No somos un software.<br/>
+          Somos el sistema de IA<br/>
+          <span class="gradient-text">de tu empresa.</span>
+        </h1>
+        <p class="reveal reveal-delay-2 text-xl leading-relaxed max-w-xl mb-10" style="color:rgba(255,255,255,0.6)">
+          Diseñamos, construimos y operamos sistemas de inteligencia artificial que automatizan lo que frena tu negocio. Sin humo. Sin promesas vacías. Con resultados medibles en euros y horas.
+        </p>
+        <div class="reveal reveal-delay-3 flex flex-wrap gap-4">
+          <a href="/#agenda" class="btn-primary">
+            Hablar con el equipo
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · NÚMEROS — claro -->
+  <section class="py-20" style="background:#FFFFFF;color:#1F1635;border-bottom:1px solid #EDE9FE">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {[
+          { num: 47,  suffix: '+', label: 'Empresas activas',    sub: 'ya automatizan con Plenixia' },
+          { num: 98,  suffix: '%', label: 'Retención',           sub: 'de clientes al primer año' },
+          { num: 7,   suffix: 'd', label: 'Primeros resultados', sub: 'tiempo medio hasta el impacto' },
+          { num: 10,  suffix: '+', label: 'Sectores atendidos',  sub: 'con soluciones especializadas' },
+        ].map((s, i) => (
+          <div class={`reveal ${i > 0 ? `reveal-delay-${i}` : ''} text-center`}>
+            <p class="font-display font-black gradient-text leading-none mb-2"
+               style="font-size:2.5rem" data-counter={s.num} data-suffix={s.suffix}>
+              {s.num}{s.suffix}
+            </p>
+            <p class="font-semibold text-sm mb-0.5" style="color:#1F1635">{s.label}</p>
+            <p class="text-xs leading-snug" style="color:#64647A">{s.sub}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · ORIGEN — oscuro -->
+  <section class="py-28 overflow-hidden" style="background:#0F0A1A;color:#F0F0FF">
+    <div class="max-w-6xl mx-auto px-6 lg:px-10">
+      <div class="grid lg:grid-cols-2 gap-20 items-center">
+
+        <div>
+          <div class="reveal mb-5 flex">
+            <span class="dark-label">Por qué existimos</span>
+          </div>
+          <h2 class="reveal reveal-delay-1 font-display font-extrabold leading-[1.08] mb-8"
+              style="font-size:clamp(2rem,4vw,3rem);color:#F0F0FF">
+            Nacimos de una<br/>
+            <span class="gradient-text">frustración concreta.</span>
+          </h2>
+          <p class="reveal reveal-delay-2 text-lg leading-relaxed mb-5" style="color:rgba(240,240,255,0.6)">
+            Vimos cómo empresas perdían tiempo y dinero en tareas que una IA podría resolver en segundos. Y cómo las soluciones del mercado eran demasiado caras, demasiado genéricas, o simplemente no cumplían lo que prometían.
+          </p>
+          <p class="reveal reveal-delay-3 text-lg leading-relaxed mb-5" style="color:rgba(240,240,255,0.6)">
+            Construimos algo diferente: un equipo pequeño, especializado y obsesionado con que la IA genere resultados reales — no demos impresionantes que nadie sabe escalar.
+          </p>
+          <p class="reveal reveal-delay-4 text-lg font-semibold leading-relaxed" style="color:#F0F0FF">
+            Hoy trabajamos con empresas de 10 sectores distintos. Todas con un punto en común: necesitaban que alguien se lo construyera bien.
+          </p>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <div class="quote-card">
+            <div class="quote-mark">"</div>
+            <p class="font-display font-bold text-white leading-snug mb-8"
+               style="font-size:clamp(1.3rem,2.5vw,1.75rem)">
+              Las empresas que integren IA en los próximos 24 meses tendrán una ventaja estructural que será casi imposible de alcanzar después.
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="quote-avatar">F</div>
+              <div>
+                <p class="font-semibold text-white text-sm">Plenixia</p>
+                <p class="text-xs" style="color:rgba(255,255,255,0.4)">Equipo</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · MANIFIESTO — oscuro (intencional, bloque de impacto) -->
+  <section class="manifesto-section py-28 overflow-hidden">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10">
+      <div class="reveal mb-10 flex">
+        <span class="dark-label">Lo que creemos</span>
+      </div>
+      <div class="space-y-0">
+        {[
+          { mark: '01', text: 'Las empresas que adopten IA hoy dominarán su sector. Las que esperen, pelearán por sobrevivir.' },
+          { mark: '02', text: 'La IA no reemplaza personas. Reemplaza tareas repetitivas para que las personas hagan lo que realmente importa.' },
+          { mark: '03', text: 'Un sistema de IA mal implementado es peor que no tener ninguno. La estrategia importa más que la tecnología.' },
+          { mark: '04', text: 'Los resultados se miden en euros y en horas recuperadas, no en features ni en demos bonitas.' },
+        ].map(item => (
+          <div class="reveal manifesto-line">
+            <span class="manifesto-mark">{item.mark}</span>
+            <p class="manifesto-text">{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · VALORES — claro -->
+  <section class="py-28" style="background:#FFFFFF;color:#1F1635">
+    <div class="max-w-6xl mx-auto px-6 lg:px-10">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
+        <div>
+          <div class="reveal mb-5 flex">
+            <span class="section-label">Cómo trabajamos</span>
+          </div>
+          <h2 class="reveal reveal-delay-1 font-display font-extrabold leading-tight"
+              style="font-size:clamp(1.9rem,3.5vw,2.8rem);color:#1F1635">
+            Los principios que<br/>guían cada proyecto.
+          </h2>
+        </div>
+        <p class="reveal reveal-delay-2 text-sm max-w-xs leading-relaxed" style="color:#64647A">
+          No son palabras en una web. Son decisiones que tomamos a diario.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {[
+          { icon: 'M13 10V3L4 14h7v7l9-11h-7z',                                                           title: 'Resultados primero',     desc: 'Cada decisión parte de un objetivo de negocio concreto: más ingresos, menos costes o más velocidad.' },
+          { icon: 'M15 12a3 3 0 11-6 0 3 3 0 016 0zM2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z', title: 'Transparencia total',  desc: 'Sin jerga, sin cajas negras. Explicamos qué hacemos, por qué y cómo medir si funciona.' },
+          { icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', title: 'Largo plazo',          desc: 'No hacemos proyectos puntuales y desaparecemos. Construimos sistemas que crecen con tu empresa.' },
+          { icon: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z', title: 'Especialización real',  desc: 'No somos una agencia digital que "también hace IA". La inteligencia artificial es lo único que hacemos.' },
+          { icon: 'M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z', title: 'A medida, siempre',    desc: 'Cada empresa tiene procesos únicos. Nunca aplicamos la misma solución a dos clientes distintos.' },
+          { icon: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6',                                                       title: 'Velocidad de ejecución', desc: 'Los primeros resultados en días, no en meses. Empezamos por lo que genera el mayor impacto más rápido.' },
+        ].map((v, i) => (
+          <div class={`reveal reveal-delay-${Math.min(i+1,4)} valor-card`}>
+            <div class="valor-icon">
+              <svg width="20" height="20" fill="none" stroke="#9333EA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                <path d={v.icon}/>
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-sm mb-2" style="color:#1F1635">{v.title}</h3>
+            <p class="text-sm leading-relaxed" style="color:#64647A">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · EQUIPO — oscuro -->
+  <section class="py-28" style="background:#1A1033;color:#F0F0FF">
+    <div class="max-w-6xl mx-auto px-6 lg:px-10">
+      <div class="text-center mb-16">
+        <div class="reveal mb-5 flex justify-center">
+          <span class="dark-label">El equipo</span>
+        </div>
+        <h2 class="reveal reveal-delay-1 font-display font-extrabold leading-tight"
+            style="font-size:clamp(1.9rem,3.5vw,2.8rem);color:#F0F0FF">
+          Personas reales<br/>
+          <span class="gradient-text">detrás de cada proyecto.</span>
+        </h2>
+        <p class="reveal reveal-delay-2 text-base mt-4 max-w-md mx-auto leading-relaxed" style="color:rgba(240,240,255,0.5)">
+          Un equipo pequeño y muy especializado. Trabajamos como extensión de tu empresa, no como proveedor externo.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { initial: 'A', name: 'Alejandro Morales',  role: 'CTO · Chief Technology Officer',  bio: 'Convierte ideas complejas en sistemas de IA que funcionan desde el primer día. Si puedes imaginarlo, Alejandro ya sabe cómo construirlo.', color: '#7C3AED' },
+          { initial: 'J', name: 'Javier Gonzalo',    role: 'CEO · Chief Executive Officer',    bio: 'Entiende tu negocio antes de hablar de tecnología. Su obsesión es que cada proyecto tenga un retorno claro y medible.', color: '#9333EA' },
+          { initial: 'V', name: 'Verónica Hernández', role: 'CCO · Chief Commercial Officer',  bio: 'Convierte lo que hacemos en crecimiento real — más visibilidad, más leads y más ventas para ti.', color: '#A855F7' },
+        ].map((m, i) => (
+          <div class={`reveal ${i > 0 ? 'reveal-delay-1' : ''} team-card`}>
+            <div class="team-avatar" style={`background:linear-gradient(135deg,${m.color}33,${m.color}55);border:1px solid ${m.color}44;color:${m.color}`}>
+              {m.initial}
+            </div>
+            <h3 class="font-display font-bold text-base mb-0.5" style="color:#F0F0FF">{m.name}</h3>
+            <p class="text-xs font-semibold mb-3" style={`color:${m.color}`}>{m.role}</p>
+            <p class="text-sm leading-relaxed" style="color:rgba(240,240,255,0.5)">{m.bio}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · CÓMO EMPEZAMOS — claro -->
+  <section class="py-28" style="background:#FAF8FF;color:#1F1635">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10">
+      <div class="text-center mb-16">
+        <div class="reveal mb-5 flex justify-center">
+          <span class="section-label">Cómo empezamos</span>
+        </div>
+        <h2 class="reveal reveal-delay-1 font-display font-extrabold leading-tight"
+            style="font-size:clamp(1.9rem,3.5vw,2.6rem);color:#1F1635">
+          De la primera llamada<br/>
+          <span class="gradient-text">a resultados medibles.</span>
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { step: '01', title: 'Diagnóstico', desc: 'Entendemos tu negocio, tus procesos y dónde la IA genera más valor.' },
+          { step: '02', title: 'Estrategia',  desc: 'Diseñamos una hoja de ruta priorizada con KPIs claros para cada iniciativa.' },
+          { step: '03', title: 'Ejecución',   desc: 'Construimos e integramos los sistemas. Primeras semanas, primeros resultados.' },
+          { step: '04', title: 'Crecimiento', desc: 'Monitorizamos, optimizamos y escalamos lo que funciona. Sin parar.' },
+        ].map((p, i) => (
+          <div class={`reveal ${i > 0 ? `reveal-delay-${i}` : ''} paso-card`}>
+            <div class="paso-num">{p.step}</div>
+            <h3 class="font-display font-bold text-base mb-2" style="color:#1F1635">{p.title}</h3>
+            <p class="text-sm leading-relaxed" style="color:#64647A">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · CTA FINAL — oscuro -->
+  <section class="cta-flenixia py-28 overflow-hidden">
+    <div class="cta-orb-1 absolute"></div>
+    <div class="cta-orb-2 absolute"></div>
+    <div class="max-w-3xl mx-auto px-6 text-center relative z-10">
+      <div class="reveal mb-6 flex justify-center">
+        <span class="dark-label">El siguiente paso</span>
+      </div>
+      <h2 class="reveal reveal-delay-1 font-display font-extrabold text-white leading-[1.08] mb-6"
+          style="font-size:clamp(2.2rem,5vw,3.8rem)">
+        ¿Preparado para que la IA<br/>
+        <span class="gradient-text">trabaje por ti?</span>
+      </h2>
+      <p class="reveal reveal-delay-2 text-lg leading-relaxed max-w-lg mx-auto mb-10" style="color:rgba(255,255,255,0.55)">
+        Reserva un diagnóstico gratuito de 30 minutos. Te mostramos en directo cómo Plenixia puede transformar tu operativa.
+      </p>
+      <div class="reveal reveal-delay-3 flex flex-wrap justify-center gap-4">
+        <a href="/#agenda" class="btn-primary">
+          Reservar diagnóstico gratuito
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ── Hero ───────────────────────────────── */
+  .hero-flenixia { background: #1A1033; }
+  .hero-overlay { background: linear-gradient(135deg, rgba(26,16,51,0.95) 0%, rgba(26,16,51,0.8) 100%); }
+  .orb { border-radius: 50%; filter: blur(120px); pointer-events: none; }
+  .orb-1 { width: 600px; height: 600px; background: rgba(147,51,234,0.2); top: -100px; left: -100px; animation: orb-float 12s ease-in-out infinite; }
+  .orb-2 { width: 400px; height: 400px; background: rgba(168,85,247,0.15); bottom: 0; right: 10%; animation: orb-float 16s ease-in-out infinite reverse; }
+  @keyframes orb-float { 0%,100% { transform:translate(0,0); } 33% { transform:translate(30px,-40px); } 66% { transform:translate(-20px,20px); } }
+
+  /* ── Labels ────────────────────────────── */
+  .dark-label {
+    display: inline-flex; align-items: center;
+    font-family: 'Poppins', sans-serif; font-weight: 600;
+    font-size: 0.73rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: #C084FC; background: rgba(192,132,252,0.12);
+    border: 1px solid rgba(192,132,252,0.25); border-radius: 99px; padding: 0.3rem 0.9rem;
+  }
+
+  /* ── Quote card ────────────────────────── */
+  .quote-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(147,51,234,0.25); border-radius: 1.5rem; padding: 2.5rem; box-shadow: 0 32px 64px rgba(147,51,234,0.15); }
+  .quote-mark { font-family: 'Georgia', serif; font-size: 6rem; line-height: 0.6; color: rgba(147,51,234,0.4); margin-bottom: 1.5rem; display: block; }
+  .quote-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #9333EA, #C084FC); display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-weight: 700; color: #fff; font-size: 1rem; flex-shrink: 0; }
+
+  /* ── Manifiesto ────────────────────────── */
+  .manifesto-section { background: #1A1033; }
+  .manifesto-line { display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.25rem; align-items: start; padding: 1.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); transition: border-color 0.2s; }
+  .manifesto-line:first-of-type { border-top: 1px solid rgba(255,255,255,0.06); }
+  .manifesto-line:hover { border-bottom-color: rgba(147,51,234,0.3); }
+  .manifesto-mark { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.2); padding-top: 0.35rem; }
+  .manifesto-text { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: clamp(1.05rem,2vw,1.35rem); color: rgba(255,255,255,0.75); line-height: 1.5; transition: color 0.2s; }
+  .manifesto-line:hover .manifesto-text { color: #fff; }
+
+  /* ── Valores — claro ───────────────────── */
+  .valor-card { background: #FFFFFF; border: 1px solid #EDE9FE; border-radius: 1.25rem; padding: 1.75rem; box-shadow: 0 2px 12px rgba(147,51,234,0.05); transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
+  .valor-card:hover { border-color: rgba(147,51,234,0.35); box-shadow: 0 12px 36px rgba(147,51,234,0.1); transform: translateY(-3px); }
+  .valor-icon { width: 40px; height: 40px; border-radius: 0.625rem; background: #F3E8FF; border: 1px solid #DDD6FE; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+
+  /* ── Equipo — oscuro ───────────────────── */
+  .team-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(192,132,252,0.15); border-radius: 1.25rem; padding: 2rem; transition: border-color 0.25s, background 0.25s, transform 0.25s; }
+  .team-card:hover { border-color: rgba(192,132,252,0.35); background: rgba(255,255,255,0.06); transform: translateY(-3px); }
+  .team-avatar { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 1rem; }
+
+  /* ── Proceso — claro ───────────────────── */
+  .paso-card { background: #FFFFFF; border: 1px solid #EDE9FE; border-radius: 1.25rem; padding: 1.75rem; box-shadow: 0 2px 8px rgba(147,51,234,0.04); transition: border-color 0.2s, box-shadow 0.2s; }
+  .paso-card:hover { border-color: rgba(147,51,234,0.3); box-shadow: 0 8px 28px rgba(147,51,234,0.08); }
+  .paso-num { width: 40px; height: 40px; border-radius: 50%; background: #F3E8FF; border: 1.5px solid #9333EA; display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.75rem; color: #9333EA; margin-bottom: 1.25rem; box-shadow: 0 0 0 4px rgba(147,51,234,0.08); }
+
+  /* ── CTA Final ─────────────────────────── */
+  .cta-flenixia { background: #1A1033; position: relative; overflow: hidden; }
+  .cta-orb-1 { width: 500px; height: 500px; border-radius: 50%; filter: blur(100px); background: rgba(147,51,234,0.2); top: -100px; left: -100px; pointer-events: none; }
+  .cta-orb-2 { width: 400px; height: 400px; border-radius: 50%; filter: blur(100px); background: rgba(168,85,247,0.15); bottom: -80px; right: -50px; pointer-events: none; }
+</style>
+
+<script>
+  function animateCounter(el: HTMLElement) {
+    const target = parseInt(el.dataset.counter ?? '0');
+    const suffix = el.dataset.suffix ?? '';
+    const duration = 1800;
+    const start = performance.now();
+    function ease(t: number) { return 1 - Math.pow(1 - t, 4); }
+    function tick(now: number) {
+      const p = Math.min((now - start) / duration, 1);
+      el.textContent = Math.round(ease(p) * target) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  const obs = new IntersectionObserver(
+    entries => entries.forEach(e => {
+      if (e.isIntersecting) { animateCounter(e.target as HTMLElement); obs.unobserve(e.target); }
+    }),
+    { threshold: 0.5 }
+  );
+  document.querySelectorAll<HTMLElement>('[data-counter]').forEach(el => obs.observe(el));
+</script>

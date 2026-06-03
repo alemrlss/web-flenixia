@@ -1,0 +1,211 @@
+---
+import Layout       from '../../layouts/Layout.astro';
+import Navbar       from '../../components/Navbar.astro';
+import Footer       from '../../components/Footer.astro';
+import FormContacto from '../../components/FormContacto.astro';
+import { servicios, type ServicioData } from '../../data/servicios';
+
+export function getStaticPaths() {
+  return servicios.map(s => ({ params: { slug: s.slug }, props: { servicio: s } }));
+}
+
+interface Props { servicio: ServicioData; }
+const { servicio: s } = Astro.props;
+---
+
+<Layout title={`${s.name} — Plenixia`} description={s.desc}>
+  <Navbar />
+
+  <!-- Hero -->
+  <section class="srv-hero relative min-h-[420px] flex items-end overflow-hidden pt-24 pb-16">
+    <div class="srv-overlay absolute inset-0 z-0"></div>
+    <img src={s.heroImg} alt={s.name} class="absolute inset-0 w-full h-full object-cover z-0 opacity-20"/>
+    <div class="relative z-10 max-w-5xl mx-auto px-6 lg:px-10 w-full">
+      <span class="section-label mb-4 inline-flex">Servicio · {s.num}</span>
+      <h1 class="font-display font-extrabold text-white leading-tight mb-3"
+          style="font-size:clamp(2rem,5vw,3.5rem)">{s.name}</h1>
+      <p class="text-white/70 text-lg max-w-2xl mb-6">{s.tagline}</p>
+      <a href="#contacto" class="btn-primary">
+        Contactar sobre este servicio
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Descripción -->
+  <section class="py-20" style="background:#FFFFFF;color:#1F1635">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10">
+      <p class="text-lg leading-relaxed max-w-3xl" style="color:#374151">{s.desc}</p>
+    </div>
+  </section>
+
+  <!-- Qué incluye -->
+  <section class="py-20" style="background:#FAF8FF;color:#1F1635">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10">
+      <h2 class="font-display font-extrabold mb-10" style="font-size:clamp(1.6rem,3vw,2.2rem);color:#1F1635">
+        Qué <span class="gradient-text">incluye</span>
+      </h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {s.incluye.map(item => (
+          <div class="incluye-card">
+            <div class="incluye-dot mb-3"></div>
+            <h3 class="font-display font-semibold text-base mb-2" style="color:#1F1635">{item.title}</h3>
+            <p class="text-sm leading-relaxed" style="color:#64647A">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Proceso -->
+  <section class="py-20" style="background:#FFFFFF;color:#1F1635">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10">
+      <h2 class="font-display font-extrabold mb-10" style="font-size:clamp(1.6rem,3vw,2.2rem);color:#1F1635">
+        Cómo <span class="gradient-text">trabajamos</span>
+      </h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {s.proceso.map(step => (
+          <div class="paso-card">
+            <div class="font-display font-black gradient-text text-2xl mb-2">{step.step}</div>
+            <h3 class="font-display font-semibold text-sm mb-2" style="color:#1F1635">{step.title}</h3>
+            <p class="text-xs leading-relaxed" style="color:#64647A">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Para quién + Resultados -->
+  <section class="py-20" style="background:#FAF8FF;color:#1F1635">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10">
+      <div class="grid lg:grid-cols-2 gap-14">
+
+        <div>
+          <h2 class="font-display font-extrabold mb-6" style="font-size:clamp(1.4rem,2.5vw,1.9rem);color:#1F1635">
+            ¿Para <span class="gradient-text">quién</span> es?
+          </h2>
+          <ul class="space-y-3">
+            {s.paraQuien.map(item => (
+              <li class="flex items-start gap-3 text-sm" style="color:#374151">
+                <svg class="flex-shrink-0 mt-0.5" width="14" height="14" fill="none" stroke="#9333EA" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="font-display font-extrabold mb-6" style="font-size:clamp(1.4rem,2.5vw,1.9rem);color:#1F1635">
+            Resultados <span class="gradient-text">esperados</span>
+          </h2>
+          <div class="space-y-4">
+            {s.resultados.map(r => (
+              <div class="resultado-card">
+                <div class="font-display font-black gradient-text flex-shrink-0" style="font-size:1.5rem;line-height:1">{r.metric}</div>
+                <div>
+                  <p class="font-display font-semibold text-sm" style="color:#1F1635">{r.label}</p>
+                  <p class="text-xs leading-relaxed mt-1" style="color:#64647A">{r.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ del servicio -->
+  {s.faq.length > 0 && (
+    <section class="py-20" style="background:#FFFFFF;color:#1F1635">
+      <div class="max-w-3xl mx-auto px-6 lg:px-10">
+        <h2 class="font-display font-extrabold mb-8" style="font-size:clamp(1.6rem,3vw,2.2rem);color:#1F1635">
+          Preguntas <span class="gradient-text">frecuentes</span>
+        </h2>
+        <div class="space-y-3">
+          {s.faq.map(faq => (
+            <div class="faq-srv-item">
+              <button class="faq-srv-btn w-full flex items-center justify-between gap-4 px-6 py-4 text-left cursor-pointer">
+                <span class="font-display font-semibold text-sm" style="color:#1F1635">{faq.q}</span>
+                <svg class="faq-srv-icon flex-shrink-0 w-5 h-5 transition-transform duration-300"
+                     fill="none" stroke="#9333EA" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+                </svg>
+              </button>
+              <div class="faq-srv-answer max-h-0 overflow-hidden transition-[max-height] duration-300 ease-out">
+                <p class="px-6 pb-5 pt-2 text-sm leading-relaxed" style="color:#64647A;border-top:1px solid #EDE9FE">{faq.a}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Formulario de contacto -->
+  <section id="contacto" class="py-20" style="background:#FAF8FF">
+    <div class="max-w-2xl mx-auto px-6 lg:px-10">
+      <FormContacto servicioNombre={s.name} />
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .srv-hero {
+    background: linear-gradient(135deg, #1A1033 0%, #2D1B69 100%);
+    min-height: 420px;
+  }
+  .srv-overlay {
+    background: linear-gradient(to top, #1A1033 20%, rgba(26,16,51,0.5) 70%, transparent 100%);
+  }
+
+  .incluye-card {
+    background: #FFFFFF; border: 1px solid #EDE9FE;
+    border-radius: 0.875rem; padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(147,51,234,0.04);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .incluye-card:hover { border-color: rgba(147,51,234,0.3); box-shadow: 0 8px 24px rgba(147,51,234,0.08); }
+  .incluye-dot { width: 6px; height: 6px; background: #9333EA; border-radius: 50%; }
+
+  .paso-card {
+    background: #FAF8FF; border: 1px solid #EDE9FE;
+    border-radius: 0.875rem; padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .paso-card:hover { border-color: rgba(147,51,234,0.3); }
+
+  .resultado-card {
+    background: #FFFFFF; border: 1px solid #EDE9FE;
+    border-radius: 0.875rem; padding: 1rem 1.25rem;
+    display: flex; align-items: flex-start; gap: 1rem;
+    box-shadow: 0 1px 6px rgba(147,51,234,0.04);
+  }
+
+  .faq-srv-item {
+    background: #FFFFFF; border: 1px solid #EDE9FE;
+    border-radius: 0.875rem; overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .faq-srv-item.is-open { border-color: rgba(147,51,234,0.35); }
+  .faq-srv-item.is-open .faq-srv-icon { transform: rotate(45deg); }
+  .faq-srv-item.is-open .faq-srv-answer { max-height: 400px; }
+  .faq-srv-btn { background: none; border: none; }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.faq-srv-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest<HTMLElement>('.faq-srv-item');
+      const isOpen = item?.classList.contains('is-open');
+      document.querySelectorAll('.faq-srv-item').forEach(el => el.classList.remove('is-open'));
+      if (!isOpen && item) item.classList.add('is-open');
+    });
+  });
+</script>

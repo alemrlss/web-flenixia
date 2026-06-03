@@ -1,0 +1,36 @@
+---
+import Layout      from '../layouts/Layout.astro';
+import Navbar      from '../components/Navbar.astro';
+import Hero        from '../components/Hero.astro';
+import Problema    from '../components/Problema.astro';
+import Sistemas    from '../components/Sistemas.astro';
+import Resultados  from '../components/Resultados.astro';
+import CasosReales from '../components/CasosReales.astro';
+import Testimonios from '../components/Testimonios.astro';
+import Proceso     from '../components/Proceso.astro';
+import FAQ         from '../components/FAQ.astro';
+import Comparativa from '../components/Comparativa.astro';
+import CTAFinal    from '../components/CTAFinal.astro';
+import BookingWidget from '../components/BookingWidget.astro';
+import Footer      from '../components/Footer.astro';
+---
+
+<Layout
+  title="Plenixia — Sistema de IA que no descansa | CRM, Agentes IA y Automatizaciones"
+  description="Plenixia combina CRM, automatizaciones, landings de alta conversión y agentes IA (chat y voz) para que cada lead reciba la respuesta correcta en el momento exacto."
+>
+  <Navbar />
+  <Hero />
+  <Problema />
+  <Sistemas />
+  <Resultados />
+  <Comparativa />
+  <CasosReales />
+  <Testimonios />
+  <Proceso />
+  <FAQ />
+  <CTAFinal>
+    <BookingWidget />
+  </CTAFinal>
+  <Footer />
+</Layout>

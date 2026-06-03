@@ -1,0 +1,70 @@
+---
+const faqs = [
+  { q: '¿Cuánto tiempo tarda en estar operativo el sistema Plenixia?', a: 'La implementación estándar toma entre 7 y 14 días hábiles. Esto incluye la configuración del CRM, el entrenamiento de los agentes con la información de tu negocio, la integración con tus herramientas actuales y las pruebas antes del lanzamiento.' },
+  { q: '¿Necesito conocimientos técnicos para gestionar Plenixia?', a: 'No. El sistema está diseñado para que cualquier persona de tu equipo pueda gestionarlo sin tocar código. Además, formamos a tu equipo durante la implementación y ofrecemos soporte continuo.' },
+  { q: '¿Los agentes de IA suenan naturales o como bots genéricos?', a: 'Los agentes se entrenan específicamente con el tono, vocabulario y personalidad de tu marca. Muchos de los clientes de nuestros clientes no saben que están interactuando con IA.' },
+  { q: '¿Con qué herramientas se integra Plenixia?', a: 'Plenixia se conecta con más de 200 aplicaciones: HubSpot, Salesforce, Pipedrive, Google Workspace, WhatsApp Business API, Calendly, Stripe, Shopify, Notion, Slack y muchas más.' },
+  { q: '¿Qué pasa si el agente no sabe responder algo?', a: 'El sistema detecta cuando una consulta está fuera de su alcance y transfiere la conversación a un agente humano con todo el contexto. El cliente no nota la transición.' },
+  { q: '¿Cuál es el retorno de inversión esperado?', a: 'Nuestros clientes recuperan la inversión en los primeros 30-60 días. El ahorro en tiempo operativo, la mejora en conversión y los ingresos recuperados de leads que antes se perdían suelen superar el coste del sistema.' },
+  { q: '¿Qué incluye el diagnóstico gratuito de 30 minutos?', a: 'Analizamos tu proceso de captación y ventas actual, identificamos los principales puntos de fuga de leads y te mostramos con números reales cuánto está costándote no automatizar. Sin coste y sin compromiso.' },
+];
+---
+
+<section id="faq" class="py-24" style="background:#FFFFFF;color:#1F1635">
+  <div class="max-w-4xl mx-auto px-6 lg:px-10">
+
+    <div class="text-center mb-14">
+      <div class="reveal mb-4 flex justify-center">
+        <span class="section-label">Preguntas frecuentes</span>
+      </div>
+      <h2 class="reveal reveal-delay-1 font-display font-extrabold text-flenix-text leading-tight"
+          style="font-size:clamp(1.8rem,3.5vw,2.6rem)">
+        Todo lo que necesitas saber<br/>
+        <span class="gradient-text">antes de empezar.</span>
+      </h2>
+    </div>
+
+    <div class="reveal reveal-delay-2 space-y-3">
+      {faqs.map(faq => (
+        <div class="faq-item overflow-hidden">
+          <button class="faq-btn w-full flex items-center justify-between gap-4 px-6 py-5 text-left cursor-pointer">
+            <span class="font-display font-semibold text-flenix-text text-sm leading-snug">{faq.q}</span>
+            <span class="faq-icon-wrap flex-shrink-0">
+              <svg class="faq-icon w-5 h-5 transition-transform duration-300" fill="none" stroke="#9333EA" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-answer max-h-0 overflow-hidden transition-[max-height] duration-300 ease-out">
+            <p class="px-6 pb-5 pt-2 text-flenix-muted text-sm leading-relaxed border-t border-flenix-border">{faq.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .faq-item {
+    background: #FFFFFF; border: 1px solid #EDE9FE;
+    border-radius: 0.875rem;
+    box-shadow: 0 1px 8px rgba(147,51,234,0.04);
+    transition: border-color 0.2s;
+  }
+  .faq-item.is-open { border-color: rgba(147,51,234,0.35); }
+  .faq-item.is-open .faq-icon { transform: rotate(45deg); }
+  .faq-item.is-open .faq-answer { max-height: 400px; }
+  .faq-btn { background: none; border: none; }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest<HTMLElement>('.faq-item');
+      const isOpen = item?.classList.contains('is-open');
+      document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('is-open'));
+      if (!isOpen && item) item.classList.add('is-open');
+    });
+  });
+</script>

@@ -1,0 +1,104 @@
+---
+const aspectos = [
+  { label: 'Resultados Medibles',           flenixia: 'KPIs claros desde el día 1',        grandes: 'Informes sin métricas reales',   freelancers: 'Variable e inconsistente' },
+  { label: 'Acompañamiento Continuo',       flenixia: 'Soporte y optimización mensual',    grandes: 'Handoff tras la entrega',        freelancers: 'Solo durante el proyecto' },
+  { label: 'Personalización',               flenixia: '100% a medida de tu negocio',       grandes: 'Frameworks estándar',            freelancers: 'Limitada a su especialidad' },
+  { label: 'Implementación sin Fricciones', flenixia: 'Integración con tus herramientas',  grandes: 'Reemplaza tu stack existente',   freelancers: 'Solo lo que conoce' },
+  { label: 'IA en tu Tono de Marca',        flenixia: 'Entrenado con tu identidad',        grandes: 'Genérico y corporativo',         freelancers: 'Depende del perfil' },
+  { label: 'Transparencia Total',           flenixia: 'Acceso completo a métricas',        grandes: 'Datos filtrados por ellos',      freelancers: 'Sin reporting estructurado' },
+  { label: 'Adaptabilidad Ágil',            flenixia: 'Ajustes en tiempo real',            grandes: 'Proceso burocrático lento',      freelancers: 'Depende de disponibilidad' },
+  { label: 'Integración con Herramientas',  flenixia: 'CRM, WhatsApp, ERP y más',          grandes: 'Solo su ecosistema propio',      freelancers: 'Limitada a su stack' },
+  { label: 'Cumplimiento RGPD',             flenixia: 'Garantizado desde el diseño',       grandes: 'Depende del contrato',           freelancers: 'Generalmente no cubierto' },
+];
+---
+
+<section class="py-24 overflow-hidden" style="background:#0F0A1A;color:#F0F0FF">
+  <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+    <div class="text-center mb-14">
+      <div class="reveal mb-4 flex justify-center">
+        <span class="dark-label">Por qué Plenixia</span>
+      </div>
+      <h2 class="reveal reveal-delay-1 font-display font-extrabold leading-tight mb-4"
+          style="font-size:clamp(1.8rem,3.5vw,2.6rem);color:#F0F0FF">
+        Plenixia vs las<br/>
+        <span class="gradient-text">demás alternativas.</span>
+      </h2>
+      <p class="reveal reveal-delay-2 text-lg max-w-xl mx-auto" style="color:rgba(240,240,255,0.5)">
+        Comparamos honestamente lo que obtienes con nosotros frente a consultoras y freelancers.
+      </p>
+    </div>
+
+    <!-- Tabla -->
+    <div class="reveal overflow-x-auto rounded-2xl" style="border:1px solid rgba(192,132,252,0.2)">
+      <table class="w-full min-w-[640px] border-collapse">
+        <thead>
+          <tr>
+            <th class="text-left py-5 px-6 text-xs font-semibold uppercase tracking-wider w-[30%]"
+                style="background:rgba(255,255,255,0.03);color:rgba(240,240,255,0.4);border-bottom:1px solid rgba(192,132,252,0.15)">
+              Aspecto
+            </th>
+            <th class="py-5 px-6 text-center w-[24%] flenixia-col">
+              <span class="font-display font-bold text-white text-sm block">Plenixia</span>
+              <span class="block mt-0.5" style="font-size:0.7rem;color:rgba(255,255,255,0.6)">Nuestra propuesta</span>
+            </th>
+            <th class="py-5 px-6 text-center text-sm font-medium w-[23%]"
+                style="background:rgba(255,255,255,0.03);color:rgba(240,240,255,0.4);border-bottom:1px solid rgba(192,132,252,0.15)">
+              Consultorías grandes
+            </th>
+            <th class="py-5 px-6 text-center text-sm font-medium w-[23%]"
+                style="background:rgba(255,255,255,0.03);color:rgba(240,240,255,0.4);border-bottom:1px solid rgba(192,132,252,0.15)">
+              Freelancers
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {aspectos.map((a, i) => (
+            <tr class="comp-row" style={`--even:${i % 2 === 0 ? '1' : '0'}`}>
+              <td class="py-4 px-6 text-sm font-medium" style="color:rgba(240,240,255,0.8)">{a.label}</td>
+              <td class="py-4 px-6 text-center flenixia-col">
+                <span class="text-white text-sm font-medium">{a.flenixia}</span>
+              </td>
+              <td class="py-4 px-6 text-center text-sm" style="color:rgba(240,240,255,0.35)">{a.grandes}</td>
+              <td class="py-4 px-6 text-center text-sm" style="color:rgba(240,240,255,0.35)">{a.freelancers}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="reveal text-center mt-12">
+      <a href="#agenda" class="btn-primary">
+        Empezar con Plenixia
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .dark-label {
+    display: inline-flex; align-items: center;
+    font-family: 'Poppins', sans-serif; font-weight: 600;
+    font-size: 0.73rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: #C084FC; background: rgba(192,132,252,0.12);
+    border: 1px solid rgba(192,132,252,0.25);
+    border-radius: 99px; padding: 0.3rem 0.9rem;
+  }
+
+  .flenixia-col {
+    background: linear-gradient(180deg, rgba(147,51,234,0.5) 0%, rgba(124,58,237,0.4) 100%);
+    border-left: 1px solid rgba(192,132,252,0.25);
+    border-right: 1px solid rgba(192,132,252,0.25);
+  }
+
+  .comp-row td {
+    border-top: 1px solid rgba(192,132,252,0.1);
+  }
+  .comp-row:nth-child(even) td:not(.flenixia-col) {
+    background: rgba(255,255,255,0.02);
+  }
+</style>

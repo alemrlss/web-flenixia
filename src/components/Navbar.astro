@@ -1,0 +1,258 @@
+---
+import { servicios } from '../data/servicios';
+const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.icon }));
+---
+
+<header class="nav-header fixed top-0 left-0 right-0 z-50">
+  <div class="nav-inner max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-16">
+
+    <!-- Logo -->
+    <a href="/" class="logo-link font-display font-bold text-2xl leading-none">
+      Plenix<span class="logo-ia">ia</span>
+    </a>
+
+    <!-- Links — desktop -->
+    <nav class="hidden md:flex items-center gap-1">
+
+      <!-- Soluciones dropdown -->
+      <div class="relative group/srv">
+        <button class="nav-btn flex items-center gap-1">
+          Soluciones
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"
+               class="transition-transform duration-200 group-hover/srv:rotate-180 opacity-60">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="dropdown absolute top-full left-0 pt-2 w-[460px]
+                    invisible opacity-0 translate-y-1
+                    group-hover/srv:visible group-hover/srv:opacity-100 group-hover/srv:translate-y-0
+                    transition-all duration-150 pointer-events-none group-hover/srv:pointer-events-auto">
+          <div class="drop-panel grid grid-cols-2 gap-0.5 p-2">
+            {serviciosNav.map(s => (
+              <a href={`/servicios/${s.slug}`} class="drop-link">
+                <span class="drop-icon">
+                  <svg width="12" height="12" fill="none" stroke="#9333EA" stroke-width="2"
+                       stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <path d={s.icon}/>
+                  </svg>
+                </span>
+                {s.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Agentes dropdown -->
+      <div class="relative group/ag">
+        <button class="nav-btn flex items-center gap-1">
+          Agentes IA
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"
+               class="transition-transform duration-200 group-hover/ag:rotate-180 opacity-60">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="dropdown absolute top-full left-0 pt-2 w-64
+                    invisible opacity-0 translate-y-1
+                    group-hover/ag:visible group-hover/ag:opacity-100 group-hover/ag:translate-y-0
+                    transition-all duration-150 pointer-events-none group-hover/ag:pointer-events-auto">
+          <div class="drop-panel p-1.5">
+            <a href="/agentes/clinicas-esteticas" class="agente-link">
+              <span class="drop-icon">
+                <svg width="12" height="12" fill="none" stroke="#9333EA" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <path d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
+                </svg>
+              </span>
+              <div>
+                <p class="agente-name">Agente IA para Clínicas Estéticas</p>
+                <p class="agente-sub">Captación, citas y seguimiento automatizados</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <a href="/flenixia" class="nav-btn">Plenixia</a>
+    </nav>
+
+    <!-- CTA + hamburger -->
+    <div class="flex items-center gap-3">
+      <a href="/#agenda" class="hidden md:inline-flex nav-cta">
+        Agendar demo
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+      <button id="mob-toggle" class="md:hidden ham-btn" aria-label="Menú">
+        <svg id="ham-open"  width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg id="ham-close" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="hidden">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mob-menu" class="hidden md:hidden mob-panel">
+    <div class="mob-section">
+      <p class="mob-group-label">Soluciones</p>
+      {serviciosNav.map(s => (
+        <a href={`/servicios/${s.slug}`} class="mob-link">{s.name}</a>
+      ))}
+    </div>
+    <div class="mob-section">
+      <p class="mob-group-label">Agentes IA</p>
+      <a href="/agentes/clinicas-esteticas" class="mob-link">Agente IA para Clínicas Estéticas</a>
+    </div>
+    <div class="mob-section">
+      <a href="/flenixia" class="mob-link">Plenixia</a>
+    </div>
+    <div class="px-5 py-4 border-t mob-border">
+      <a href="/#agenda" class="btn-primary w-full justify-center">Agendar demo</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  /* ── Base ─────────────────────────────────────── */
+  .nav-header {
+    background: transparent;
+    transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
+    border-bottom: 1px solid transparent;
+  }
+  .nav-header.scrolled {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-color: #EDE9FE;
+    box-shadow: 0 1px 16px rgba(147,51,234,0.06);
+  }
+
+  /* ── Logo ─────────────────────────────────────── */
+  .logo-link { color: #fff; text-decoration: none; transition: color 0.25s; }
+  .nav-header.scrolled .logo-link { color: #1F1635; }
+  .logo-ia {
+    background: linear-gradient(135deg, #C084FC, #A855F7);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  /* ── Nav buttons ──────────────────────────────── */
+  .nav-btn {
+    background: none; border: none; cursor: pointer;
+    font-family: 'Poppins', sans-serif; font-size: 0.875rem; font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    padding: 0.45rem 0.75rem; border-radius: 0.4rem;
+    text-decoration: none; transition: color 0.15s, background 0.15s;
+  }
+  .nav-btn:hover { color: #fff; background: rgba(255,255,255,0.08); }
+  .nav-header.scrolled .nav-btn { color: #64647A; }
+  .nav-header.scrolled .nav-btn:hover { color: #9333EA; background: #F3E8FF; }
+
+  /* ── Dropdown ─────────────────────────────────── */
+  .dropdown { transition: opacity 0.15s, transform 0.15s, visibility 0.15s; }
+  .drop-panel {
+    background: #fff;
+    border: 1px solid #EDE9FE;
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 32px rgba(147,51,234,0.1), 0 2px 8px rgba(0,0,0,0.06);
+    border-top: 2px solid #9333EA;
+  }
+  .drop-link {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.4rem 0.65rem; border-radius: 0.4rem;
+    font-family: 'Poppins', sans-serif; font-size: 0.82rem;
+    color: #64647A; text-decoration: none; white-space: nowrap;
+    transition: color 0.12s, background 0.12s;
+  }
+  .drop-link:hover { color: #9333EA; background: #F3E8FF; }
+  .drop-icon {
+    width: 20px; height: 20px; flex-shrink: 0;
+    background: #F3E8FF; border-radius: 0.25rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .agente-link {
+    display: flex; align-items: flex-start; gap: 0.65rem;
+    padding: 0.65rem 0.75rem; border-radius: 0.5rem;
+    text-decoration: none; transition: background 0.12s;
+  }
+  .agente-link:hover { background: #F3E8FF; }
+  .agente-name { font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 600; color: #1F1635; transition: color 0.12s; }
+  .agente-link:hover .agente-name { color: #9333EA; }
+  .agente-sub  { font-family: 'Inter', sans-serif; font-size: 0.72rem; color: #8B8BA8; margin-top: 1px; }
+
+  /* ── CTA ──────────────────────────────────────── */
+  /* CTA degradado */
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    background: linear-gradient(135deg, #9333EA 0%, #A855F7 100%);
+    color: #fff;
+    font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.85rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 0.5rem;
+    border: none; text-decoration: none; white-space: nowrap;
+    box-shadow: 0 2px 14px rgba(147,51,234,0.4);
+    transition: filter 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .nav-cta:hover {
+    filter: brightness(1.15);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 22px rgba(147,51,234,0.55);
+  }
+  .nav-cta:active { transform: translateY(0); filter: brightness(1); }
+
+  .ham-btn { background: none; border: none; cursor: pointer; color: #fff; padding: 4px; transition: color 0.25s; }
+  .nav-header.scrolled .ham-btn { color: #1F1635; }
+
+  /* ── Mobile ───────────────────────────────────── */
+  .mob-panel {
+    background: #fff; border-top: 1px solid #EDE9FE;
+    box-shadow: 0 8px 24px rgba(147,51,234,0.08);
+    max-height: 85vh; overflow-y: auto;
+  }
+  .mob-section { padding: 0.75rem 0; border-bottom: 1px solid #EDE9FE; }
+  .mob-border  { border-color: #EDE9FE; }
+  .mob-group-label {
+    font-family: 'Poppins', sans-serif; font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: #8B8BA8; padding: 0.25rem 1.25rem 0.5rem;
+  }
+  .mob-link {
+    display: block; padding: 0.55rem 1.25rem;
+    font-family: 'Poppins', sans-serif; font-size: 0.875rem; font-weight: 500;
+    color: #64647A; text-decoration: none;
+    transition: color 0.12s, background 0.12s;
+  }
+  .mob-link:hover { color: #9333EA; background: #FAF8FF; }
+</style>
+
+<script>
+  // Scroll
+  const nav = document.querySelector('.nav-header') as HTMLElement;
+  window.addEventListener('scroll', () => {
+    nav?.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  // Mobile toggle
+  const btn      = document.getElementById('mob-toggle');
+  const menu     = document.getElementById('mob-menu');
+  const hamOpen  = document.getElementById('ham-open');
+  const hamClose = document.getElementById('ham-close');
+
+  btn?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('hidden');
+    hamOpen?.classList.toggle('hidden', !open);
+    hamClose?.classList.toggle('hidden', !!open);
+  });
+
+  menu?.querySelectorAll('.mob-link, .btn-primary').forEach(el => {
+    el.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      hamOpen?.classList.remove('hidden');
+      hamClose?.classList.add('hidden');
+    });
+  });
+</script>

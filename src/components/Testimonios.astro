@@ -1,0 +1,66 @@
+---
+const testimonios = [
+  { inicial: 'M', nombre: 'María G.', empresa: 'Directora Comercial · Retail', quote: 'Desde que usamos Plenixia, nuestros leads se atienden en segundos. No puedo imaginar volver a gestionar las ventas de otra manera.', metrica: '+160%', metricaLabel: 'leads convertidos' },
+  { inicial: 'R', nombre: 'Roberto A.', empresa: 'CEO · Clínica Estética', quote: 'Desde que usamos Plenixia, hemos ahorrado 18 horas semanales en tareas manuales. El equipo ahora se centra en lo que importa.', metrica: '18h/semana', metricaLabel: 'ahorradas en operativa' },
+  { inicial: 'S', nombre: 'Sara L.', empresa: 'Fundadora · Agencia de Marketing', quote: 'Desde que usamos Plenixia, el tiempo de respuesta bajó un 64%. Eso se traduce directamente en más ventas cerradas cada mes.', metrica: '+64%', metricaLabel: 'velocidad de respuesta' },
+  { inicial: 'J', nombre: 'Javier P.', empresa: 'Director Ops · SaaS B2B', quote: 'Desde que usamos Plenixia, generamos €42.000 adicionales al año solo con el sistema de seguimiento automático.', metrica: '+€42.000', metricaLabel: 'ingresos generados/año' },
+];
+---
+
+<section class="py-24 overflow-hidden" style="background:#FFFFFF;color:#1F1635">
+  <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+    <div class="text-center mb-14">
+      <div class="reveal mb-4 flex justify-center">
+        <span class="section-label">Testimonios</span>
+      </div>
+      <h2 class="reveal reveal-delay-1 font-display font-extrabold text-flenix-text leading-tight"
+          style="font-size:clamp(1.8rem,3.5vw,2.6rem)">
+        Equipos reales.<br/>
+        <span class="gradient-text">Resultados reales.</span>
+      </h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {testimonios.map((t, i) => (
+        <div class={`reveal reveal-delay-${Math.min(i+1,4)} testi-card`}>
+          <div class="font-display font-black gradient-text mb-1" style="font-size:1.5rem;line-height:1.1">{t.metrica}</div>
+          <p class="text-flenix-muted text-xs mb-4">{t.metricaLabel}</p>
+          <div class="flex gap-0.5 mb-3">
+            {Array.from({length:5}).map(() => (
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            ))}
+          </div>
+          <p class="text-flenix-text text-sm leading-relaxed mb-5 flex-1">"{t.quote}"</p>
+          <div class="flex items-center gap-3 mt-auto">
+            <div class="testi-avatar">{t.inicial}</div>
+            <div>
+              <p class="font-display font-semibold text-flenix-text text-sm">{t.nombre}</p>
+              <p class="text-flenix-muted text-xs">{t.empresa}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .testi-card {
+    background: #FFFFFF; border: 1px solid #EDE9FE; border-radius: 1.25rem;
+    padding: 1.75rem; display: flex; flex-direction: column;
+    box-shadow: 0 2px 12px rgba(147,51,234,0.05);
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  }
+  .testi-card:hover { border-color: rgba(147,51,234,0.35); box-shadow: 0 12px 36px rgba(147,51,234,0.1); transform: translateY(-3px); }
+  .testi-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, #9333EA, #C084FC);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem;
+    color: #fff; flex-shrink: 0;
+  }
+</style>

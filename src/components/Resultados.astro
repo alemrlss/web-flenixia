@@ -1,0 +1,51 @@
+---
+const metricas = [
+  { num: '30s',  label: 'Tiempo de respuesta a leads',   desc: 'Cada lead recibe respuesta personalizada en menos de 30 segundos, sin intervención humana.' },
+  { num: '+65%', label: 'Tasa de conversión',            desc: 'Los negocios con Plenixia convierten un 65% más porque ningún lead queda sin respuesta.' },
+  { num: '24/7', label: 'Operación continua',            desc: 'El sistema trabaja sábados, domingos y a las 3 de la mañana. Sin coste adicional.' },
+  { num: '-40%', label: 'Reducción de carga operativa',  desc: 'Tu equipo deja las tareas repetitivas y se enfoca en lo que realmente cierra ventas.' },
+];
+---
+
+<section id="resultados" class="py-24 overflow-hidden" style="background:#FFFFFF;color:#1F1635">
+  <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+    <div class="text-center mb-16">
+      <div class="reveal mb-4 flex justify-center">
+        <span class="section-label">Resultados comprobados</span>
+      </div>
+      <h2 class="reveal reveal-delay-1 font-display font-extrabold text-flenix-text leading-tight"
+          style="font-size:clamp(1.8rem,3.5vw,2.6rem)">
+        Métricas promedio en los primeros<br/>
+        <span class="gradient-text">90 días con Plenixia.</span>
+      </h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {metricas.map((m, i) => (
+        <div class={`reveal reveal-delay-${Math.min(i+1,4)} metrica-card`}>
+          <div class="font-display font-black gradient-text mb-2" style="font-size:clamp(2.2rem,4vw,3rem);line-height:1">{m.num}</div>
+          <p class="font-display font-semibold text-flenix-text text-sm mb-3">{m.label}</p>
+          <p class="text-flenix-muted text-xs leading-relaxed">{m.desc}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .metrica-card {
+    background: #FAF8FF; border: 1px solid #EDE9FE;
+    border-radius: 1rem; padding: 2rem 1.5rem;
+    position: relative; overflow: hidden;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .metrica-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: linear-gradient(90deg, #9333EA, #C084FC);
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .metrica-card:hover { border-color: rgba(147,51,234,0.35); box-shadow: 0 8px 28px rgba(147,51,234,0.1); }
+  .metrica-card:hover::before { opacity: 1; }
+</style>

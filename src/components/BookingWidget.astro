@@ -1,0 +1,197 @@
+---
+---
+<div class="booking-widget">
+
+  <!-- Panel izquierdo -->
+  <div class="booking-info">
+    <div class="flex items-center gap-3 mb-7">
+      <div class="booking-logo">
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
+          <defs>
+            <linearGradient id="bl" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#9333EA"/><stop offset="100%" stop-color="#C084FC"/>
+            </linearGradient>
+          </defs>
+          <polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="url(#bl)"/>
+          <text x="16" y="22" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700" font-size="13" fill="white">F</text>
+        </svg>
+      </div>
+      <div>
+        <p class="font-display font-bold text-white text-sm">Plenixia</p>
+        <p style="color:rgba(255,255,255,0.45)" class="text-xs">Diagnóstico gratuito</p>
+      </div>
+    </div>
+    <h3 class="font-display font-bold text-white text-xl mb-4">Diagnóstico gratuito</h3>
+    <div class="flex items-center gap-2 text-sm mb-2" style="color:rgba(255,255,255,0.55)">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      30 minutos
+    </div>
+    <div class="flex items-center gap-2 text-sm mb-7" style="color:rgba(255,255,255,0.55)">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>
+      Videollamada
+    </div>
+    <p class="text-sm leading-relaxed mb-7" style="color:rgba(255,255,255,0.55)">En 30 minutos analizamos tu negocio y te mostramos exactamente cuánto estás perdiendo sin IA.</p>
+    <ul class="space-y-3">
+      {['Diagnóstico de puntos de fuga', 'ROI estimado personalizado', 'Hoja de ruta concreta', 'Sin compromiso de contratación'].map(item => (
+        <li class="flex items-center gap-2.5 text-sm" style="color:rgba(255,255,255,0.55)">
+          <svg width="13" height="13" fill="none" stroke="#C084FC" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+          {item}
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Panel derecho -->
+  <div class="booking-panel">
+    <div id="step-day" class="booking-step">
+      <p class="step-label">Selecciona un día disponible</p>
+      <div class="booking-days" id="days-grid"></div>
+    </div>
+    <div id="step-time" class="booking-step hidden">
+      <button class="step-back" id="back-to-day">← Cambiar día</button>
+      <p class="step-label">Selecciona una hora</p>
+      <p class="text-flenix-muted text-sm mb-4" id="selected-day-label"></p>
+      <div class="booking-slots" id="slots-grid"></div>
+    </div>
+    <div id="step-form" class="booking-step hidden">
+      <button class="step-back" id="back-to-time">← Cambiar hora</button>
+      <p class="step-label">Tus datos</p>
+      <p class="booking-summary" id="booking-summary"></p>
+      <input id="b-nombre"  type="text"  placeholder="Nombre y apellidos *" class="booking-input" />
+      <input id="b-email"   type="email" placeholder="tu@empresa.com *"     class="booking-input" />
+      <input id="b-empresa" type="text"  placeholder="Empresa (opcional)"   class="booking-input" />
+      <button id="confirm-btn" class="btn-primary w-full justify-center mt-2">
+        Confirmar reserva
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </button>
+      <p class="text-xs text-center mt-3" style="color:rgba(255,255,255,0.35)">Sin spam · Recibirás el enlace por email.</p>
+    </div>
+    <div id="step-success" class="booking-step hidden booking-success">
+      <div class="success-icon">
+        <svg width="26" height="26" fill="none" stroke="#C084FC" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+      </div>
+      <h3 class="font-display font-bold text-white text-xl mb-2">¡Reunión confirmada!</h3>
+      <p class="text-sm mb-4" style="color:rgba(255,255,255,0.55)" id="success-detail"></p>
+      <p class="text-xs" style="color:rgba(255,255,255,0.35)">Te enviaremos el enlace de videollamada a tu correo.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .booking-widget {
+    display: grid; grid-template-columns: 1fr;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(192,132,252,0.2);
+    border-radius: 1.5rem; overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(147,51,234,0.1), 0 32px 80px rgba(0,0,0,0.3);
+  }
+  @media (min-width: 768px) { .booking-widget { grid-template-columns: 260px 1fr; } }
+
+  .booking-info { background: rgba(0,0,0,0.25); border-right: 1px solid rgba(192,132,252,0.15); padding: 2.5rem 2rem; }
+  .booking-logo {
+    width: 42px; height: 42px;
+    background: rgba(147,51,234,0.2); border: 1px solid rgba(147,51,234,0.3);
+    border-radius: 0.6rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .booking-panel { padding: 2rem 2rem 2.5rem; }
+
+  .step-label { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.88rem; color: #fff; margin-bottom: 1rem; }
+  .step-back { background: none; border: none; cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 0.73rem; color: rgba(255,255,255,0.4); padding: 0; margin-bottom: 0.75rem; display: block; transition: color 0.15s; }
+  .step-back:hover { color: #fff; }
+
+  .booking-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.3rem; }
+  .day-btn {
+    display: flex; flex-direction: column; align-items: center; gap: 0.12rem; padding: 0.5rem 0.15rem;
+    border-radius: 0.4rem; border: 1px solid rgba(192,132,252,0.15);
+    background: rgba(255,255,255,0.04); cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .day-btn:not(.unavailable):hover { border-color: rgba(147,51,234,0.5); background: rgba(147,51,234,0.1); }
+  .day-btn.selected { border-color: #9333EA; background: rgba(147,51,234,0.15); }
+  .day-btn.unavailable { opacity: 0.2; cursor: not-allowed; }
+  .day-name { font-size: 0.5rem; font-weight: 600; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.04em; font-family: 'Poppins', sans-serif; }
+  .day-num  { font-size: 0.88rem; font-weight: 700; color: rgba(255,255,255,0.85); font-family: 'Poppins', sans-serif; }
+  .day-mon  { font-size: 0.48rem; color: rgba(255,255,255,0.35); font-family: 'Poppins', sans-serif; }
+  .day-btn.selected .day-name, .day-btn.selected .day-num, .day-btn.selected .day-mon { color: #C084FC; }
+
+  .booking-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; margin-bottom: 0.5rem; }
+  .slot-btn {
+    padding: 0.5rem 0.2rem; border-radius: 0.4rem;
+    border: 1px solid rgba(192,132,252,0.15); background: rgba(255,255,255,0.04);
+    font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 500;
+    color: rgba(255,255,255,0.75); cursor: pointer; text-align: center;
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+  }
+  .slot-btn:hover { border-color: rgba(147,51,234,0.5); background: rgba(147,51,234,0.1); }
+  .slot-btn.selected { border-color: #9333EA; background: rgba(147,51,234,0.15); color: #C084FC; font-weight: 600; }
+
+  .booking-summary { font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 500; color: #C084FC; margin-bottom: 1rem; background: rgba(147,51,234,0.12); border: 1px solid rgba(147,51,234,0.25); border-radius: 0.4rem; padding: 0.5rem 0.75rem; }
+  .booking-input {
+    display: block; width: 100%;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(192,132,252,0.2);
+    border-radius: 0.5rem; padding: 0.75rem 1rem;
+    font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #fff;
+    outline: none; margin-bottom: 0.6rem; transition: border-color 0.2s; box-sizing: border-box;
+  }
+  .booking-input::placeholder { color: rgba(255,255,255,0.3); }
+  .booking-input:focus { border-color: rgba(147,51,234,0.6); }
+
+  .booking-success { text-align: center; padding: 2.5rem 1rem; }
+  .success-icon {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: rgba(147,51,234,0.15); border: 1px solid rgba(147,51,234,0.3);
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem;
+  }
+</style>
+
+<script>
+  (function () {
+    const SLOTS     = ['9:00','9:30','10:00','10:30','11:00','11:30','16:00','16:30','17:00','17:30'];
+    const DAY_SHORT = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+    const MON_SHORT = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+    let selDayLabel = '';
+    const daysGrid  = document.getElementById('days-grid');
+    const slotsGrid = document.getElementById('slots-grid');
+    const today = new Date(); today.setHours(0,0,0,0);
+    for (let i = 1; i <= 7; i++) {
+      const d = new Date(today); d.setDate(today.getDate() + i);
+      const dow = d.getDay(); const isWeekend = dow === 0 || dow === 6;
+      const btn = document.createElement('button');
+      btn.className = 'day-btn' + (isWeekend ? ' unavailable' : '');
+      btn.innerHTML = `<span class="day-name">${DAY_SHORT[dow]}</span><span class="day-num">${d.getDate()}</span><span class="day-mon">${MON_SHORT[d.getMonth()]}</span>`;
+      btn.dataset['label'] = `${DAY_SHORT[dow]} ${d.getDate()} ${MON_SHORT[d.getMonth()]}`;
+      if (!isWeekend) btn.addEventListener('click', () => pickDay(btn));
+      daysGrid?.appendChild(btn);
+    }
+    function pickDay(btn: HTMLElement) {
+      document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selDayLabel = btn.dataset['label'] ?? '';
+      const lbl = document.getElementById('selected-day-label');
+      if (lbl) lbl.textContent = selDayLabel;
+      if (slotsGrid) { slotsGrid.innerHTML = ''; SLOTS.forEach(s => { const sb = document.createElement('button'); sb.className = 'slot-btn'; sb.textContent = s; sb.addEventListener('click', () => pickSlot(sb, s)); slotsGrid.appendChild(sb); }); }
+      showStep('step-time');
+    }
+    function pickSlot(btn: HTMLElement, slot: string) {
+      document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      const sum = document.getElementById('booking-summary');
+      if (sum) sum.textContent = `📅 ${selDayLabel}  ·  🕐 ${slot}  ·  Videollamada 30 min`;
+      showStep('step-form');
+    }
+    function showStep(id: string) {
+      ['step-day','step-time','step-form','step-success'].forEach(s => { document.getElementById(s)?.classList.toggle('hidden', s !== id); });
+    }
+    document.getElementById('back-to-day')?.addEventListener('click',  () => showStep('step-day'));
+    document.getElementById('back-to-time')?.addEventListener('click', () => showStep('step-time'));
+    document.getElementById('confirm-btn')?.addEventListener('click', () => {
+      const nombre = (document.getElementById('b-nombre') as HTMLInputElement)?.value.trim();
+      const email  = (document.getElementById('b-email')  as HTMLInputElement)?.value.trim();
+      if (!nombre || !email) { alert('Por favor completa nombre y email.'); return; }
+      const detail = document.getElementById('success-detail');
+      const sum    = document.getElementById('booking-summary');
+      if (detail) detail.textContent = sum?.textContent ?? '';
+      showStep('step-success');
+    });
+  })();
+</script>

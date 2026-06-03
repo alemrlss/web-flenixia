@@ -1,0 +1,1 @@
+import"./hoisted.ZhU0ObPR.js";import"./hoisted.GdTeLRfp.js";document.querySelectorAll(".faq-srv-btn").forEach(e=>{e.addEventListener("click",()=>{const s=e.closest(".faq-srv-item"),t=s?.classList.contains("is-open");document.querySelectorAll(".faq-srv-item").forEach(i=>i.classList.remove("is-open")),!t&&s&&s.classList.add("is-open")})});

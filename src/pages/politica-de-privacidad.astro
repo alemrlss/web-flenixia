@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar  from '../components/Navbar.astro';
+import Footer  from '../components/Footer.astro';
+---
+
+<Layout title="Política de Privacidad — Plenixia" description="Política de privacidad de Plenixia.">
+  <Navbar />
+  <main class="pt-28 pb-20" style="background:#FFFFFF;color:#1F1635">
+    <div class="max-w-3xl mx-auto px-6 lg:px-10">
+      <h1 class="font-display font-extrabold text-flenix-white text-4xl mb-8">Política de Privacidad</h1>
+
+      <div class="prose-dark space-y-8">
+
+        <section>
+          <h2>1. Responsable del tratamiento</h2>
+          <p>El responsable del tratamiento de tus datos personales es <strong>Plenixia</strong>, con email de contacto: hola@flenixia.com.</p>
+        </section>
+
+        <section>
+          <h2>2. Datos que recopilamos</h2>
+          <p>Recopilamos los siguientes datos personales a través de los formularios del sitio web:</p>
+          <ul>
+            <li>Nombre y apellidos</li>
+            <li>Dirección de correo electrónico</li>
+            <li>Nombre de la empresa (opcional)</li>
+            <li>Información que nos proporciones voluntariamente en el mensaje</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>3. Finalidad del tratamiento</h2>
+          <p>Los datos personales que nos proporciones serán utilizados para:</p>
+          <ul>
+            <li>Atender tu solicitud de información o contacto</li>
+            <li>Gestionar la agenda y las reuniones de diagnóstico solicitadas</li>
+            <li>Enviarte comunicaciones relacionadas con nuestros servicios, si así lo has solicitado</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4. Base legal</h2>
+          <p>El tratamiento de tus datos se basa en tu consentimiento expreso, dado en el momento de cumplimentar y enviar el formulario, así como en el interés legítimo de Plenixia para atender solicitudes de información.</p>
+        </section>
+
+        <section>
+          <h2>5. Conservación de los datos</h2>
+          <p>Tus datos serán conservados durante el tiempo necesario para atender tu solicitud y, posteriormente, durante los plazos legalmente establecidos.</p>
+        </section>
+
+        <section>
+          <h2>6. Derechos del usuario</h2>
+          <p>Puedes ejercer en cualquier momento tus derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad de los datos enviando un email a hola@flenixia.com.</p>
+        </section>
+
+        <section>
+          <h2>7. Cookies</h2>
+          <p>Este sitio web puede utilizar cookies técnicas necesarias para su funcionamiento. No utilizamos cookies de seguimiento ni publicidad sin tu consentimiento.</p>
+        </section>
+
+        <section>
+          <h2>8. Cambios en la política</h2>
+          <p>Nos reservamos el derecho a modificar esta política de privacidad para adaptarla a novedades legislativas. En tal caso, anunciaremos los cambios con antelación suficiente.</p>
+        </section>
+
+        <p class="text-flenix-muted text-sm">Última actualización: junio 2026</p>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .prose-dark section { margin-bottom: 2rem; }
+  .prose-dark h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700; font-size: 1.2rem;
+    color: #E2E2F0; margin-bottom: 0.75rem;
+  }
+  .prose-dark p, .prose-dark li {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem; line-height: 1.75;
+    color: #8B8BA8;
+  }
+  .prose-dark strong { color: #E2E2F0; }
+  .prose-dark ul { padding-left: 1.25rem; margin-top: 0.5rem; }
+  .prose-dark li { margin-bottom: 0.35rem; }
+</style>

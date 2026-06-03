@@ -1,0 +1,89 @@
+---
+const problemas = [
+  {
+    icon: 'M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z',
+    stat: '+78%',
+    statLabel: 'leads se enfrían en la primera hora',
+    title: 'Leads que se enfrían',
+    desc: 'Un lead sin respuesta en 5 minutos tiene un 80% menos de probabilidades de convertir. Tu equipo no puede estar siempre. Plenixia, sí.',
+  },
+  {
+    icon: 'M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z',
+    stat: '12h',
+    statLabel: 'semanales perdidas en tareas manuales',
+    title: 'Equipo apagando incendios',
+    desc: 'Responder siempre lo mismo, actualizar hojas de cálculo, recordar llamadas. Energía desperdiciada en operativa en lugar de cerrar ventas.',
+  },
+  {
+    icon: 'M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5',
+    stat: '63%',
+    statLabel: 'de los seguimientos nunca ocurren',
+    title: 'Seguimientos que nunca pasan',
+    desc: 'La mayoría de ventas ocurren entre el 5º y el 12º contacto. Sin sistema, el seguimiento depende de la memoria. Resultado: oportunidades perdidas en silencio.',
+  },
+  {
+    icon: 'M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z',
+    stat: '40%',
+    statLabel: 'de llamadas no atendidas nunca se recuperan',
+    title: 'Llamadas no atendidas',
+    desc: 'Cada llamada perdida es un cliente que va directo a tu competencia. Sin agente de voz, estás perdiendo ingresos cada día.',
+  },
+];
+---
+
+<section class="py-24 overflow-hidden" style="background:#FFFFFF;color:#1F1635">
+  <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+    <div class="text-center mb-16">
+      <div class="reveal mb-4 flex justify-center">
+        <span class="section-label">El problema real</span>
+      </div>
+      <h2 class="reveal reveal-delay-1 font-display font-extrabold leading-tight mb-4"
+          style="font-size:clamp(1.9rem,4vw,2.8rem);color:#1F1635">
+        Lo que no automatizas,<br/>
+        <span class="gradient-text">lo factura tu competencia.</span>
+      </h2>
+      <p class="reveal reveal-delay-2 text-lg max-w-xl mx-auto" style="color:#64647A">
+        Mientras lees esto, otro lead acaba de comprar… a tu competencia.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {problemas.map((p, i) => (
+        <div class={`reveal reveal-delay-${Math.min(i+1,4)} problema-card`}>
+          <div class="problema-icon mb-4">
+            <svg width="20" height="20" fill="none" stroke="#9333EA" stroke-width="1.75" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d={p.icon}/>
+            </svg>
+          </div>
+          <div class="font-display font-black gradient-text mb-0.5" style="font-size:1.75rem;line-height:1">{p.stat}</div>
+          <p class="text-flenix-muted text-xs mb-3 leading-snug">{p.statLabel}</p>
+          <h3 class="font-display font-bold text-flenix-text text-base mb-2">{p.title}</h3>
+          <p class="text-flenix-muted text-sm leading-relaxed">{p.desc}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .problema-card {
+    background: #FFFFFF;
+    border: 1px solid #EDE9FE;
+    border-radius: 1rem; padding: 1.75rem 1.5rem;
+    box-shadow: 0 2px 12px rgba(147,51,234,0.05);
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  }
+  .problema-card:hover {
+    border-color: rgba(147,51,234,0.4);
+    box-shadow: 0 12px 36px rgba(147,51,234,0.12);
+    transform: translateY(-4px);
+  }
+  .problema-icon {
+    width: 42px; height: 42px;
+    background: #F3E8FF; border: 1px solid #DDD6FE;
+    border-radius: 0.6rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+</style>

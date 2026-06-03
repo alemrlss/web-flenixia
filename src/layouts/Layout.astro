@@ -1,0 +1,190 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonical?: string;
+}
+
+const {
+  title,
+  description,
+  image = '/og-image.png',
+  canonical = Astro.url.href,
+} = Astro.props;
+
+const siteUrl = 'https://flenixia.com';
+const ogImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Plenixia",
+  "url": siteUrl,
+  "description": "Sistema de IA multicanal para empresas: CRM, automatizaciones, agentes de chat y voz, landings y workflows.",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "hola@flenixia.com",
+    "contactType": "customer service"
+  }
+});
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={canonical} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Plenixia" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="theme-color" content="#9333EA" />
+  <script type="application/ld+json" set:html={schema} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="font-body antialiased" style="background:#FFFFFF;color:#1F1635;margin:0;padding:0">
+  <slot />
+</body>
+</html>
+
+<style is:global>
+  :root {
+    --c-lila:   147 51  234;   /* #9333EA */
+    --c-light:  168 85  247;   /* #A855F7 */
+    --c-dark:   26  16  51;    /* #1A1033 */
+    --c-text:   31  22  53;    /* #1F1635 */
+    --c-muted:  100 100 122;   /* #64647A */
+    --c-border: 237 233 254;   /* #EDE9FE */
+    --c-soft:   243 232 255;   /* #F3E8FF */
+    --c-bg-alt: 250 248 255;   /* #FAF8FF */
+  }
+
+  html { scroll-behavior: smooth; }
+
+  /* Clases de color propias — garantizadas independientemente de Tailwind */
+  .text-flenix-text   { color: #1F1635 !important; }
+  .text-flenix-muted  { color: #64647A !important; }
+  .text-flenix-white  { color: #F0F0FF !important; }
+  .text-flenix-indigo { color: #9333EA !important; }
+  .text-flenix-light  { color: #A855F7 !important; }
+  .border-flenix-border { border-color: #EDE9FE !important; }
+
+  /* ── Scroll reveal ─────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+  }
+  .reveal.in-view        { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1        { transition-delay: 100ms; }
+  .reveal-delay-2        { transition-delay: 200ms; }
+  .reveal-delay-3        { transition-delay: 320ms; }
+  .reveal-delay-4        { transition-delay: 440ms; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ── Gradient text (lila) ───────────────────── */
+  .gradient-text {
+    background: linear-gradient(135deg, #9333EA 0%, #C084FC 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Glass card (light) ─────────────────────── */
+  .glass-card {
+    background: #FFFFFF;
+    border: 1px solid #EDE9FE;
+    border-radius: 1rem;
+    box-shadow: 0 2px 16px rgba(147,51,234,0.06);
+  }
+
+  /* ── Section label ───────────────────────────── */
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.73rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #9333EA;
+    background: #F3E8FF;
+    border: 1px solid #DDD6FE;
+    border-radius: 99px;
+    padding: 0.3rem 0.9rem;
+  }
+
+  /* ── Buttons ────────────────────────────────── */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: #9333EA;
+    color: #fff;
+    font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.9rem;
+    padding: 0.8rem 1.75rem; border-radius: 0.5rem; border: none;
+    cursor: pointer; text-decoration: none; white-space: nowrap;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover {
+    background: #7C3AED;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(147,51,234,0.35);
+  }
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: transparent;
+    color: #9333EA;
+    font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.9rem;
+    padding: 0.8rem 1.75rem; border-radius: 0.5rem;
+    border: 1.5px solid #9333EA;
+    cursor: pointer; text-decoration: none; white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { background: #F3E8FF; }
+
+  .btn-outline-white {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: transparent;
+    color: #fff;
+    font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.9rem;
+    padding: 0.8rem 1.75rem; border-radius: 0.5rem;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    cursor: pointer; text-decoration: none; white-space: nowrap;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-outline-white:hover { border-color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08); }
+
+  /* ── Scrollbar ──────────────────────────────── */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: #FAF8FF; }
+  ::-webkit-scrollbar-thumb { background: #DDD6FE; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #9333EA; }
+
+  ::selection { background: rgba(147,51,234,0.15); color: #1F1635; }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); }),
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>

@@ -1,0 +1,90 @@
+---
+const serviciosLinks = [
+  { name: 'CRM Inteligente',         slug: 'crm-y-automatizacion-de-ventas' },
+  { name: 'Agentes de Chat IA',      slug: 'agentes-de-ia' },
+  { name: 'Agente de Voz IA',        slug: 'agentes-de-ia' },
+  { name: 'Email Marketing',         slug: 'automatizacion-de-rrss' },
+  { name: 'Landings de Conversión',  slug: 'desarrollo-web' },
+  { name: 'Automatizaciones',        slug: 'automatizaciones-con-ia' },
+];
+---
+
+<footer style="background:#1A1033; border-top: 1px solid rgba(147,51,234,0.2)">
+  <div class="max-w-6xl mx-auto px-6 lg:px-10 py-16">
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-14">
+
+      <div class="col-span-2 md:col-span-1">
+        <a href="/" class="flex items-center gap-2 mb-4 no-underline">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+            <defs>
+              <linearGradient id="fl" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#9333EA"/><stop offset="100%" stop-color="#C084FC"/>
+              </linearGradient>
+            </defs>
+            <polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="url(#fl)"/>
+            <text x="16" y="22" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700" font-size="13" fill="white">F</text>
+          </svg>
+          <span class="font-display font-bold text-lg text-white">
+            Plenix<span style="background:linear-gradient(135deg,#C084FC,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">ia</span>
+          </span>
+        </a>
+        <p class="text-sm leading-relaxed mb-5" style="color:rgba(255,255,255,0.45)">
+          Sistema de IA multicanal para empresas que quieren crecer sin multiplicar su equipo.
+        </p>
+        <a href="mailto:hola@flenixia.com" class="text-sm transition-colors" style="color:rgba(255,255,255,0.45)"
+           onmouseover="this.style.color='#C084FC'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
+          hola@flenixia.com
+        </a>
+      </div>
+
+      <div>
+        <p class="footer-heading">Soluciones</p>
+        <ul class="space-y-2">
+          {serviciosLinks.map(s => (
+            <li><a href={`/servicios/${s.slug}`} class="footer-link">{s.name}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-heading">Empresa</p>
+        <ul class="space-y-2">
+          <li><a href="#como-funciona" class="footer-link">Cómo funciona</a></li>
+          <li><a href="#resultados"    class="footer-link">Resultados</a></li>
+          <li><a href="#casos"         class="footer-link">Casos de éxito</a></li>
+          <li><a href="#faq"           class="footer-link">FAQ</a></li>
+          <li><a href="#agenda"        class="footer-link">Agendar demo</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-heading">Legal</p>
+        <ul class="space-y-2">
+          <li><a href="/politica-de-privacidad" class="footer-link">Política de privacidad</a></li>
+          <li><a href="/aviso-legal"             class="footer-link">Aviso legal</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4" style="border-top:1px solid rgba(147,51,234,0.15);padding-top:2rem">
+      <p class="text-sm" style="color:rgba(255,255,255,0.3)">© {new Date().getFullYear()} Plenixia. Todos los derechos reservados.</p>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  .footer-heading {
+    font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.78rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: rgba(255,255,255,0.6); margin-bottom: 1rem;
+  }
+  .footer-link {
+    font-family: 'Inter', sans-serif; font-size: 0.85rem;
+    color: rgba(255,255,255,0.35); text-decoration: none;
+    transition: color 0.15s; display: block;
+  }
+  .footer-link:hover { color: #C084FC; }
+</style>

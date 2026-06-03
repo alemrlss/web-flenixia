@@ -1,0 +1,104 @@
+---
+interface Props {
+  servicioNombre: string;
+}
+const { servicioNombre } = Astro.props;
+---
+
+<div class="form-contacto glass-card p-8">
+  <h3 class="font-display font-bold text-flenix-white text-xl mb-2">
+    ¿Te interesa <span class="gradient-text">{servicioNombre}</span>?
+  </h3>
+  <p class="text-flenix-muted text-sm mb-6">Cuéntanos tu caso y te respondemos en menos de 24h.</p>
+
+  <form
+    id="contact-form"
+    action="https://formspree.io/f/YOUR_FORMSPREE_ID"
+    method="POST"
+  >
+    <input type="hidden" name="servicio" value={servicioNombre} />
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-4">
+      <div>
+        <label class="form-label">Nombre *</label>
+        <input type="text" name="nombre" required placeholder="Tu nombre" class="form-input" />
+      </div>
+      <div>
+        <label class="form-label">Email *</label>
+        <input type="email" name="email" required placeholder="tu@empresa.com" class="form-input" />
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label class="form-label">Empresa</label>
+      <input type="text" name="empresa" placeholder="Tu empresa (opcional)" class="form-input" />
+    </div>
+
+    <div class="mb-6">
+      <label class="form-label">Mensaje *</label>
+      <textarea name="mensaje" required rows="4" placeholder="Cuéntanos qué necesitas..." class="form-input resize-none"></textarea>
+    </div>
+
+    <button type="submit" class="btn-primary w-full justify-center" id="submit-btn">
+      Enviar mensaje
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+      </svg>
+    </button>
+
+    <div id="form-success" class="hidden mt-4 p-4 rounded-lg text-sm text-center"
+         style="background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.3);color:#818CF8">
+      ✓ Mensaje enviado. Te respondemos en menos de 24h.
+    </div>
+  </form>
+</div>
+
+<style>
+  .form-label {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.78rem; font-weight: 500;
+    color: #8B8BA8; margin-bottom: 0.4rem;
+  }
+  .form-input {
+    display: block; width: 100%;
+    background: #111118; border: 1px solid #23233A;
+    border-radius: 0.5rem; padding: 0.75rem 1rem;
+    font-family: 'Inter', sans-serif; font-size: 0.9rem;
+    color: #E2E2F0; outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+  }
+  .form-input::placeholder { color: #8B8BA8; }
+  .form-input:focus { border-color: rgba(99,102,241,0.5); }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const successMsg = document.getElementById('form-success');
+  const submitBtn  = document.getElementById('submit-btn');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (submitBtn) { submitBtn.setAttribute('disabled', 'true'); submitBtn.textContent = 'Enviando…'; }
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+
+      if (res.ok) {
+        form.reset();
+        successMsg?.classList.remove('hidden');
+        if (submitBtn) submitBtn.classList.add('hidden');
+      } else {
+        if (submitBtn) { submitBtn.removeAttribute('disabled'); submitBtn.textContent = 'Enviar mensaje'; }
+        alert('Hubo un error. Por favor intenta de nuevo.');
+      }
+    } catch {
+      if (submitBtn) { submitBtn.removeAttribute('disabled'); submitBtn.textContent = 'Enviar mensaje'; }
+    }
+  });
+</script>

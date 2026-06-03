@@ -1,0 +1,295 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import FormContacto from '../../components/FormContacto.astro';
+
+const heroImg = 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=80&fit=crop';
+---
+
+<Layout
+  title="Agente de IA para Clínicas Estéticas — Plenixia"
+  description="Automatiza la captación, agendamiento y seguimiento de tus clientes con un agente de IA diseñado específicamente para clínicas médico-estéticas."
+>
+  <Navbar />
+
+  <!-- Hero -->
+  <section class="clinica-hero relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden">
+    <div class="hero-overlay absolute inset-0 z-0"></div>
+    <img src={heroImg} alt="Clínica estética" class="absolute inset-0 w-full h-full object-cover opacity-30"/>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-6 w-full text-center">
+
+      <div class="reveal mb-6 flex justify-center">
+        <span class="hero-label">Agente especializado</span>
+      </div>
+
+      <h1 class="reveal reveal-delay-1 font-display font-extrabold text-white leading-[1.05] mb-6"
+          style="font-size:clamp(2.8rem,6vw,4.5rem)">
+        Tu clínica captando citas<br/>
+        <span class="clinica-gradient">mientras descansas.</span>
+      </h1>
+
+      <p class="reveal reveal-delay-2 text-white/70 text-xl leading-relaxed max-w-2xl mx-auto mb-10">
+        Un agente de IA entrenado con el tono de tu clínica que atiende consultas, agenda citas y hace seguimiento — las 24 horas, sin intervención humana.
+      </p>
+
+      <div class="reveal reveal-delay-3 flex flex-wrap justify-center gap-4 mb-14">
+        <a href="#contacto" class="btn-primary text-base px-8 py-3.5">
+          Solicitar diagnóstico
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+        <a href="#como-funciona" class="btn-outline-white text-base px-8 py-3.5">Ver cómo funciona</a>
+      </div>
+
+      <!-- Stats -->
+      <div class="reveal reveal-delay-4 flex flex-wrap justify-center gap-12">
+        {[
+          { num: '-35%', label: 'Menos no-shows' },
+          { num: '24/7', label: 'Disponibilidad' },
+          { num: '+60%', label: 'Conversión de leads' },
+        ].map(s => (
+          <div>
+            <p class="font-display font-black text-white" style="font-size:1.75rem">{s.num}</p>
+            <p class="text-white/45 text-xs mt-0.5">{s.label}</p>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Funcionalidades -->
+  <section id="como-funciona" class="py-24" style="background:#FFFFFF">
+    <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+      <div class="text-center mb-14">
+        <div class="reveal mb-4 flex justify-center">
+          <span class="section-label">Funcionalidades</span>
+        </div>
+        <h2 class="reveal reveal-delay-1 font-display font-extrabold text-flenix-text leading-tight"
+            style="font-size:clamp(1.8rem,3.5vw,2.6rem)">
+          Todo lo que hace<br/>
+          <span class="gradient-text">tu agente de IA.</span>
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {[
+          { icon: '💬', title: 'Atiende consultas al instante', desc: 'Responde preguntas sobre tratamientos, precios y disponibilidad en segundos, no en horas.' },
+          { icon: '📅', title: 'Agenda citas automáticamente', desc: 'Se sincroniza con tu calendario y confirma citas sin que nadie del equipo tenga que intervenir.' },
+          { icon: '🔔', title: 'Envía recordatorios', desc: 'Reduce no-shows con recordatorios automáticos por WhatsApp 24h y 1h antes de cada cita.' },
+          { icon: '📲', title: 'Funciona por WhatsApp y web', desc: 'Disponible donde tus clientes ya están. Sin apps nuevas, sin fricción.' },
+          { icon: '🧠', title: 'Aprende tu clínica', desc: 'Entrenado con tus tratamientos, precios y protocolos. Habla como tú, no como un bot.' },
+          { icon: '📊', title: 'Registra todo en el CRM', desc: 'Cada conversación queda guardada. Ningún lead se pierde ni queda sin seguimiento.' },
+        ].map((f, i) => (
+          <div class={`reveal reveal-delay-${Math.min(i+1,4)} func-card`}>
+            <div class="text-3xl mb-4">{f.icon}</div>
+            <h3 class="font-display font-bold text-flenix-text text-base mb-2">{f.title}</h3>
+            <p class="text-flenix-muted text-sm leading-relaxed">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué clínicas -->
+  <section class="py-24" style="background:#FAF8FF">
+    <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+      <div class="text-center mb-14">
+        <div class="reveal mb-4 flex justify-center">
+          <span class="section-label">Por qué clínicas estéticas</span>
+        </div>
+        <h2 class="reveal reveal-delay-1 font-display font-extrabold text-flenix-text leading-tight"
+            style="font-size:clamp(1.8rem,3.5vw,2.6rem)">
+          Diseñado para<br/>
+          <span class="gradient-text">el sector estético.</span>
+        </h2>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8 items-center">
+        <div class="space-y-5">
+          {[
+            { titulo: 'Maneja consultas de alta sensibilidad', desc: 'Entrenado para responder con tacto sobre tratamientos estéticos, precios y expectativas sin perder la calidez humana de tu clínica.' },
+            { titulo: 'Reduce el no-show radicalmente', desc: 'Los recordatorios automáticos y las confirmaciones de cita reducen las ausencias hasta un 35%, recuperando ingresos directos.' },
+            { titulo: 'Capta leads fuera del horario', desc: 'La mayoría de las búsquedas de tratamientos ocurren por la noche. Tu agente responde mientras tu equipo descansa.' },
+            { titulo: 'Compatible con tu software de gestión', desc: 'Se integra con los principales software de gestión de clínicas: Doctolib, Fresha, Jane App y más.' },
+          ].map((item, i) => (
+            <div class={`reveal reveal-delay-${Math.min(i+1,4)} razon-item`}>
+              <div class="flex items-start gap-3">
+                <span class="razon-dot flex-shrink-0 mt-1.5"></span>
+                <div>
+                  <h3 class="font-display font-semibold text-flenix-text text-base mb-1">{item.titulo}</h3>
+                  <p class="text-flenix-muted text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Mockup de chat -->
+        <div class="reveal reveal-delay-2">
+          <div class="chat-mockup">
+            <div class="chat-header">
+              <div class="chat-avatar">C</div>
+              <div>
+                <p class="font-display font-semibold text-white text-sm">Clínica Bellezza</p>
+                <p class="text-white/45 text-xs flex items-center gap-1">
+                  <span class="live-dot"></span> Agente IA activo
+                </p>
+              </div>
+            </div>
+            <div class="chat-messages">
+              <div class="msg-received">¡Hola! ¿En qué puedo ayudarte hoy? 😊</div>
+              <div class="msg-sent">Hola, quería saber el precio de la hidratación facial</div>
+              <div class="msg-received">¡Claro! La hidratación facial intensiva está a <strong>85€</strong> e incluye limpieza profunda + sérum personalizado. ¿Te gustaría ver disponibilidad para esta semana?</div>
+              <div class="msg-sent">Sí, por favor, el jueves por la tarde</div>
+              <div class="msg-received">Perfecto ✅ Tengo libre el <strong>jueves a las 17:00 y 18:30</strong>. ¿Cuál te viene mejor?</div>
+              <div class="chat-typing">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Resultados -->
+  <section class="py-24" style="background:#FFFFFF">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10">
+      <div class="text-center mb-12">
+        <div class="reveal mb-4 flex justify-center">
+          <span class="section-label">Resultados</span>
+        </div>
+        <h2 class="reveal reveal-delay-1 font-display font-extrabold text-flenix-text leading-tight"
+            style="font-size:clamp(1.8rem,3.5vw,2.6rem)">
+          Números reales de<br/>
+          <span class="gradient-text">clínicas como la tuya.</span>
+        </h2>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-6">
+        {[
+          { num: '-35%', label: 'No-shows',    desc: 'Reducción media de ausencias gracias a los recordatorios automáticos.' },
+          { num: '+60%', label: 'Conversión',  desc: 'Más leads que pasan de consulta a cita confirmada.' },
+          { num: '24/7', label: 'Disponible',  desc: 'Tu agente atiende a las 2 de la mañana sin coste adicional.' },
+        ].map((r, i) => (
+          <div class={`reveal reveal-delay-${Math.min(i+1,4)} result-card`}>
+            <div class="font-display font-black gradient-text mb-2" style="font-size:2.5rem;line-height:1">{r.num}</div>
+            <p class="font-display font-semibold text-flenix-text text-sm mb-2">{r.label}</p>
+            <p class="text-flenix-muted text-xs leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulario de contacto -->
+  <section id="contacto" class="py-24" style="background:#FAF8FF">
+    <div class="max-w-2xl mx-auto px-6 lg:px-10">
+      <div class="text-center mb-10">
+        <div class="reveal mb-4 flex justify-center">
+          <span class="section-label">Empezar</span>
+        </div>
+        <h2 class="reveal reveal-delay-1 font-display font-extrabold text-flenix-text leading-tight"
+            style="font-size:clamp(1.8rem,3.5vw,2.2rem)">
+          ¿Lista para automatizar<br/>
+          <span class="gradient-text">tu clínica?</span>
+        </h2>
+        <p class="reveal reveal-delay-2 text-flenix-muted mt-3">Diagnóstico gratuito de 30 minutos, sin compromiso.</p>
+      </div>
+      <div class="reveal reveal-delay-3">
+        <FormContacto servicioNombre="Agente IA para Clínicas Estéticas" />
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .clinica-hero { background: #1A1033; }
+  .hero-overlay {
+    background: linear-gradient(to top, #1A1033 10%, rgba(26,16,51,0.75) 60%, rgba(26,16,51,0.5) 100%);
+  }
+  .hero-label {
+    display: inline-flex; align-items: center;
+    font-family: 'Poppins', sans-serif; font-weight: 600;
+    font-size: 0.73rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: #C084FC; background: rgba(192,132,252,0.12);
+    border: 1px solid rgba(192,132,252,0.25);
+    border-radius: 99px; padding: 0.3rem 0.9rem;
+  }
+  .clinica-gradient {
+    background: linear-gradient(135deg, #C084FC, #A855F7);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  .func-card {
+    background: #FFFFFF; border: 1px solid #EDE9FE; border-radius: 1.25rem;
+    padding: 1.75rem; box-shadow: 0 2px 12px rgba(147,51,234,0.05);
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  }
+  .func-card:hover { border-color: rgba(147,51,234,0.35); box-shadow: 0 12px 36px rgba(147,51,234,0.1); transform: translateY(-3px); }
+
+  .razon-item {
+    background: #FFFFFF; border: 1px solid #EDE9FE; border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .razon-item:hover { border-color: rgba(147,51,234,0.3); }
+  .razon-dot { width: 8px; height: 8px; border-radius: 50%; background: #9333EA; }
+
+  /* Chat mockup */
+  .chat-mockup {
+    background: #1A1033; border: 1px solid rgba(147,51,234,0.25);
+    border-radius: 1.25rem; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(147,51,234,0.15);
+  }
+  .chat-header {
+    background: rgba(147,51,234,0.15); border-bottom: 1px solid rgba(147,51,234,0.2);
+    padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.75rem;
+  }
+  .chat-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: linear-gradient(135deg, #9333EA, #C084FC);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Poppins', sans-serif; font-weight: 700; color: #fff; font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ADE80; display: inline-block; }
+  .chat-messages { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; }
+  .msg-received {
+    background: rgba(147,51,234,0.12); border: 1px solid rgba(147,51,234,0.2);
+    border-radius: 1rem 1rem 1rem 0.25rem; padding: 0.6rem 0.9rem;
+    font-family: 'Inter', sans-serif; font-size: 0.82rem; color: rgba(255,255,255,0.85);
+    max-width: 85%; align-self: flex-start; line-height: 1.5;
+  }
+  .msg-sent {
+    background: #9333EA; border-radius: 1rem 1rem 0.25rem 1rem;
+    padding: 0.6rem 0.9rem; font-family: 'Inter', sans-serif;
+    font-size: 0.82rem; color: #fff; max-width: 75%; align-self: flex-end; line-height: 1.5;
+  }
+  .chat-typing {
+    display: flex; gap: 4px; align-items: center; padding: 0.5rem 0.75rem;
+    background: rgba(147,51,234,0.08); border-radius: 1rem; width: fit-content;
+  }
+  .chat-typing span {
+    width: 6px; height: 6px; border-radius: 50%; background: #9333EA;
+    animation: typing 1.2s ease-in-out infinite;
+  }
+  .chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+  .chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing { 0%,60%,100% { transform:translateY(0);opacity:.4; } 30% { transform:translateY(-4px);opacity:1; } }
+
+  .result-card {
+    background: #FFFFFF; border: 1px solid #EDE9FE; border-radius: 1rem; padding: 2rem;
+    box-shadow: 0 2px 12px rgba(147,51,234,0.05);
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .result-card:hover { border-color: rgba(147,51,234,0.35); transform: translateY(-3px); }
+</style>
