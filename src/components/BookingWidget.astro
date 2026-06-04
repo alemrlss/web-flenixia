@@ -1,197 +1,401 @@
+﻿---
 ---
----
-<div class="booking-widget">
+<div class="bk-widget">
 
-  <!-- Panel izquierdo -->
-  <div class="booking-info">
-    <div class="flex items-center gap-3 mb-7">
-      <div class="booking-logo">
-        <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
-          <defs>
-            <linearGradient id="bl" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#9333EA"/><stop offset="100%" stop-color="#C084FC"/>
-            </linearGradient>
-          </defs>
-          <polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="url(#bl)"/>
-          <text x="16" y="22" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700" font-size="13" fill="white">F</text>
+  <!-- Panel izquierdo: info -->
+  <div class="bk-left">
+    <div class="bk-logo-row">
+      <div class="bk-logo">
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="none">
+          <polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="#fff" fill-opacity="0.9"/>
+          <text x="16" y="22" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800" font-size="13" fill="#7C3AED">F</text>
         </svg>
       </div>
       <div>
-        <p class="font-display font-bold text-white text-sm">Plenixia</p>
-        <p style="color:rgba(255,255,255,0.45)" class="text-xs">Diagnóstico gratuito</p>
+        <p class="bk-brand">Flenixia</p>
+        <p class="bk-brand-sub">DiagnÃ³stico gratuito</p>
       </div>
     </div>
-    <h3 class="font-display font-bold text-white text-xl mb-4">Diagnóstico gratuito</h3>
-    <div class="flex items-center gap-2 text-sm mb-2" style="color:rgba(255,255,255,0.55)">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      30 minutos
+
+    <h3 class="bk-title">Agenda tu sesiÃ³n de diagnÃ³stico</h3>
+
+    <div class="bk-meta">
+      <div class="bk-meta-item">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        30 minutos
+      </div>
+      <div class="bk-meta-item">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/>
+        </svg>
+        Videollamada
+      </div>
+      <div class="bk-meta-item">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75"/>
+        </svg>
+        Sin coste
+      </div>
     </div>
-    <div class="flex items-center gap-2 text-sm mb-7" style="color:rgba(255,255,255,0.55)">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>
-      Videollamada
-    </div>
-    <p class="text-sm leading-relaxed mb-7" style="color:rgba(255,255,255,0.55)">En 30 minutos analizamos tu negocio y te mostramos exactamente cuánto estás perdiendo sin IA.</p>
-    <ul class="space-y-3">
-      {['Diagnóstico de puntos de fuga', 'ROI estimado personalizado', 'Hoja de ruta concreta', 'Sin compromiso de contratación'].map(item => (
-        <li class="flex items-center gap-2.5 text-sm" style="color:rgba(255,255,255,0.55)">
-          <svg width="13" height="13" fill="none" stroke="#C084FC" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-          {item}
+
+    <p class="bk-desc">
+      En 30 minutos analizamos tu negocio y te decimos exactamente cuÃ¡nto puedes recuperar con IA.
+    </p>
+
+    <ul class="bk-features">
+      {['DiagnÃ³stico de puntos de fuga', 'ROI estimado para tu negocio', 'Hoja de ruta concreta', 'Sin compromiso de contrataciÃ³n'].map(f => (
+        <li class="bk-feature-item">
+          <span class="bk-feature-dot">
+            <svg width="10" height="10" fill="none" stroke="#C084FC" stroke-width="3" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+            </svg>
+          </span>
+          {f}
         </li>
       ))}
     </ul>
+
+    <div class="bk-trust">
+      <svg width="12" height="12" fill="none" stroke="#22C55E" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+      </svg>
+      Sin spam Â· Cancela cuando quieras
+    </div>
   </div>
 
-  <!-- Panel derecho -->
-  <div class="booking-panel">
-    <div id="step-day" class="booking-step">
-      <p class="step-label">Selecciona un día disponible</p>
-      <div class="booking-days" id="days-grid"></div>
-    </div>
-    <div id="step-time" class="booking-step hidden">
-      <button class="step-back" id="back-to-day">← Cambiar día</button>
-      <p class="step-label">Selecciona una hora</p>
-      <p class="text-flenix-muted text-sm mb-4" id="selected-day-label"></p>
-      <div class="booking-slots" id="slots-grid"></div>
-    </div>
-    <div id="step-form" class="booking-step hidden">
-      <button class="step-back" id="back-to-time">← Cambiar hora</button>
-      <p class="step-label">Tus datos</p>
-      <p class="booking-summary" id="booking-summary"></p>
-      <input id="b-nombre"  type="text"  placeholder="Nombre y apellidos *" class="booking-input" />
-      <input id="b-email"   type="email" placeholder="tu@empresa.com *"     class="booking-input" />
-      <input id="b-empresa" type="text"  placeholder="Empresa (opcional)"   class="booking-input" />
-      <button id="confirm-btn" class="btn-primary w-full justify-center mt-2">
-        Confirmar reserva
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-      </button>
-      <p class="text-xs text-center mt-3" style="color:rgba(255,255,255,0.35)">Sin spam · Recibirás el enlace por email.</p>
-    </div>
-    <div id="step-success" class="booking-step hidden booking-success">
-      <div class="success-icon">
-        <svg width="26" height="26" fill="none" stroke="#C084FC" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+  <!-- Panel derecho: calendario -->
+  <div class="bk-right">
+
+    <!-- Step 1: Elige dÃ­a -->
+    <div id="bk-step-day" class="bk-step">
+      <p class="bk-step-title">Elige un dÃ­a</p>
+      <div class="bk-days-header">
+        {['L','M','X','J','V','S','D'].map(d => <span class="bk-day-header">{d}</span>)}
       </div>
-      <h3 class="font-display font-bold text-white text-xl mb-2">¡Reunión confirmada!</h3>
-      <p class="text-sm mb-4" style="color:rgba(255,255,255,0.55)" id="success-detail"></p>
-      <p class="text-xs" style="color:rgba(255,255,255,0.35)">Te enviaremos el enlace de videollamada a tu correo.</p>
+      <div class="bk-days-grid" id="bk-days-grid"></div>
     </div>
+
+    <!-- Step 2: Elige hora -->
+    <div id="bk-step-time" class="bk-step hidden">
+      <button class="bk-back" id="bk-back-day">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/>
+        </svg>
+        Cambiar dÃ­a
+      </button>
+      <p class="bk-step-title">Elige una hora</p>
+      <p class="bk-selected-day" id="bk-day-label"></p>
+      <div class="bk-slots-grid" id="bk-slots-grid"></div>
+    </div>
+
+    <!-- Step 3: Tus datos -->
+    <div id="bk-step-form" class="bk-step hidden">
+      <button class="bk-back" id="bk-back-time">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/>
+        </svg>
+        Cambiar hora
+      </button>
+      <p class="bk-step-title">Tus datos</p>
+      <div class="bk-summary-badge" id="bk-summary"></div>
+      <div class="bk-form-fields">
+        <input id="bk-nombre"  type="text"  placeholder="Nombre y apellidos *" class="bk-input"/>
+        <input id="bk-email"   type="email" placeholder="Email de trabajo *"   class="bk-input"/>
+        <input id="bk-empresa" type="text"  placeholder="Empresa (opcional)"   class="bk-input"/>
+      </div>
+      <button id="bk-confirm" class="btn-primary w-full justify-center">
+        Confirmar reserva
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </button>
+      <p class="bk-form-note">Sin spam Â· RecibirÃ¡s el enlace de videollamada por email.</p>
+    </div>
+
+    <!-- Step 4: Confirmado -->
+    <div id="bk-step-ok" class="bk-step hidden bk-success-step">
+      <div class="bk-success-ring">
+        <svg width="28" height="28" fill="none" stroke="#22C55E" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+        </svg>
+      </div>
+      <h3 class="bk-success-title">Â¡Reserva confirmada!</h3>
+      <p class="bk-success-detail" id="bk-success-detail"></p>
+      <p class="bk-success-note">Te enviamos el enlace de videollamada a tu correo. Hasta pronto ðŸ‘‹</p>
+    </div>
+
   </div>
 </div>
 
-<style>
-  .booking-widget {
-    display: grid; grid-template-columns: 1fr;
-    background: rgba(255,255,255,0.06);
+<style is:global>
+  /* â”€â”€ Widget shell â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  .bk-widget {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(147,51,234,0.15);
+    font-family: 'Poppins', sans-serif;
+  }
+  @media (min-width: 768px) {
+    .bk-widget { grid-template-columns: 280px 1fr; }
+  }
+
+  /* â”€â”€ Panel izquierdo â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  .bk-left {
+    background: linear-gradient(160deg, #1A1033 0%, #2D1B69 60%, #1A1033 100%);
+    padding: 2.25rem 2rem;
+    border-right: 1px solid rgba(192,132,252,0.15);
+  }
+  .bk-logo-row {
+    display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem;
+  }
+  .bk-logo {
+    width: 40px; height: 40px; border-radius: 0.6rem; flex-shrink: 0;
+    background: rgba(147,51,234,0.25);
+    border: 1px solid rgba(147,51,234,0.4);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .bk-brand {
+    font-family: 'Poppins', sans-serif; font-weight: 700;
+    font-size: 0.9rem; color: #F5F3FF; line-height: 1.2;
+  }
+  .bk-brand-sub {
+    font-size: 0.7rem; color: rgba(255,255,255,0.4); margin-top: 1px;
+  }
+  .bk-title {
+    font-family: 'Poppins', sans-serif; font-weight: 700;
+    font-size: 1.1rem; color: #F5F3FF; line-height: 1.3;
+    margin-bottom: 1.25rem;
+  }
+  .bk-meta {
+    display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1.5rem;
+  }
+  .bk-meta-item {
+    display: flex; align-items: center; gap: 0.55rem;
+    font-size: 0.82rem; color: rgba(255,255,255,0.55);
+  }
+  .bk-desc {
+    font-size: 0.82rem; line-height: 1.65;
+    color: rgba(255,255,255,0.45); margin-bottom: 1.5rem;
+  }
+  .bk-features { list-style: none; padding: 0; margin: 0 0 1.75rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .bk-feature-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.8rem; color: rgba(255,255,255,0.6);
+  }
+  .bk-feature-dot {
+    width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+    background: rgba(192,132,252,0.12);
     border: 1px solid rgba(192,132,252,0.2);
-    border-radius: 1.5rem; overflow: hidden;
-    box-shadow: 0 0 0 1px rgba(147,51,234,0.1), 0 32px 80px rgba(0,0,0,0.3);
+    display: flex; align-items: center; justify-content: center;
   }
-  @media (min-width: 768px) { .booking-widget { grid-template-columns: 260px 1fr; } }
-
-  .booking-info { background: rgba(0,0,0,0.25); border-right: 1px solid rgba(192,132,252,0.15); padding: 2.5rem 2rem; }
-  .booking-logo {
-    width: 42px; height: 42px;
-    background: rgba(147,51,234,0.2); border: 1px solid rgba(147,51,234,0.3);
-    border-radius: 0.6rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  .bk-trust {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-size: 0.7rem; color: rgba(255,255,255,0.3);
   }
-  .booking-panel { padding: 2rem 2rem 2.5rem; }
 
-  .step-label { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.88rem; color: #fff; margin-bottom: 1rem; }
-  .step-back { background: none; border: none; cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 0.73rem; color: rgba(255,255,255,0.4); padding: 0; margin-bottom: 0.75rem; display: block; transition: color 0.15s; }
-  .step-back:hover { color: #fff; }
-
-  .booking-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.3rem; }
-  .day-btn {
-    display: flex; flex-direction: column; align-items: center; gap: 0.12rem; padding: 0.5rem 0.15rem;
-    border-radius: 0.4rem; border: 1px solid rgba(192,132,252,0.15);
-    background: rgba(255,255,255,0.04); cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
+  /* â”€â”€ Panel derecho â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  .bk-right {
+    background: #FFFFFF;
+    padding: 2.25rem 2rem;
   }
-  .day-btn:not(.unavailable):hover { border-color: rgba(147,51,234,0.5); background: rgba(147,51,234,0.1); }
-  .day-btn.selected { border-color: #9333EA; background: rgba(147,51,234,0.15); }
-  .day-btn.unavailable { opacity: 0.2; cursor: not-allowed; }
-  .day-name { font-size: 0.5rem; font-weight: 600; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.04em; font-family: 'Poppins', sans-serif; }
-  .day-num  { font-size: 0.88rem; font-weight: 700; color: rgba(255,255,255,0.85); font-family: 'Poppins', sans-serif; }
-  .day-mon  { font-size: 0.48rem; color: rgba(255,255,255,0.35); font-family: 'Poppins', sans-serif; }
-  .day-btn.selected .day-name, .day-btn.selected .day-num, .day-btn.selected .day-mon { color: #C084FC; }
-
-  .booking-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; margin-bottom: 0.5rem; }
-  .slot-btn {
-    padding: 0.5rem 0.2rem; border-radius: 0.4rem;
-    border: 1px solid rgba(192,132,252,0.15); background: rgba(255,255,255,0.04);
-    font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 500;
-    color: rgba(255,255,255,0.75); cursor: pointer; text-align: center;
-    transition: border-color 0.15s, background 0.15s, color 0.15s;
+  .bk-step-title {
+    font-family: 'Poppins', sans-serif; font-weight: 700;
+    font-size: 0.95rem; color: #1F1635; margin-bottom: 1.25rem;
   }
-  .slot-btn:hover { border-color: rgba(147,51,234,0.5); background: rgba(147,51,234,0.1); }
-  .slot-btn.selected { border-color: #9333EA; background: rgba(147,51,234,0.15); color: #C084FC; font-weight: 600; }
-
-  .booking-summary { font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 500; color: #C084FC; margin-bottom: 1rem; background: rgba(147,51,234,0.12); border: 1px solid rgba(147,51,234,0.25); border-radius: 0.4rem; padding: 0.5rem 0.75rem; }
-  .booking-input {
-    display: block; width: 100%;
-    background: rgba(255,255,255,0.06); border: 1px solid rgba(192,132,252,0.2);
-    border-radius: 0.5rem; padding: 0.75rem 1rem;
-    font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #fff;
-    outline: none; margin-bottom: 0.6rem; transition: border-color 0.2s; box-sizing: border-box;
+  .bk-back {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: none; border: none; cursor: pointer;
+    font-family: 'Poppins', sans-serif; font-size: 0.72rem; font-weight: 600;
+    color: #9333EA; padding: 0; margin-bottom: 1rem;
+    transition: color 0.15s;
   }
-  .booking-input::placeholder { color: rgba(255,255,255,0.3); }
-  .booking-input:focus { border-color: rgba(147,51,234,0.6); }
+  .bk-back:hover { color: #7C3AED; }
 
-  .booking-success { text-align: center; padding: 2.5rem 1rem; }
-  .success-icon {
-    width: 56px; height: 56px; border-radius: 50%;
-    background: rgba(147,51,234,0.15); border: 1px solid rgba(147,51,234,0.3);
-    display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem;
+  /* DÃ­as */
+  .bk-days-header {
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    gap: 0.3rem; margin-bottom: 0.4rem;
   }
+  .bk-day-header {
+    text-align: center; font-family: 'Poppins', sans-serif;
+    font-size: 0.65rem; font-weight: 700; color: #9CA3AF;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .bk-days-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.3rem;
+  }
+  .bk-day-btn {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 0.55rem 0.1rem; border-radius: 0.5rem; cursor: pointer;
+    border: 1px solid #EDE9FE; background: #FAFAFA;
+    transition: all 0.15s;
+  }
+  .bk-day-btn:not(.bk-unavail):hover {
+    border-color: #9333EA; background: #F3E8FF; color: #9333EA;
+  }
+  .bk-day-btn.bk-selected {
+    border-color: #9333EA; background: #9333EA;
+  }
+  .bk-day-btn.bk-unavail {
+    opacity: 0.3; cursor: not-allowed; background: #F9FAFB;
+  }
+  .bk-day-label-dow {
+    font-family: 'Poppins', sans-serif; font-size: 0.55rem; font-weight: 700;
+    color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .bk-day-label-num {
+    font-family: 'Poppins', sans-serif; font-size: 0.95rem; font-weight: 700;
+    color: #1F1635; line-height: 1.1; margin-top: 1px;
+  }
+  .bk-day-label-mon {
+    font-family: 'Poppins', sans-serif; font-size: 0.5rem; color: #9CA3AF;
+  }
+  .bk-day-btn.bk-selected .bk-day-label-dow,
+  .bk-day-btn.bk-selected .bk-day-label-num,
+  .bk-day-btn.bk-selected .bk-day-label-mon { color: #fff; }
+
+  /* Slots */
+  .bk-selected-day {
+    font-family: 'Poppins', sans-serif; font-size: 0.8rem; color: #64647A;
+    margin-bottom: 1rem; margin-top: -0.5rem;
+  }
+  .bk-slots-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;
+  }
+  .bk-slot-btn {
+    padding: 0.65rem 0.25rem; border-radius: 0.5rem; text-align: center;
+    border: 1px solid #EDE9FE; background: #FAFAFA; cursor: pointer;
+    font-family: 'Poppins', sans-serif; font-size: 0.82rem; font-weight: 600;
+    color: #374151; transition: all 0.15s;
+  }
+  .bk-slot-btn:hover { border-color: #9333EA; background: #F3E8FF; color: #9333EA; }
+  .bk-slot-btn.bk-selected { border-color: #9333EA; background: #9333EA; color: #fff; }
+
+  /* Formulario */
+  .bk-summary-badge {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: #F3E8FF; border: 1px solid #DDD6FE;
+    border-radius: 0.6rem; padding: 0.6rem 0.9rem;
+    font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 600;
+    color: #7C3AED; margin-bottom: 1.25rem;
+  }
+  .bk-form-fields { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem; }
+  .bk-input {
+    display: block; width: 100%; box-sizing: border-box;
+    background: #FAFAFA; border: 1.5px solid #EDE9FE;
+    border-radius: 0.6rem; padding: 0.75rem 1rem;
+    font-family: 'Poppins', sans-serif; font-size: 0.88rem; color: #1F1635;
+    outline: none; transition: border-color 0.2s;
+  }
+  .bk-input::placeholder { color: #9CA3AF; }
+  .bk-input:focus { border-color: #9333EA; background: #fff; }
+  .bk-form-note {
+    text-align: center; font-size: 0.7rem; color: #9CA3AF; margin-top: 0.75rem;
+  }
+
+  /* Ã‰xito */
+  .bk-success-step {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; text-align: center;
+    padding: 2rem 1rem; min-height: 300px;
+  }
+  .bk-success-ring {
+    width: 64px; height: 64px; border-radius: 50%; margin-bottom: 1.5rem;
+    background: #DCFCE7; border: 2px solid #86EFAC;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .bk-success-title {
+    font-family: 'Poppins', sans-serif; font-weight: 800;
+    font-size: 1.25rem; color: #1F1635; margin-bottom: 0.75rem;
+  }
+  .bk-success-detail {
+    font-family: 'Poppins', sans-serif; font-size: 0.82rem; font-weight: 600;
+    color: #7C3AED; background: #F3E8FF; border: 1px solid #DDD6FE;
+    border-radius: 0.5rem; padding: 0.5rem 1rem; margin-bottom: 1rem;
+  }
+  .bk-success-note {
+    font-size: 0.78rem; color: #64647A; line-height: 1.5;
+  }
+
+  .bk-step.hidden { display: none; }
 </style>
 
 <script>
   (function () {
     const SLOTS     = ['9:00','9:30','10:00','10:30','11:00','11:30','16:00','16:30','17:00','17:30'];
-    const DAY_SHORT = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+    const DAY_SHORT = ['Dom','Lun','Mar','MiÃ©','Jue','Vie','SÃ¡b'];
     const MON_SHORT = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
     let selDayLabel = '';
-    const daysGrid  = document.getElementById('days-grid');
-    const slotsGrid = document.getElementById('slots-grid');
+
+    const daysGrid  = document.getElementById('bk-days-grid');
+    const slotsGrid = document.getElementById('bk-slots-grid');
     const today = new Date(); today.setHours(0,0,0,0);
-    for (let i = 1; i <= 7; i++) {
+
+    // Generar los prÃ³ximos 14 dÃ­as
+    for (let i = 1; i <= 14; i++) {
       const d = new Date(today); d.setDate(today.getDate() + i);
-      const dow = d.getDay(); const isWeekend = dow === 0 || dow === 6;
+      const dow = d.getDay();
+      const isWeekend = dow === 0 || dow === 6;
       const btn = document.createElement('button');
-      btn.className = 'day-btn' + (isWeekend ? ' unavailable' : '');
-      btn.innerHTML = `<span class="day-name">${DAY_SHORT[dow]}</span><span class="day-num">${d.getDate()}</span><span class="day-mon">${MON_SHORT[d.getMonth()]}</span>`;
+      btn.className = 'bk-day-btn' + (isWeekend ? ' bk-unavail' : '');
+      btn.innerHTML = `
+        <span class="bk-day-label-dow">${DAY_SHORT[dow]}</span>
+        <span class="bk-day-label-num">${d.getDate()}</span>
+        <span class="bk-day-label-mon">${MON_SHORT[d.getMonth()]}</span>
+      `;
       btn.dataset['label'] = `${DAY_SHORT[dow]} ${d.getDate()} ${MON_SHORT[d.getMonth()]}`;
       if (!isWeekend) btn.addEventListener('click', () => pickDay(btn));
       daysGrid?.appendChild(btn);
     }
+
     function pickDay(btn: HTMLElement) {
-      document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
+      document.querySelectorAll('.bk-day-btn').forEach(b => b.classList.remove('bk-selected'));
+      btn.classList.add('bk-selected');
       selDayLabel = btn.dataset['label'] ?? '';
-      const lbl = document.getElementById('selected-day-label');
+      const lbl = document.getElementById('bk-day-label');
       if (lbl) lbl.textContent = selDayLabel;
-      if (slotsGrid) { slotsGrid.innerHTML = ''; SLOTS.forEach(s => { const sb = document.createElement('button'); sb.className = 'slot-btn'; sb.textContent = s; sb.addEventListener('click', () => pickSlot(sb, s)); slotsGrid.appendChild(sb); }); }
-      showStep('step-time');
+      if (slotsGrid) {
+        slotsGrid.innerHTML = '';
+        SLOTS.forEach(s => {
+          const sb = document.createElement('button');
+          sb.className = 'bk-slot-btn';
+          sb.textContent = s;
+          sb.addEventListener('click', () => pickSlot(sb, s));
+          slotsGrid.appendChild(sb);
+        });
+      }
+      showStep('bk-step-time');
     }
+
     function pickSlot(btn: HTMLElement, slot: string) {
-      document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-      const sum = document.getElementById('booking-summary');
-      if (sum) sum.textContent = `📅 ${selDayLabel}  ·  🕐 ${slot}  ·  Videollamada 30 min`;
-      showStep('step-form');
+      document.querySelectorAll('.bk-slot-btn').forEach(b => b.classList.remove('bk-selected'));
+      btn.classList.add('bk-selected');
+      const sum = document.getElementById('bk-summary');
+      if (sum) sum.textContent = `ðŸ“… ${selDayLabel}  Â·  ðŸ• ${slot}  Â·  30 min`;
+      showStep('bk-step-form');
     }
+
     function showStep(id: string) {
-      ['step-day','step-time','step-form','step-success'].forEach(s => { document.getElementById(s)?.classList.toggle('hidden', s !== id); });
+      ['bk-step-day','bk-step-time','bk-step-form','bk-step-ok'].forEach(s => {
+        document.getElementById(s)?.classList.toggle('hidden', s !== id);
+      });
     }
-    document.getElementById('back-to-day')?.addEventListener('click',  () => showStep('step-day'));
-    document.getElementById('back-to-time')?.addEventListener('click', () => showStep('step-time'));
-    document.getElementById('confirm-btn')?.addEventListener('click', () => {
-      const nombre = (document.getElementById('b-nombre') as HTMLInputElement)?.value.trim();
-      const email  = (document.getElementById('b-email')  as HTMLInputElement)?.value.trim();
+
+    document.getElementById('bk-back-day')?.addEventListener('click',  () => showStep('bk-step-day'));
+    document.getElementById('bk-back-time')?.addEventListener('click', () => showStep('bk-step-time'));
+    document.getElementById('bk-confirm')?.addEventListener('click', () => {
+      const nombre = (document.getElementById('bk-nombre') as HTMLInputElement)?.value.trim();
+      const email  = (document.getElementById('bk-email')  as HTMLInputElement)?.value.trim();
       if (!nombre || !email) { alert('Por favor completa nombre y email.'); return; }
-      const detail = document.getElementById('success-detail');
-      const sum    = document.getElementById('booking-summary');
+      const detail = document.getElementById('bk-success-detail');
+      const sum    = document.getElementById('bk-summary');
       if (detail) detail.textContent = sum?.textContent ?? '';
-      showStep('step-success');
+      showStep('bk-step-ok');
     });
   })();
 </script>
+

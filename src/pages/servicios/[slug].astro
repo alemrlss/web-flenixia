@@ -2,201 +2,827 @@
 import Layout       from '../../layouts/Layout.astro';
 import Navbar       from '../../components/Navbar.astro';
 import Footer       from '../../components/Footer.astro';
-import FormContacto from '../../components/FormContacto.astro';
-import { servicios, type ServicioData } from '../../data/servicios';
+import BookingWidget from '../../components/BookingWidget.astro';
+import { servicios } from '../../data/servicios';
 
 export function getStaticPaths() {
   return servicios.map(s => ({ params: { slug: s.slug }, props: { servicio: s } }));
 }
 
-interface Props { servicio: ServicioData; }
 const { servicio: s } = Astro.props;
+const isDark     = s.variant === 'dark';
+const isSplit    = s.variant === 'split';
+const isEditorial = s.variant === 'editorial';
+const ac = s.accent;
 ---
 
-<Layout title={`${s.name} — Plenixia`} description={s.desc}>
+<Layout title={`${s.name} — Flenixia`} description={s.desc}>
   <Navbar />
 
-  <!-- Hero -->
-  <section class="srv-hero relative min-h-[420px] flex items-end overflow-hidden pt-24 pb-16">
-    <div class="srv-overlay absolute inset-0 z-0"></div>
-    <img src={s.heroImg} alt={s.name} class="absolute inset-0 w-full h-full object-cover z-0 opacity-20"/>
-    <div class="relative z-10 max-w-5xl mx-auto px-6 lg:px-10 w-full">
-      <span class="section-label mb-4 inline-flex">Servicio · {s.num}</span>
-      <h1 class="font-display font-extrabold text-white leading-tight mb-3"
-          style="font-size:clamp(2rem,5vw,3.5rem)">{s.name}</h1>
-      <p class="text-white/70 text-lg max-w-2xl mb-6">{s.tagline}</p>
-      <a href="#contacto" class="btn-primary">
-        Contactar sobre este servicio
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-        </svg>
-      </a>
-    </div>
-  </section>
+  {/* ════════════════════════════════════════════════════
+      VARIANT: DARK — Agentes IA, Automatizaciones, AO
+  ════════════════════════════════════════════════════ */}
+  {isDark && (
+    <div class="srv-dark">
 
-  <!-- Descripción -->
-  <section class="py-20" style="background:#FFFFFF;color:#1F1635">
-    <div class="max-w-5xl mx-auto px-6 lg:px-10">
-      <p class="text-lg leading-relaxed max-w-3xl" style="color:#374151">{s.desc}</p>
-    </div>
-  </section>
-
-  <!-- Qué incluye -->
-  <section class="py-20" style="background:#FAF8FF;color:#1F1635">
-    <div class="max-w-5xl mx-auto px-6 lg:px-10">
-      <h2 class="font-display font-extrabold mb-10" style="font-size:clamp(1.6rem,3vw,2.2rem);color:#1F1635">
-        Qué <span class="gradient-text">incluye</span>
-      </h2>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {s.incluye.map(item => (
-          <div class="incluye-card">
-            <div class="incluye-dot mb-3"></div>
-            <h3 class="font-display font-semibold text-base mb-2" style="color:#1F1635">{item.title}</h3>
-            <p class="text-sm leading-relaxed" style="color:#64647A">{item.desc}</p>
+      <!-- Hero dark: pantalla completa, stats gigantes flotando -->
+      <section class="sd-hero">
+        <img src={s.heroImg} alt={s.name} class="sd-hero-bg"/>
+        <div class="sd-hero-overlay"></div>
+        <div class="sd-hero-content max-w-6xl mx-auto px-6 lg:px-10">
+          <div class="sd-hero-left">
+            <h1 class="sd-title">{s.name}</h1>
+            <p class="sd-tagline">{s.tagline}</p>
+            <p class="sd-desc">{s.desc}</p>
+            <div class="sd-ctas">
+              <a href="#agenda" class="btn-primary">Quiero empezar →</a>
+              <a href="#incluye" class="sd-ghost">Ver qué incluye</a>
+            </div>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Proceso -->
-  <section class="py-20" style="background:#FFFFFF;color:#1F1635">
-    <div class="max-w-5xl mx-auto px-6 lg:px-10">
-      <h2 class="font-display font-extrabold mb-10" style="font-size:clamp(1.6rem,3vw,2.2rem);color:#1F1635">
-        Cómo <span class="gradient-text">trabajamos</span>
-      </h2>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        {s.proceso.map(step => (
-          <div class="paso-card">
-            <div class="font-display font-black gradient-text text-2xl mb-2">{step.step}</div>
-            <h3 class="font-display font-semibold text-sm mb-2" style="color:#1F1635">{step.title}</h3>
-            <p class="text-xs leading-relaxed" style="color:#64647A">{step.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Para quién + Resultados -->
-  <section class="py-20" style="background:#FAF8FF;color:#1F1635">
-    <div class="max-w-5xl mx-auto px-6 lg:px-10">
-      <div class="grid lg:grid-cols-2 gap-14">
-
-        <div>
-          <h2 class="font-display font-extrabold mb-6" style="font-size:clamp(1.4rem,2.5vw,1.9rem);color:#1F1635">
-            ¿Para <span class="gradient-text">quién</span> es?
-          </h2>
-          <ul class="space-y-3">
-            {s.paraQuien.map(item => (
-              <li class="flex items-start gap-3 text-sm" style="color:#374151">
-                <svg class="flex-shrink-0 mt-0.5" width="14" height="14" fill="none" stroke="#9333EA" stroke-width="2.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
-                </svg>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h2 class="font-display font-extrabold mb-6" style="font-size:clamp(1.4rem,2.5vw,1.9rem);color:#1F1635">
-            Resultados <span class="gradient-text">esperados</span>
-          </h2>
-          <div class="space-y-4">
+          <div class="sd-hero-stats">
             {s.resultados.map(r => (
-              <div class="resultado-card">
-                <div class="font-display font-black gradient-text flex-shrink-0" style="font-size:1.5rem;line-height:1">{r.metric}</div>
+              <div class="sd-stat">
+                <span class="sd-stat-num" style={`color:${ac}`}>{r.metric}</span>
+                <span class="sd-stat-label">{r.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Qué incluye: cards dark con borde de color -->
+      <section id="incluye" class="sd-section-dark">
+        <div class="max-w-6xl mx-auto px-6 lg:px-10">
+          <h2 class="sd-section-title">Qué <span style={`color:${ac}`}>incluye</span></h2>
+          <div class="sd-incluye-grid">
+            {s.incluye.map((item, i) => (
+              <div class="sd-incluye-card" style={i === 0 ? `border-color:${ac}40;` : ''}>
+                <div class="sd-incluye-num" style={`color:${ac}`}>{String(i+1).padStart(2,'0')}</div>
+                <h3 class="sd-incluye-title">{item.title}</h3>
+                <p class="sd-incluye-desc">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Proceso: línea de tiempo horizontal -->
+      <section class="sd-section-darker">
+        <div class="max-w-6xl mx-auto px-6 lg:px-10">
+          <h2 class="sd-section-title">Cómo <span style={`color:${ac}`}>trabajamos</span></h2>
+          <div class="sd-timeline">
+            {s.proceso.map((step, i) => (
+              <div class="sd-timeline-step">
+                <div class="sd-timeline-dot" style={`background:${ac};box-shadow:0 0 16px ${ac}80`}></div>
+                {i < s.proceso.length - 1 && <div class="sd-timeline-line" style={`background:linear-gradient(90deg,${ac}60,transparent)`}></div>}
+                <h3 class="sd-timeline-title">{step.title}</h3>
+                <p class="sd-timeline-desc">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Para quién: dark cards + CTA box -->
+      <section class="sd-section-dark">
+        <div class="max-w-6xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 items-start">
+          <div>
+            <h2 class="sd-section-title">¿Para <span style={`color:${ac}`}>quién</span>?</h2>
+            <div class="sd-paraquien">
+              {s.paraQuien.map(item => (
+                <div class="sd-pq-item">
+                  <span class="sd-pq-dot" style={`background:${ac}`}></span>
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="sd-cta-box" style={`border-color:${ac}40`}>
+            <p class="sd-cta-tag" style={`color:${ac}`}>Sin compromiso</p>
+            <h3 class="sd-cta-title">{s.idealPara}</h3>
+            <p class="sd-cta-sub">Primera consulta gratuita. Te decimos exactamente lo que podemos hacer por tu negocio.</p>
+            <a href="#agenda" class="btn-primary w-full justify-center">Hablar con un experto →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      {s.faq.length > 0 && (
+        <section class="sd-section-darker">
+          <div class="max-w-3xl mx-auto px-6 lg:px-10">
+            <h2 class="sd-section-title text-center">Preguntas <span style={`color:${ac}`}>frecuentes</span></h2>
+            <div class="space-y-3">
+              {s.faq.map(faq => (
+                <div class="faq-srv-item sd-faq-item">
+                  <button class="faq-srv-btn w-full flex items-center justify-between gap-4 px-6 py-5 text-left cursor-pointer">
+                    <span class="font-display font-semibold text-sm" style="color:#F0F0FF">{faq.q}</span>
+                    <svg class="faq-srv-icon flex-shrink-0 w-5 h-5 transition-transform duration-300" fill="none" stroke={ac} stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+                    </svg>
+                  </button>
+                  <div class="faq-srv-answer max-h-0 overflow-hidden transition-[max-height] duration-300 ease-out">
+                    <p class="px-6 pb-5 pt-2 text-sm leading-relaxed" style="color:rgba(240,240,255,0.55);border-top:1px solid rgba(192,132,252,0.15)">{faq.a}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <!-- Agenda -->
+      <section id="agenda" class="sd-section-dark py-24">
+        <div class="max-w-5xl mx-auto px-6 lg:px-10">
+          <h2 class="sd-section-title text-center mb-10">Agenda tu <span style={`color:${ac}`}>diagnóstico</span></h2>
+          <BookingWidget />
+        </div>
+      </section>
+    </div>
+  )}
+
+  {/* ════════════════════════════════════════════════════
+      VARIANT: SPLIT — Desarrollo Web, A Medida, SEO
+  ════════════════════════════════════════════════════ */}
+  {isSplit && (
+    <div class="srv-split">
+
+      <!-- Hero: texto izquierda, imagen derecha -->
+      <section class="ss-hero">
+        <div class="max-w-7xl mx-auto px-6 lg:px-10">
+          <div class="ss-hero-grid">
+            <div class="ss-hero-left">
+              <div class="ss-tag" style={`background:${ac}18;color:${ac};border-color:${ac}40`}>{s.name}</div>
+              <h1 class="ss-title">{s.tagline}</h1>
+              <p class="ss-desc">{s.desc}</p>
+              <div class="ss-stats">
+                {s.resultados.map(r => (
+                  <div class="ss-stat">
+                    <span class="ss-stat-num" style={`color:${ac}`}>{r.metric}</span>
+                    <span class="ss-stat-label">{r.label}</span>
+                  </div>
+                ))}
+              </div>
+              <div class="ss-ctas">
+                <a href="#agenda" class="ss-cta-main" style={`background:${ac}`}>Empezar ahora →</a>
+                <a href="#incluye" class="ss-cta-ghost">Ver detalles</a>
+              </div>
+            </div>
+            <div class="ss-hero-right">
+              <div class="ss-img-frame">
+                <img src={s.heroImg} alt={s.name} class="ss-img"/>
+                <div class="ss-img-pill" style={`background:${ac}`}>
+                  <svg width="12" height="12" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                  </svg>
+                  Resultados garantizados
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Incluye: 2 columnas con icono de check de color -->
+      <section id="incluye" class="ss-section-white">
+        <div class="max-w-6xl mx-auto px-6 lg:px-10">
+          <div class="ss-section-header">
+            <div class="ss-section-line" style={`background:${ac}`}></div>
+            <h2 class="ss-section-title">Todo lo que incluye</h2>
+          </div>
+          <div class="ss-incluye-grid">
+            {s.incluye.map(item => (
+              <div class="ss-incluye-card">
+                <div class="ss-check" style={`background:${ac}15;border-color:${ac}40`}>
+                  <svg width="12" height="12" fill="none" stroke={ac} stroke-width="3" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                  </svg>
+                </div>
                 <div>
-                  <p class="font-display font-semibold text-sm" style="color:#1F1635">{r.label}</p>
-                  <p class="text-xs leading-relaxed mt-1" style="color:#64647A">{r.desc}</p>
+                  <h3 class="ss-incluye-title">{item.title}</h3>
+                  <p class="ss-incluye-desc">{item.desc}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
+      </section>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ del servicio -->
-  {s.faq.length > 0 && (
-    <section class="py-20" style="background:#FFFFFF;color:#1F1635">
-      <div class="max-w-3xl mx-auto px-6 lg:px-10">
-        <h2 class="font-display font-extrabold mb-8" style="font-size:clamp(1.6rem,3vw,2.2rem);color:#1F1635">
-          Preguntas <span class="gradient-text">frecuentes</span>
-        </h2>
-        <div class="space-y-3">
-          {s.faq.map(faq => (
-            <div class="faq-srv-item">
-              <button class="faq-srv-btn w-full flex items-center justify-between gap-4 px-6 py-4 text-left cursor-pointer">
-                <span class="font-display font-semibold text-sm" style="color:#1F1635">{faq.q}</span>
-                <svg class="faq-srv-icon flex-shrink-0 w-5 h-5 transition-transform duration-300"
-                     fill="none" stroke="#9333EA" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
-                </svg>
-              </button>
-              <div class="faq-srv-answer max-h-0 overflow-hidden transition-[max-height] duration-300 ease-out">
-                <p class="px-6 pb-5 pt-2 text-sm leading-relaxed" style="color:#64647A;border-top:1px solid #EDE9FE">{faq.a}</p>
+      <!-- Proceso: cards numeradas con acento -->
+      <section class="ss-section-gray">
+        <div class="max-w-6xl mx-auto px-6 lg:px-10">
+          <div class="ss-section-header">
+            <div class="ss-section-line" style={`background:${ac}`}></div>
+            <h2 class="ss-section-title">Cómo trabajamos</h2>
+          </div>
+          <div class="ss-proceso-grid">
+            {s.proceso.map((step, i) => (
+              <div class="ss-paso-card">
+                <div class="ss-paso-num" style={`color:${ac};border-color:${ac}30`}>{String(i+1).padStart(2,'0')}</div>
+                <h3 class="ss-paso-title">{step.title}</h3>
+                <p class="ss-paso-desc">{step.desc}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Para quién + CTA -->
+      <section class="ss-section-white">
+        <div class="max-w-6xl mx-auto px-6 lg:px-10 grid lg:grid-cols-5 gap-10 items-start">
+          <div class="lg:col-span-3">
+            <div class="ss-section-header">
+              <div class="ss-section-line" style={`background:${ac}`}></div>
+              <h2 class="ss-section-title">¿Para quién es?</h2>
+            </div>
+            <div class="ss-pq-list">
+              {s.paraQuien.map(item => (
+                <div class="ss-pq-item">
+                  <div class="ss-pq-bullet" style={`background:${ac}`}></div>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="lg:col-span-2 ss-cta-card" style={`border-top:4px solid ${ac}`}>
+            <p class="ss-cta-eyebrow" style={`color:${ac}`}>Empieza hoy</p>
+            <h3 class="ss-cta-title">{s.idealPara}</h3>
+            <p class="ss-cta-sub">Primera llamada sin coste. Sin compromisos.</p>
+            <a href="#agenda" class="ss-cta-btn" style={`background:${ac}`}>Agendar llamada →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      {s.faq.length > 0 && (
+        <section class="ss-section-gray">
+          <div class="max-w-3xl mx-auto px-6 lg:px-10">
+            <div class="ss-section-header">
+              <div class="ss-section-line" style={`background:${ac}`}></div>
+              <h2 class="ss-section-title">Preguntas frecuentes</h2>
+            </div>
+            <div class="space-y-3">
+              {s.faq.map(faq => (
+                <div class="faq-srv-item">
+                  <button class="faq-srv-btn w-full flex items-center justify-between gap-4 px-6 py-5 text-left cursor-pointer">
+                    <span class="font-display font-semibold text-sm" style="color:#1F1635">{faq.q}</span>
+                    <svg class="faq-srv-icon flex-shrink-0 w-5 h-5 transition-transform duration-300" fill="none" stroke={ac} stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+                    </svg>
+                  </button>
+                  <div class="faq-srv-answer max-h-0 overflow-hidden transition-[max-height] duration-300 ease-out">
+                    <p class="px-6 pb-5 pt-2 text-sm leading-relaxed" style="color:#64647A;border-top:1px solid #EDE9FE">{faq.a}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <!-- Agenda -->
+      <section id="agenda" class="ss-section-agenda">
+        <div class="max-w-5xl mx-auto px-6 lg:px-10">
+          <h2 class="text-center font-display font-extrabold text-white mb-2" style="font-size:clamp(1.8rem,3.5vw,2.6rem)">
+            ¿Listo para empezar?
+          </h2>
+          <p class="text-center mb-10" style="color:rgba(255,255,255,0.5)">Sin compromiso. Respondemos en menos de 24h.</p>
+          <BookingWidget />
+        </div>
+      </section>
+    </div>
+  )}
+
+  {/* ════════════════════════════════════════════════════
+      VARIANT: EDITORIAL — RRSS, Consultoría, CRM
+  ════════════════════════════════════════════════════ */}
+  {isEditorial && (
+    <div class="srv-editorial">
+
+      <!-- Hero editorial: tipografía gigante, imagen de fondo suave -->
+      <section class="se-hero">
+        <div class="se-hero-bg-img" style={`background-image:url(${s.heroImg})`}></div>
+        <div class="se-hero-overlay"></div>
+        <div class="max-w-6xl mx-auto px-6 lg:px-10 relative z-10 pt-36 pb-24">
+          <div class="se-hero-tag" style={`background:${ac};color:#fff`}>{s.name}</div>
+          <h1 class="se-hero-title">{s.tagline}</h1>
+          <div class="se-hero-bottom">
+            <p class="se-hero-desc">{s.desc}</p>
+            <div class="se-hero-actions">
+              <a href="#agenda" class="se-cta-main" style={`background:${ac}`}>Empezar →</a>
+              <a href="#incluye" class="se-ghost">Ver más</a>
+            </div>
+          </div>
+        </div>
+        <!-- Banda de métricas -->
+        <div class="se-metrics-band">
+          {s.resultados.map(r => (
+            <div class="se-metric">
+              <span class="se-metric-num" style={`color:${ac}`}>{r.metric}</span>
+              <span class="se-metric-label">{r.label}</span>
+              <span class="se-metric-desc">{r.desc}</span>
             </div>
           ))}
         </div>
-      </div>
-    </section>
-  )}
+      </section>
 
-  <!-- Formulario de contacto -->
-  <section id="contacto" class="py-20" style="background:#FAF8FF">
-    <div class="max-w-2xl mx-auto px-6 lg:px-10">
-      <FormContacto servicioNombre={s.name} />
+      <!-- Incluye: lista editorial con números grandes -->
+      <section id="incluye" class="se-section-white">
+        <div class="max-w-6xl mx-auto px-6 lg:px-10">
+          <h2 class="se-section-title">Lo que incluye</h2>
+          <div class="se-incluye-list">
+            {s.incluye.map((item, i) => (
+              <div class="se-incluye-row">
+                <span class="se-incluye-idx" style={`color:${ac}`}>{String(i+1).padStart(2,'0')}</span>
+                <div class="se-incluye-body">
+                  <h3 class="se-incluye-name">{item.title}</h3>
+                  <p class="se-incluye-desc">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Proceso + Para quién: dos columnas blancas -->
+      <section class="se-section-offwhite">
+        <div class="max-w-6xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16">
+          <div>
+            <h2 class="se-section-title">Cómo funciona</h2>
+            <div class="se-proceso-list">
+              {s.proceso.map((step, i) => (
+                <div class="se-paso">
+                  <div class="se-paso-dot" style={`border-color:${ac};background:${ac}20`}>
+                    <div class="se-paso-dot-inner" style={`background:${ac}`}></div>
+                  </div>
+                  <div class="se-paso-body">
+                    <h3 class="se-paso-title">{step.title}</h3>
+                    <p class="se-paso-desc">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h2 class="se-section-title">¿Para quién?</h2>
+            <div class="se-pq-list">
+              {s.paraQuien.map(item => (
+                <div class="se-pq-item">
+                  <div class="se-pq-arrow" style={`color:${ac}`}>→</div>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+            <div class="se-cta-inline" style={`border-left:4px solid ${ac}`}>
+              <p class="se-cta-inline-text">{s.idealPara}</p>
+              <a href="#agenda" class="se-cta-link" style={`color:${ac}`}>Agendar diagnóstico →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      {s.faq.length > 0 && (
+        <section class="se-section-white">
+          <div class="max-w-3xl mx-auto px-6 lg:px-10">
+            <h2 class="se-section-title">Preguntas frecuentes</h2>
+            <div class="space-y-3">
+              {s.faq.map(faq => (
+                <div class="faq-srv-item">
+                  <button class="faq-srv-btn w-full flex items-center justify-between gap-4 px-6 py-5 text-left cursor-pointer">
+                    <span class="font-display font-semibold text-sm" style="color:#1F1635">{faq.q}</span>
+                    <svg class="faq-srv-icon flex-shrink-0 w-5 h-5 transition-transform duration-300" fill="none" stroke={ac} stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+                    </svg>
+                  </button>
+                  <div class="faq-srv-answer max-h-0 overflow-hidden transition-[max-height] duration-300 ease-out">
+                    <p class="px-6 pb-5 pt-2 text-sm leading-relaxed" style="color:#64647A;border-top:1px solid #EDE9FE">{faq.a}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <!-- Agenda -->
+      <section id="agenda" class="se-section-agenda" style={`background:linear-gradient(135deg,#1A1033 0%,${ac}40 100%)`}>
+        <div class="max-w-5xl mx-auto px-6 lg:px-10">
+          <h2 class="text-center font-display font-extrabold text-white mb-2" style="font-size:clamp(1.8rem,3.5vw,2.6rem)">
+            ¿Hablamos?
+          </h2>
+          <p class="text-center mb-10" style="color:rgba(255,255,255,0.5)">Primera consulta gratuita y sin compromiso.</p>
+          <BookingWidget />
+        </div>
+      </section>
     </div>
-  </section>
+  )}
 
   <Footer />
 </Layout>
 
 <style>
-  .srv-hero {
+  /* ═══════════ DARK ═══════════ */
+  .sd-hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center;
+    background: #0A0614; padding: 7rem 0 4rem;
+  }
+  .sd-hero-bg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; opacity: 0.08;
+  }
+  .sd-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, #0A0614 50%, transparent 100%);
+  }
+  .sd-hero-content {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+    width: 100%;
+  }
+  @media(max-width:768px){ .sd-hero-content { grid-template-columns:1fr; } }
+  .sd-title {
+    font-family:'Poppins',sans-serif; font-weight:900;
+    font-size:clamp(2.5rem,6vw,4.5rem); color:#fff;
+    line-height:1; margin-bottom:1rem;
+  }
+  .sd-tagline {
+    font-family:'Inter',sans-serif; font-size:1.15rem;
+    color:rgba(255,255,255,0.55); margin-bottom:1.5rem;
+  }
+  .sd-desc {
+    font-family:'Inter',sans-serif; font-size:0.9rem;
+    color:rgba(255,255,255,0.4); line-height:1.7; margin-bottom:2rem;
+  }
+  .sd-ctas { display:flex; gap:0.75rem; flex-wrap:wrap; }
+  .sd-ghost {
+    display:inline-flex; align-items:center;
+    padding:0.65rem 1.4rem;
+    border:1px solid rgba(255,255,255,0.15); border-radius:99px;
+    font-family:'Poppins',sans-serif; font-size:0.85rem; font-weight:600;
+    color:rgba(255,255,255,0.6); text-decoration:none;
+    transition:border-color 0.2s, color 0.2s;
+  }
+  .sd-ghost:hover { border-color:rgba(255,255,255,0.4); color:#fff; }
+  .sd-hero-stats {
+    display:flex; flex-direction:column; gap:1.5rem;
+    padding:2rem; border:1px solid rgba(255,255,255,0.08);
+    border-radius:1.25rem; background:rgba(255,255,255,0.03);
+    backdrop-filter:blur(10px);
+  }
+  .sd-stat { display:flex; flex-direction:column; }
+  .sd-stat-num {
+    font-family:'Poppins',sans-serif; font-weight:900;
+    font-size:2.5rem; line-height:1;
+  }
+  .sd-stat-label {
+    font-family:'Inter',sans-serif; font-size:0.75rem;
+    color:rgba(255,255,255,0.4); margin-top:2px; text-transform:uppercase; letter-spacing:0.06em;
+  }
+  .sd-section-dark { background:#0D0920; padding:5rem 0; }
+  .sd-section-darker { background:#0A0614; padding:5rem 0; }
+  .sd-section-title {
+    font-family:'Poppins',sans-serif; font-weight:800;
+    font-size:clamp(1.6rem,3vw,2.2rem); color:#F0F0FF;
+    margin-bottom:2.5rem;
+  }
+  .sd-incluye-grid {
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem;
+  }
+  .sd-incluye-card {
+    background:rgba(255,255,255,0.03); border:1px solid rgba(192,132,252,0.12);
+    border-radius:1rem; padding:1.5rem;
+    transition:background 0.2s, border-color 0.2s;
+  }
+  .sd-incluye-card:hover { background:rgba(255,255,255,0.06); border-color:rgba(192,132,252,0.25); }
+  .sd-incluye-num {
+    font-family:'Poppins',sans-serif; font-weight:900; font-size:1.8rem;
+    line-height:1; margin-bottom:0.75rem; opacity:0.7;
+  }
+  .sd-incluye-title {
+    font-family:'Poppins',sans-serif; font-weight:700; font-size:0.9rem;
+    color:#F0F0FF; margin-bottom:0.5rem;
+  }
+  .sd-incluye-desc { font-family:'Inter',sans-serif; font-size:0.78rem; color:rgba(240,240,255,0.45); line-height:1.6; }
+  .sd-timeline {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:0.75rem;
+    position:relative;
+  }
+  .sd-timeline-step { position:relative; padding:1.5rem; }
+  .sd-timeline-dot {
+    width:12px; height:12px; border-radius:50%; margin-bottom:1rem; flex-shrink:0;
+  }
+  .sd-timeline-title {
+    font-family:'Poppins',sans-serif; font-weight:700; font-size:0.88rem;
+    color:#F0F0FF; margin-bottom:0.5rem;
+  }
+  .sd-timeline-desc { font-family:'Inter',sans-serif; font-size:0.75rem; color:rgba(240,240,255,0.45); line-height:1.6; }
+  .sd-paraquien { display:flex; flex-direction:column; gap:0.75rem; }
+  .sd-pq-item {
+    display:flex; align-items:center; gap:0.75rem;
+    padding:0.75rem 1rem;
+    background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07);
+    border-radius:0.6rem;
+    font-family:'Inter',sans-serif; font-size:0.85rem; color:rgba(240,240,255,0.65);
+  }
+  .sd-pq-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .sd-cta-box {
+    background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1);
+    border-radius:1.25rem; padding:2rem;
+  }
+  .sd-cta-tag {
+    font-family:'Poppins',sans-serif; font-size:0.7rem; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.75rem;
+  }
+  .sd-cta-title {
+    font-family:'Poppins',sans-serif; font-weight:800; font-size:1.1rem;
+    color:#F0F0FF; margin-bottom:0.75rem; line-height:1.3;
+  }
+  .sd-cta-sub {
+    font-family:'Inter',sans-serif; font-size:0.82rem;
+    color:rgba(240,240,255,0.45); margin-bottom:1.5rem; line-height:1.6;
+  }
+  .sd-faq-item {
+    background:rgba(255,255,255,0.03); border:1px solid rgba(192,132,252,0.12) !important;
+  }
+
+  /* ═══════════ SPLIT ═══════════ */
+  .ss-hero {
     background: linear-gradient(135deg, #1A1033 0%, #2D1B69 100%);
-    min-height: 420px;
+    padding:7rem 0 5rem;
   }
-  .srv-overlay {
-    background: linear-gradient(to top, #1A1033 20%, rgba(26,16,51,0.5) 70%, transparent 100%);
+  .ss-hero-grid {
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:5rem; align-items:center;
+  }
+  @media(max-width:900px){ .ss-hero-grid { grid-template-columns:1fr; } }
+  .ss-tag {
+    display:inline-flex; padding:0.3rem 0.9rem; border-radius:99px;
+    font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:700;
+    letter-spacing:0.08em; text-transform:uppercase;
+    border:1px solid transparent; margin-bottom:1.5rem;
+  }
+  .ss-title {
+    font-family:'Poppins',sans-serif; font-weight:900;
+    font-size:clamp(2rem,4vw,3rem); color:#FFFFFF;
+    line-height:1.1; margin-bottom:1.25rem;
+  }
+  .ss-desc {
+    font-family:'Inter',sans-serif; font-size:0.95rem;
+    color:rgba(255,255,255,0.6); line-height:1.7; margin-bottom:2rem;
+  }
+  .ss-stats {
+    display:flex; gap:2rem; margin-bottom:2rem;
+    padding:1.25rem; background:rgba(255,255,255,0.06); border-radius:0.75rem;
+    border:1px solid rgba(255,255,255,0.1);
+  }
+  .ss-stat { display:flex; flex-direction:column; }
+  .ss-stat-num {
+    font-family:'Poppins',sans-serif; font-weight:900; font-size:1.6rem; line-height:1;
+  }
+  .ss-stat-label {
+    font-family:'Inter',sans-serif; font-size:0.68rem; color:rgba(255,255,255,0.4);
+    text-transform:uppercase; letter-spacing:0.05em; margin-top:2px;
+  }
+  .ss-ctas { display:flex; gap:0.75rem; flex-wrap:wrap; }
+  .ss-cta-main {
+    display:inline-flex; align-items:center;
+    padding:0.75rem 1.75rem; border-radius:99px;
+    font-family:'Poppins',sans-serif; font-size:0.88rem; font-weight:700;
+    color:#fff; text-decoration:none;
+    transition:filter 0.2s, transform 0.2s;
+  }
+  .ss-cta-main:hover { filter:brightness(1.1); transform:translateY(-2px); }
+  .ss-cta-ghost {
+    display:inline-flex; align-items:center;
+    padding:0.75rem 1.4rem; border-radius:99px;
+    border:1.5px solid rgba(255,255,255,0.2);
+    font-family:'Poppins',sans-serif; font-size:0.88rem; font-weight:600;
+    color:rgba(255,255,255,0.65); text-decoration:none; transition:border-color 0.2s, color 0.2s;
+  }
+  .ss-cta-ghost:hover { border-color:rgba(255,255,255,0.5); color:#fff; }
+  .ss-img-frame {
+    position:relative; border-radius:1.5rem; overflow:hidden;
+    aspect-ratio:4/3;
+    box-shadow:0 24px 64px rgba(0,0,0,0.12);
+  }
+  .ss-img { width:100%; height:100%; object-fit:cover; display:block; }
+  .ss-img-pill {
+    position:absolute; bottom:1.25rem; left:1.25rem;
+    display:inline-flex; align-items:center; gap:0.4rem;
+    padding:0.4rem 0.9rem; border-radius:99px;
+    font-family:'Inter',sans-serif; font-size:0.7rem; font-weight:700;
+    color:#fff;
+  }
+  .ss-section-white { background:#fff; padding:5rem 0; }
+  .ss-section-gray  { background:#FAFAFA; padding:5rem 0; border-top:1px solid #F0EBFF; border-bottom:1px solid #F0EBFF; }
+  .ss-section-header { display:flex; align-items:center; gap:1rem; margin-bottom:2.5rem; }
+  .ss-section-line { width:4px; height:2rem; border-radius:99px; flex-shrink:0; }
+  .ss-section-title {
+    font-family:'Poppins',sans-serif; font-weight:800;
+    font-size:clamp(1.5rem,2.5vw,2rem); color:#1F1635;
+  }
+  .ss-incluye-grid {
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:1rem;
+  }
+  .ss-incluye-card {
+    display:flex; gap:0.9rem; align-items:flex-start;
+    padding:1.25rem; background:#FAFAFA; border:1px solid #EDE9FE;
+    border-radius:0.875rem; transition:border-color 0.2s, box-shadow 0.2s;
+  }
+  .ss-incluye-card:hover { border-color:rgba(147,51,234,0.25); box-shadow:0 4px 16px rgba(147,51,234,0.07); }
+  .ss-check {
+    width:28px; height:28px; border-radius:50%; border:1px solid; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; margin-top:1px;
+  }
+  .ss-incluye-title {
+    font-family:'Poppins',sans-serif; font-weight:700; font-size:0.85rem; color:#1F1635; margin-bottom:0.25rem;
+  }
+  .ss-incluye-desc { font-family:'Inter',sans-serif; font-size:0.77rem; color:#64647A; line-height:1.55; }
+  .ss-proceso-grid {
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1rem;
+  }
+  .ss-paso-card {
+    background:#fff; border:1px solid #EDE9FE; border-radius:1rem; padding:1.5rem;
+    transition:border-color 0.2s, transform 0.2s;
+  }
+  .ss-paso-card:hover { border-color:rgba(147,51,234,0.25); transform:translateY(-3px); }
+  .ss-paso-num {
+    font-family:'Poppins',sans-serif; font-weight:900; font-size:1.5rem;
+    line-height:1; margin-bottom:0.75rem;
+    border-bottom:2px solid; padding-bottom:0.5rem; display:inline-block;
+  }
+  .ss-paso-title { font-family:'Poppins',sans-serif; font-weight:700; font-size:0.88rem; color:#1F1635; margin-bottom:0.4rem; }
+  .ss-paso-desc { font-family:'Inter',sans-serif; font-size:0.75rem; color:#64647A; line-height:1.55; }
+  .ss-pq-list { display:flex; flex-direction:column; gap:0.6rem; margin-bottom:2rem; }
+  .ss-pq-item {
+    display:flex; align-items:center; gap:0.75rem;
+    font-family:'Inter',sans-serif; font-size:0.88rem; color:#374151;
+    padding:0.6rem 0;
+    border-bottom:1px solid #F0EBFF;
+  }
+  .ss-pq-bullet { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .ss-cta-card {
+    background:#fff; border:1px solid #EDE9FE; border-radius:1.25rem;
+    padding:2rem; box-shadow:0 8px 32px rgba(147,51,234,0.07);
+  }
+  .ss-cta-eyebrow {
+    font-family:'Poppins',sans-serif; font-size:0.7rem; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.75rem;
+  }
+  .ss-cta-title {
+    font-family:'Poppins',sans-serif; font-weight:800; font-size:1rem;
+    color:#1F1635; margin-bottom:0.75rem; line-height:1.4;
+  }
+  .ss-cta-sub {
+    font-family:'Inter',sans-serif; font-size:0.8rem; color:#64647A;
+    margin-bottom:1.5rem; line-height:1.6;
+  }
+  .ss-cta-btn {
+    display:block; text-align:center; padding:0.75rem 1.5rem;
+    border-radius:99px; font-family:'Poppins',sans-serif; font-size:0.88rem; font-weight:700;
+    color:#fff; text-decoration:none; transition:filter 0.2s;
+  }
+  .ss-cta-btn:hover { filter:brightness(1.1); }
+  .ss-section-agenda {
+    background:linear-gradient(135deg,#1A1033,#2D1B69); padding:6rem 0;
   }
 
-  .incluye-card {
-    background: #FFFFFF; border: 1px solid #EDE9FE;
-    border-radius: 0.875rem; padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(147,51,234,0.04);
-    transition: border-color 0.2s, box-shadow 0.2s;
+  /* ═══════════ EDITORIAL ═══════════ */
+  .se-hero { position:relative; overflow:hidden; }
+  .se-hero-bg-img {
+    position:absolute; inset:0; background-size:cover; background-position:center;
+    filter:brightness(0.3) saturate(0.5);
   }
-  .incluye-card:hover { border-color: rgba(147,51,234,0.3); box-shadow: 0 8px 24px rgba(147,51,234,0.08); }
-  .incluye-dot { width: 6px; height: 6px; background: #9333EA; border-radius: 50%; }
-
-  .paso-card {
-    background: #FAF8FF; border: 1px solid #EDE9FE;
-    border-radius: 0.875rem; padding: 1.5rem;
-    transition: border-color 0.2s;
+  .se-hero-overlay {
+    position:absolute; inset:0;
+    background:linear-gradient(to bottom, rgba(10,6,20,0.5) 0%, #0A0614 90%);
   }
-  .paso-card:hover { border-color: rgba(147,51,234,0.3); }
-
-  .resultado-card {
-    background: #FFFFFF; border: 1px solid #EDE9FE;
-    border-radius: 0.875rem; padding: 1rem 1.25rem;
-    display: flex; align-items: flex-start; gap: 1rem;
-    box-shadow: 0 1px 6px rgba(147,51,234,0.04);
+  .se-hero-tag {
+    display:inline-block; padding:0.35rem 1rem; border-radius:4px;
+    font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:800;
+    letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1.5rem;
   }
+  .se-hero-title {
+    font-family:'Poppins',sans-serif; font-weight:900;
+    font-size:clamp(2.8rem,7vw,5.5rem); color:#fff;
+    line-height:0.95; margin-bottom:2.5rem;
+    letter-spacing:-0.02em;
+  }
+  .se-hero-bottom {
+    display:grid; grid-template-columns:1fr auto; gap:3rem; align-items:end;
+    padding-bottom:2rem;
+  }
+  @media(max-width:700px){ .se-hero-bottom { grid-template-columns:1fr; } }
+  .se-hero-desc {
+    font-family:'Inter',sans-serif; font-size:1rem;
+    color:rgba(255,255,255,0.55); line-height:1.7; max-width:520px;
+  }
+  .se-hero-actions { display:flex; flex-direction:column; gap:0.6rem; flex-shrink:0; }
+  .se-cta-main {
+    display:inline-flex; align-items:center; padding:0.8rem 2rem;
+    border-radius:4px; font-family:'Poppins',sans-serif; font-size:0.9rem; font-weight:800;
+    color:#fff; text-decoration:none; white-space:nowrap;
+    transition:filter 0.2s;
+  }
+  .se-cta-main:hover { filter:brightness(1.15); }
+  .se-ghost {
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:0.8rem 2rem; border:1px solid rgba(255,255,255,0.2);
+    border-radius:4px; font-family:'Poppins',sans-serif; font-size:0.9rem; font-weight:600;
+    color:rgba(255,255,255,0.6); text-decoration:none;
+    transition:border-color 0.2s;
+  }
+  .se-ghost:hover { border-color:rgba(255,255,255,0.5); color:#fff; }
+  .se-metrics-band {
+    display:flex; gap:0; background:#fff;
+    border-top:3px solid #F0F0F0;
+  }
+  .se-metric {
+    flex:1; padding:1.75rem 2rem;
+    border-right:1px solid #F0EBFF;
+    display:flex; flex-direction:column; gap:4px;
+  }
+  .se-metric:last-child { border-right:none; }
+  .se-metric-num {
+    font-family:'Poppins',sans-serif; font-weight:900; font-size:2rem; line-height:1;
+  }
+  .se-metric-label {
+    font-family:'Poppins',sans-serif; font-weight:700; font-size:0.8rem; color:#1F1635;
+  }
+  .se-metric-desc { font-family:'Inter',sans-serif; font-size:0.72rem; color:#9CA3AF; line-height:1.4; }
+  .se-section-white  { background:#fff; padding:5rem 0; }
+  .se-section-offwhite { background:#F9F7FF; padding:5rem 0; border-top:1px solid #EDE9FE; }
+  .se-section-title {
+    font-family:'Poppins',sans-serif; font-weight:900;
+    font-size:clamp(1.5rem,3vw,2.2rem); color:#1F1635;
+    margin-bottom:2.5rem; letter-spacing:-0.01em;
+    border-bottom:2px solid #EDE9FE; padding-bottom:1rem;
+  }
+  .se-incluye-list { display:flex; flex-direction:column; }
+  .se-incluye-row {
+    display:grid; grid-template-columns:80px 1fr;
+    gap:2rem; padding:1.75rem 0;
+    border-bottom:1px solid #F0EBFF;
+    transition:background 0.15s;
+  }
+  .se-incluye-row:hover { background:#FAFAFE; }
+  .se-incluye-idx {
+    font-family:'Poppins',sans-serif; font-weight:900; font-size:2rem; line-height:1;
+    opacity:0.6; padding-top:4px;
+  }
+  .se-incluye-name {
+    font-family:'Poppins',sans-serif; font-weight:700; font-size:0.95rem; color:#1F1635; margin-bottom:0.35rem;
+  }
+  .se-incluye-desc { font-family:'Inter',sans-serif; font-size:0.82rem; color:#64647A; line-height:1.6; }
+  .se-proceso-list { display:flex; flex-direction:column; gap:0; }
+  .se-paso {
+    display:flex; gap:1.25rem; padding:1.25rem 0;
+    border-bottom:1px solid #EDE9FE;
+  }
+  .se-paso-dot {
+    width:20px; height:20px; border-radius:50%; border:2px solid; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; margin-top:3px;
+  }
+  .se-paso-dot-inner { width:8px; height:8px; border-radius:50%; }
+  .se-paso-title {
+    font-family:'Poppins',sans-serif; font-weight:700; font-size:0.88rem; color:#1F1635; margin-bottom:0.3rem;
+  }
+  .se-paso-desc { font-family:'Inter',sans-serif; font-size:0.78rem; color:#64647A; line-height:1.55; }
+  .se-pq-list { display:flex; flex-direction:column; gap:0.5rem; margin-bottom:2rem; }
+  .se-pq-item {
+    display:flex; gap:0.75rem; align-items:flex-start;
+    font-family:'Inter',sans-serif; font-size:0.88rem; color:#374151;
+    padding:0.6rem 0; border-bottom:1px solid #F0EBFF;
+  }
+  .se-pq-arrow {
+    font-family:'Poppins',sans-serif; font-weight:900; font-size:1rem; flex-shrink:0; line-height:1.5;
+  }
+  .se-cta-inline {
+    padding:1.25rem 1.25rem 1.25rem 1.5rem;
+    background:#FAF8FF; border-radius:0 0.75rem 0.75rem 0;
+  }
+  .se-cta-inline-text {
+    font-family:'Poppins',sans-serif; font-weight:700; font-size:0.88rem;
+    color:#1F1635; margin-bottom:0.75rem; line-height:1.4;
+  }
+  .se-cta-link {
+    font-family:'Poppins',sans-serif; font-weight:800; font-size:0.85rem;
+    text-decoration:none; transition:opacity 0.15s;
+  }
+  .se-cta-link:hover { opacity:0.75; }
+  .se-section-agenda { padding:6rem 0; }
 
+  /* ═══════════ SHARED FAQ ═══════════ */
   .faq-srv-item {
-    background: #FFFFFF; border: 1px solid #EDE9FE;
-    border-radius: 0.875rem; overflow: hidden;
-    transition: border-color 0.2s;
+    background:#fff; border:1px solid #EDE9FE;
+    border-radius:1rem; overflow:hidden; transition:border-color 0.2s;
   }
-  .faq-srv-item.is-open { border-color: rgba(147,51,234,0.35); }
-  .faq-srv-item.is-open .faq-srv-icon { transform: rotate(45deg); }
-  .faq-srv-item.is-open .faq-srv-answer { max-height: 400px; }
-  .faq-srv-btn { background: none; border: none; }
+  .faq-srv-item.is-open { border-color:rgba(147,51,234,0.35); }
+  .faq-srv-item.is-open .faq-srv-icon { transform:rotate(45deg); }
+  .faq-srv-item.is-open .faq-srv-answer { max-height:400px; }
+  .faq-srv-btn { background:none; border:none; }
 </style>
 
 <script>

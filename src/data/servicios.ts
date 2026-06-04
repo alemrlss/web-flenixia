@@ -6,6 +6,8 @@ export interface ServicioData {
   desc: string;
   icon: string;
   heroImg: string;
+  variant: 'dark' | 'split' | 'editorial';
+  accent: string;
   incluye: Array<{ title: string; desc: string }>;
   proceso: Array<{ step: string; title: string; desc: string }>;
   paraQuien: string[];
@@ -21,6 +23,8 @@ export const servicios: ServicioData[] = [
     name: 'Desarrollo Web',
     tagline: 'Tu web, diseñada para convertir',
     heroImg: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1920&q=80&fit=crop',
+    variant: 'split',
+    accent: '#2563EB',
     desc: 'Diseñamos y desarrollamos webs y landing pages que no solo se ven bien — están construidas para convertir visitas en clientes con velocidad, SEO técnico y diseño orientado a resultados.',
     icon: 'M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0H3',
     incluye: [
@@ -61,6 +65,8 @@ export const servicios: ServicioData[] = [
     name: 'Agentes de IA',
     tagline: 'Atención 24/7 sin aumentar tu equipo',
     heroImg: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1920&q=80&fit=crop',
+    variant: 'dark',
+    accent: '#9333EA',
     desc: 'Desarrollamos agentes conversacionales a medida que atienden, califican y convierten leads en WhatsApp, tu web o por voz — las 24 horas del día, los 7 días de la semana, con la voz de tu marca.',
     icon: 'M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z',
     incluye: [
@@ -101,6 +107,8 @@ export const servicios: ServicioData[] = [
     name: 'Automatizaciones con IA',
     tagline: 'Elimina el trabajo repetitivo de tu equipo',
     heroImg: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&q=80&fit=crop',
+    variant: 'dark',
+    accent: '#0EA5E9',
     desc: 'Conectamos tus herramientas y creamos flujos inteligentes que ejecutan tareas repetitivas de forma automática — sin errores, sin demoras, sin depender de que alguien lo recuerde.',
     icon: 'M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z',
     incluye: [
@@ -141,6 +149,8 @@ export const servicios: ServicioData[] = [
     name: 'Automatización de RRSS',
     tagline: 'Presencia constante sin dedicar tiempo diario',
     heroImg: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=1920&q=80&fit=crop',
+    variant: 'editorial',
+    accent: '#EC4899',
     desc: 'Gestionamos tus redes sociales con IA: contenido generado, revisado, programado y publicado automáticamente. Más consistencia, más alcance y cero tiempo de tu equipo en el día a día.',
     icon: 'M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z',
     incluye: [
@@ -176,51 +186,13 @@ export const servicios: ServicioData[] = [
     idealPara: 'Negocios que quieren presencia activa en redes sin dedicar tiempo diario.',
   },
   {
-    num: '05',
-    slug: 'publicidad-digital-con-ia',
-    name: 'Publicidad Digital con IA',
-    tagline: 'Más clientes por cada euro invertido',
-    heroImg: 'https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=1920&q=80&fit=crop',
-    desc: 'Diseñamos, lanzamos y optimizamos campañas en Meta Ads y Google Ads usando segmentación inteligente e IA predictiva para maximizar el retorno y minimizar el coste por lead.',
-    icon: 'M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z',
-    incluye: [
-      { title: 'Estrategia y planificación', desc: 'Definimos objetivos, presupuesto, canales y métricas de éxito antes de gastar un solo euro.' },
-      { title: 'Creatividades con IA', desc: 'Generamos y testamos múltiples variantes de copy e imagen para identificar qué convierte mejor en tu sector.' },
-      { title: 'Segmentación avanzada', desc: 'Audiencias personalizadas, lookalikes y segmentación por comportamiento para impactar al cliente ideal.' },
-      { title: 'Optimización continua con IA', desc: 'El sistema analiza rendimiento en tiempo real y redistribuye el presupuesto automáticamente hacia lo que funciona.' },
-      { title: 'A/B testing sistemático', desc: 'Testamos creatividades, audiencias y landing pages de forma continua para mejorar el rendimiento semana a semana.' },
-      { title: 'Reportes semanales de ROAS', desc: 'Dashboard en tiempo real y reporte semanal con inversión, leads generados, coste por lead y ROAS.' },
-    ],
-    proceso: [
-      { step: '01', title: 'Auditoría y estrategia', desc: 'Analizamos cuentas existentes, competencia y definimos la estrategia de inversión y canales prioritarios.' },
-      { step: '02', title: 'Creación de campañas', desc: 'Estructuramos las campañas, creamos las creatividades y configuramos el tracking completo antes del lanzamiento.' },
-      { step: '03', title: 'Lanzamiento y optimización', desc: 'Lanzamos, monitorizamos de forma intensiva los primeros días y optimizamos según los primeros datos reales.' },
-      { step: '04', title: 'Escala y mejora continua', desc: 'Escalamos lo que funciona, pausamos lo que no y buscamos nuevas oportunidades de crecimiento cada semana.' },
-    ],
-    paraQuien: [
-      'Negocios que quieren resultados rápidos mientras el SEO madura',
-      'Empresas que han probado la publicidad digital sin resultados claros',
-      'Pymes que quieren escalar su captación de clientes de forma controlada',
-      'Negocios con estacionalidad que necesitan picos de demanda puntuales',
-    ],
-    resultados: [
-      { metric: '3×', label: 'ROAS medio', desc: 'Nuestros clientes obtienen de media 3 euros de retorno por cada euro invertido en los primeros 90 días.' },
-      { metric: '-40%', label: 'Coste por lead', desc: 'La optimización continua con IA reduce el CPL un 40% respecto a campañas gestionadas manualmente.' },
-      { metric: '+120%', label: 'Leads cualificados', desc: 'La segmentación precisa atrae a clientes que realmente quieren lo que ofreces, no solo clics.' },
-    ],
-    faq: [
-      { q: '¿Cuánto presupuesto mínimo necesito para empezar?', a: 'Recomendamos un mínimo de 500€/mes en inversión publicitaria para tener datos suficientes con los que optimizar. Por debajo de esa cifra, los resultados son muy limitados.' },
-      { q: '¿Cuánto tiempo tarda en verse resultados?', a: 'Los primeros leads suelen llegar en los primeros 7-14 días. La optimización real empieza a partir de las 4-6 semanas cuando hay datos suficientes para tomar decisiones.' },
-      { q: '¿Necesito una landing page específica para las campañas?', a: 'Sí, recomendamos que el tráfico llegue a una página específica y optimizada para convertir, no a tu web general. Si no la tienes, podemos crearla como parte del servicio.' },
-    ],
-    idealPara: 'Negocios que quieren escalar su captación de clientes con publicidad pagada eficiente.',
-  },
-  {
     num: '06',
     slug: 'consultoria-de-ia',
     name: 'Consultoría de IA',
     tagline: 'Claridad antes de actuar. Estrategia antes de invertir.',
     heroImg: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1920&q=80&fit=crop',
+    variant: 'editorial',
+    accent: '#F59E0B',
     desc: 'Analizamos tu negocio en profundidad, identificamos exactamente dónde la IA puede generar más valor y diseñamos una hoja de ruta concreta y priorizada para implementarla sin errores.',
     icon: 'M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18',
     incluye: [
@@ -261,6 +233,8 @@ export const servicios: ServicioData[] = [
     name: 'Desarrollo a Medida',
     tagline: 'Cuando ningún software estándar encaja',
     heroImg: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1920&q=80&fit=crop',
+    variant: 'split',
+    accent: '#10B981',
     desc: 'Construimos exactamente lo que tu negocio necesita: herramientas internas, integraciones específicas, plataformas propias o funcionalidades imposibles de encontrar en productos del mercado.',
     icon: 'M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5',
     incluye: [
@@ -301,6 +275,8 @@ export const servicios: ServicioData[] = [
     name: 'SEO',
     tagline: 'Que tus clientes te encuentren antes que a tu competencia',
     heroImg: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80&fit=crop',
+    variant: 'split',
+    accent: '#0891B2',
     desc: 'Posicionamos tu web en Google y otros buscadores para que los clientes que buscan lo que ofreces te encuentren a ti — de forma orgánica, sostenida y sin pagar por cada clic.',
     icon: 'M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 15.803a7.5 7.5 0 0010.607 0z',
     incluye: [
@@ -341,6 +317,8 @@ export const servicios: ServicioData[] = [
     name: 'AO — AI Optimization',
     tagline: 'Que la IA te recomiende cuando alguien pregunte por tu sector',
     heroImg: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1920&q=80&fit=crop',
+    variant: 'dark',
+    accent: '#8B5CF6',
     desc: 'Optimizamos tu presencia digital para que tu negocio aparezca citado y recomendado en motores de IA como ChatGPT, Perplexity, Gemini y Claude — el nuevo canal de búsqueda que está cambiando cómo se toman decisiones de compra.',
     icon: 'M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z',
     incluye: [
@@ -381,6 +359,8 @@ export const servicios: ServicioData[] = [
     name: 'CRM y Automatización de Ventas',
     tagline: 'No vuelvas a perder un lead por falta de seguimiento',
     heroImg: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1920&q=80&fit=crop',
+    variant: 'editorial',
+    accent: '#EF4444',
     desc: 'Implementamos un CRM conectado a todos tus canales con flujos automáticos que guían al prospecto desde el primer contacto hasta el cierre — sin que tu equipo tenga que recordar llamar a nadie.',
     icon: 'M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6',
     incluye: [

@@ -1,4 +1,4 @@
----
+﻿---
 interface Props {
   servicioNombre: string;
 }
@@ -7,9 +7,9 @@ const { servicioNombre } = Astro.props;
 
 <div class="form-contacto glass-card p-8">
   <h3 class="font-display font-bold text-flenix-white text-xl mb-2">
-    ¿Te interesa <span class="gradient-text">{servicioNombre}</span>?
+    Â¿Te interesa <span class="gradient-text">{servicioNombre}</span>?
   </h3>
-  <p class="text-flenix-muted text-sm mb-6">Cuéntanos tu caso y te respondemos en menos de 24h.</p>
+  <p class="text-flenix-muted text-sm mb-6">CuÃ©ntanos tu caso y te respondemos en menos de 24h.</p>
 
   <form
     id="contact-form"
@@ -36,7 +36,7 @@ const { servicioNombre } = Astro.props;
 
     <div class="mb-6">
       <label class="form-label">Mensaje *</label>
-      <textarea name="mensaje" required rows="4" placeholder="Cuéntanos qué necesitas..." class="form-input resize-none"></textarea>
+      <textarea name="mensaje" required rows="4" placeholder="CuÃ©ntanos quÃ© necesitas..." class="form-input resize-none"></textarea>
     </div>
 
     <button type="submit" class="btn-primary w-full justify-center" id="submit-btn">
@@ -48,7 +48,7 @@ const { servicioNombre } = Astro.props;
 
     <div id="form-success" class="hidden mt-4 p-4 rounded-lg text-sm text-center"
          style="background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.3);color:#818CF8">
-      ✓ Mensaje enviado. Te respondemos en menos de 24h.
+      âœ“ Mensaje enviado. Te respondemos en menos de 24h.
     </div>
   </form>
 </div>
@@ -64,7 +64,7 @@ const { servicioNombre } = Astro.props;
     display: block; width: 100%;
     background: #111118; border: 1px solid #23233A;
     border-radius: 0.5rem; padding: 0.75rem 1rem;
-    font-family: 'Inter', sans-serif; font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif; font-size: 0.9rem;
     color: #E2E2F0; outline: none;
     transition: border-color 0.2s;
     box-sizing: border-box;
@@ -80,7 +80,7 @@ const { servicioNombre } = Astro.props;
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (submitBtn) { submitBtn.setAttribute('disabled', 'true'); submitBtn.textContent = 'Enviando…'; }
+    if (submitBtn) { submitBtn.setAttribute('disabled', 'true'); submitBtn.textContent = 'Enviandoâ€¦'; }
 
     try {
       const res = await fetch(form.action, {
@@ -102,3 +102,4 @@ const { servicioNombre } = Astro.props;
     }
   });
 </script>
+

@@ -1,4 +1,4 @@
----
+﻿---
 import { servicios } from '../data/servicios';
 const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.icon }));
 ---
@@ -11,7 +11,7 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
       Plenix<span class="logo-ia">ia</span>
     </a>
 
-    <!-- Links — desktop -->
+    <!-- Links â€” desktop -->
     <nav class="hidden md:flex items-center gap-1">
 
       <!-- Soluciones dropdown -->
@@ -65,8 +65,8 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
                 </svg>
               </span>
               <div>
-                <p class="agente-name">Agente IA para Clínicas Estéticas</p>
-                <p class="agente-sub">Captación, citas y seguimiento automatizados</p>
+                <p class="agente-name">Agente IA para Clinicas Esteticas</p>
+                <p class="agente-sub">Captacion, citas y seguimiento automatizados</p>
               </div>
             </a>
           </div>
@@ -84,7 +84,7 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
           <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
         </svg>
       </a>
-      <button id="mob-toggle" class="md:hidden ham-btn" aria-label="Menú">
+      <button id="mob-toggle" class="md:hidden ham-btn" aria-label="Menu">
         <svg id="ham-open"  width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
@@ -106,7 +106,7 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
     </div>
     <div class="mob-section">
       <p class="mob-group-label">Agentes IA</p>
-      <a href="/agentes/clinicas-esteticas" class="mob-link">Agente IA para Clínicas Estéticas</a>
+      <a href="/agentes/clinicas-esteticas" class="mob-link">Agente IA para Clinicas Esteticas</a>
     </div>
     <div class="mob-section">
       <a href="/flenixia" class="mob-link">Plenixia</a>
@@ -118,7 +118,7 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
 </header>
 
 <style>
-  /* ── Base ─────────────────────────────────────── */
+  /* â”€â”€ Base â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   .nav-header {
     background: transparent;
     transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
@@ -132,7 +132,7 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
     box-shadow: 0 1px 16px rgba(147,51,234,0.06);
   }
 
-  /* ── Logo ─────────────────────────────────────── */
+  /* â”€â”€ Logo â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   .logo-link { color: #fff; text-decoration: none; transition: color 0.25s; }
   .nav-header.scrolled .logo-link { color: #1F1635; }
   .logo-ia {
@@ -140,7 +140,7 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
 
-  /* ── Nav buttons ──────────────────────────────── */
+  /* â”€â”€ Nav buttons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   .nav-btn {
     background: none; border: none; cursor: pointer;
     font-family: 'Poppins', sans-serif; font-size: 0.875rem; font-weight: 500;
@@ -152,7 +152,7 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
   .nav-header.scrolled .nav-btn { color: #64647A; }
   .nav-header.scrolled .nav-btn:hover { color: #9333EA; background: #F3E8FF; }
 
-  /* ── Dropdown ─────────────────────────────────── */
+  /* â”€â”€ Dropdown â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   .dropdown { transition: opacity 0.15s, transform 0.15s, visibility 0.15s; }
   .drop-panel {
     background: #fff;
@@ -165,7 +165,7 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
     display: flex; align-items: center; gap: 0.5rem;
     padding: 0.4rem 0.65rem; border-radius: 0.4rem;
     font-family: 'Poppins', sans-serif; font-size: 0.82rem;
-    color: #64647A; text-decoration: none; white-space: nowrap;
+    color: #64647A; text-decoration: none;
     transition: color 0.12s, background 0.12s;
   }
   .drop-link:hover { color: #9333EA; background: #F3E8FF; }
@@ -182,9 +182,9 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
   .agente-link:hover { background: #F3E8FF; }
   .agente-name { font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 600; color: #1F1635; transition: color 0.12s; }
   .agente-link:hover .agente-name { color: #9333EA; }
-  .agente-sub  { font-family: 'Inter', sans-serif; font-size: 0.72rem; color: #8B8BA8; margin-top: 1px; }
+  .agente-sub  { font-family: 'Poppins', sans-serif; font-size: 0.72rem; color: #8B8BA8; margin-top: 1px; }
 
-  /* ── CTA ──────────────────────────────────────── */
+  /* â”€â”€ CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   /* CTA degradado */
   .nav-cta {
     display: inline-flex; align-items: center; gap: 0.45rem;
@@ -207,7 +207,7 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
   .ham-btn { background: none; border: none; cursor: pointer; color: #fff; padding: 4px; transition: color 0.25s; }
   .nav-header.scrolled .ham-btn { color: #1F1635; }
 
-  /* ── Mobile ───────────────────────────────────── */
+  /* â”€â”€ Mobile â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   .mob-panel {
     background: #fff; border-top: 1px solid #EDE9FE;
     box-shadow: 0 8px 24px rgba(147,51,234,0.08);
@@ -256,3 +256,4 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
     });
   });
 </script>
+
