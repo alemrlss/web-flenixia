@@ -5,7 +5,7 @@ const problemas = [
     stat: '+78%',
     statLabel: 'leads se enfrían en la primera hora',
     title: 'Leads que se enfrían',
-    desc: 'Un lead sin respuesta en 5 minutos tiene un 80% menos de probabilidades de convertir. Tu equipo no puede estar siempre. Plenixia, sí.',
+    desc: 'Un lead sin respuesta en 5 minutos tiene un 80% menos de probabilidades de convertir. Tu equipo no puede estar siempre. Flenixia, sí.',
   },
   {
     icon: 'M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z',
@@ -31,19 +31,19 @@ const problemas = [
 ];
 ---
 
-<section class="py-24 overflow-hidden" style="background:#FFFFFF;color:#1F1635">
+<section class="py-24 overflow-hidden" style="background:#1A1033;color:#F0F0FF">
   <div class="max-w-6xl mx-auto px-6 lg:px-10">
 
     <div class="text-center mb-16">
       <div class="reveal mb-4 flex justify-center">
-        <span class="section-label">El problema real</span>
+        <span class="section-label-dark">El problema real</span>
       </div>
       <h2 class="reveal reveal-delay-1 font-display font-extrabold leading-tight mb-4"
-          style="font-size:clamp(1.9rem,4vw,2.8rem);color:#1F1635">
+          style="font-size:clamp(1.9rem,4vw,2.8rem);color:#F0F0FF">
         Lo que no automatizas,<br/>
         <span class="gradient-text">lo factura tu competencia.</span>
       </h2>
-      <p class="reveal reveal-delay-2 text-lg max-w-xl mx-auto" style="color:#64647A">
+      <p class="reveal reveal-delay-2 text-lg max-w-xl mx-auto" style="color:rgba(240,240,255,0.55)">
         Mientras lees esto, otro lead acaba de comprar… a tu competencia.
       </p>
     </div>
@@ -68,22 +68,33 @@ const problemas = [
 </section>
 
 <style>
+  .section-label-dark {
+    display: inline-flex; align-items: center;
+    font-family: 'Poppins', sans-serif; font-weight: 600;
+    font-size: 0.73rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: #C084FC;
+    background: rgba(192,132,252,0.12);
+    border: 1px solid rgba(192,132,252,0.25);
+    border-radius: 99px; padding: 0.3rem 0.9rem;
+  }
   .problema-card {
-    background: #FFFFFF;
-    border: 1px solid #EDE9FE;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(192,132,252,0.15);
     border-radius: 1rem; padding: 1.75rem 1.5rem;
-    box-shadow: 0 2px 12px rgba(147,51,234,0.05);
-    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+    transition: border-color 0.25s, background 0.25s, transform 0.25s;
   }
   .problema-card:hover {
-    border-color: rgba(147,51,234,0.4);
-    box-shadow: 0 12px 36px rgba(147,51,234,0.12);
+    border-color: rgba(192,132,252,0.4);
+    background: rgba(255,255,255,0.07);
     transform: translateY(-4px);
   }
   .problema-icon {
     width: 42px; height: 42px;
-    background: #F3E8FF; border: 1px solid #DDD6FE;
+    background: rgba(192,132,252,0.1); border: 1px solid rgba(192,132,252,0.2);
     border-radius: 0.6rem;
     display: flex; align-items: center; justify-content: center;
   }
+  /* Overrides para fondo oscuro */
+  .problema-card .text-flenix-text  { color: #F0F0FF !important; }
+  .problema-card .text-flenix-muted { color: rgba(240,240,255,0.5) !important; }
 </style>
