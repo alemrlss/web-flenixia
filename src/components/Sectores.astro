@@ -1,0 +1,107 @@
+---
+const sectores = [
+  {
+    icon: 'M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5',
+    name: 'Clínicas y salud',
+    desc: 'Agendas sin huecos, recordatorios automáticos y cero no-shows.',
+  },
+  {
+    icon: 'M2.25 3h1.386c.51 0 .955.343 1.087.836l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z',
+    name: 'E-commerce',
+    desc: 'Carritos recuperados, soporte 24/7 y seguimiento post-venta automático.',
+  },
+  {
+    icon: 'M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25',
+    name: 'Hostelería',
+    desc: 'Reservas, consultas frecuentes y reseñas gestionadas sin perder calidez.',
+  },
+  {
+    icon: 'M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-18 0l9 6 9-6m-18 0v10.5A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 19.5V9',
+    name: 'Legal',
+    desc: 'Primer contacto cualificado, agenda de consultas y seguimiento de expedientes.',
+  },
+  {
+    icon: 'M2.25 3h1.386c.51 0 .955.343 1.087.836l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272',
+    name: 'Retail',
+    desc: 'Atención en tienda y online unificada, con stock y promos siempre al día.',
+  },
+  {
+    icon: 'M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5',
+    name: 'Formación',
+    desc: 'Captación de alumnos, recordatorios de clases y seguimiento de matrículas.',
+  },
+];
+---
+
+<section class="py-24 overflow-hidden" style="background:#1A1033;color:#F0F0FF">
+  <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+    <div class="text-center mb-14">
+      <div class="reveal mb-4 flex justify-center">
+        <span class="dark-label">Multisector</span>
+      </div>
+      <h2 class="reveal reveal-delay-1 font-display font-extrabold leading-tight mb-4"
+          style="font-size:clamp(1.8rem,3.5vw,2.6rem);color:#F0F0FF">
+        Empresas de todos los sectores<br/>
+        <span class="gradient-text">confían en Flenixia.</span>
+      </h2>
+      <p class="reveal reveal-delay-2 text-lg max-w-xl mx-auto" style="color:rgba(240,240,255,0.55)">
+        Cada sector tiene su propio cuello de botella. Adaptamos el sistema al tuyo — no al revés.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {sectores.map((s, i) => (
+        <div class={`reveal reveal-delay-${Math.min(i+1,4)} sector-card`}>
+          <div class="sector-icon mb-4">
+            <svg width="20" height="20" fill="none" stroke="#C084FC" stroke-width="1.75" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d={s.icon}/>
+            </svg>
+          </div>
+          <h3 class="sector-name mb-2">{s.name}</h3>
+          <p class="sector-desc">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .dark-label {
+    display: inline-flex; align-items: center;
+    font-family: 'Poppins', sans-serif; font-weight: 600;
+    font-size: 0.73rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: #C084FC;
+    background: rgba(192,132,252,0.12);
+    border: 1px solid rgba(192,132,252,0.25);
+    border-radius: 99px; padding: 0.3rem 0.9rem;
+  }
+  .sector-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(192,132,252,0.18);
+    border-radius: 1.25rem;
+    padding: 1.75rem;
+    transition: border-color 0.25s, background 0.25s, transform 0.25s;
+  }
+  .sector-card:hover {
+    border-color: rgba(192,132,252,0.4);
+    background: rgba(255,255,255,0.05);
+    transform: translateY(-3px);
+  }
+  .sector-icon {
+    width: 42px; height: 42px;
+    background: rgba(192,132,252,0.12);
+    border: 1px solid rgba(192,132,252,0.25);
+    border-radius: 0.75rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sector-name {
+    font-family: 'Poppins', sans-serif; font-weight: 700;
+    font-size: 1rem; color: #F5F3FF;
+  }
+  .sector-desc {
+    font-family: 'Inter', sans-serif; font-size: 0.85rem; line-height: 1.6;
+    color: rgba(240,240,255,0.55);
+  }
+</style>

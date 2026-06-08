@@ -10,18 +10,23 @@
       <!-- Izquierda: copy -->
       <div>
         <div class="reveal mb-6">
-          <span class="hero-label">El sistema que no para de vender</span>
+          <span class="hero-label">De cero a tu primer agente en 7 días</span>
         </div>
 
-        <h1 class="reveal reveal-delay-1 font-display font-extrabold leading-[1.05] mb-6"
+        <h1 class="reveal reveal-delay-1 font-display font-extrabold leading-[1.05] mb-4"
             style="font-size:clamp(2.4rem,5vw,4rem); color:#FFFFFF">
-          Tu sistema de <span class="hero-gradient-text">IA</span><br/>
-          que no <span class="hero-gradient-text">descansa.</span>
+          Automatiza tu negocio<br/>
+          con <span class="hero-gradient-text">IA que no descansa.</span>
         </h1>
+
+        <p class="reveal reveal-delay-1 mb-6"
+           style="font-family:'Poppins',sans-serif; font-weight:600; font-size:1.05rem; color:#C084FC">
+          Tu primer agente de IA, funcionando en 7 días.
+        </p>
 
         <p class="reveal reveal-delay-2 leading-relaxed mb-8"
            style="font-size:clamp(1rem,1.8vw,1.15rem); max-width:520px; color:rgba(255,255,255,0.72)">
-          Combinamos CRM, automatizaciones, landings de alta conversiÃ³n y agentes IA (chat y voz) para que cada lead reciba la respuesta correcta en el momento exacto â€” sin que tu equipo se queme.
+          Integramos CRM, agentes de chat y voz, automatizaciones y landings en un solo sistema que responde, agenda y hace seguimiento — mientras tu equipo se enfoca en cerrar. Empezamos con un sprint corto y medimos resultados reales desde la primera semana.
         </p>
 
         <ul class="reveal reveal-delay-3 space-y-3 mb-10">
@@ -42,14 +47,30 @@
           ))}
         </ul>
 
+        <div class="reveal reveal-delay-3 mb-10">
+          <p class="hero-sectores-label mb-2">Pensado para negocios como el tuyo:</p>
+          <div class="flex flex-wrap gap-2">
+            {[
+              'Clínicas y salud',
+              'E-commerce',
+              'Hostelería',
+              'Legal',
+              'Retail',
+              'Formación',
+            ].map(s => (
+              <span class="hero-sector-chip">{s}</span>
+            ))}
+          </div>
+        </div>
+
         <div class="reveal reveal-delay-4 flex flex-wrap gap-3 mb-10">
-          <a href="#agenda" class="btn-primary">
-            Agendar demo
+          <a href="/calculadora" class="btn-primary">
+            Calcular mi inversión
             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
           </a>
-          <a href="#como-funciona" class="btn-outline-white">Ver cÃ³mo funciona</a>
+          <a href="#agenda" class="btn-outline-white">Agendar diagnóstico gratuito</a>
         </div>
 
         <div class="reveal reveal-delay-4">
@@ -57,7 +78,7 @@
         </div>
       </div>
 
-      <!-- Derecha: Chat IA simulaciÃ³n -->
+      <!-- Derecha: Chat IA simulación -->
       <div class="reveal reveal-delay-2 flex flex-col items-center gap-4">
 
         <div class="fl-chat-frame">
@@ -75,7 +96,7 @@
               <div class="fl-chat-name">Asistente Comercial IA</div>
               <div class="fl-chat-status">
                 <span class="fl-online-dot"></span>
-                En lÃ­nea Â· Responde 24/7
+                En línea · Responde 24/7
               </div>
             </div>
           </div>
@@ -90,7 +111,7 @@
             </div>
 
             <div class="fl-msg fl-bot" data-delay="1600">
-              <div class="fl-bubble">Â¡Hola! âœ¨ Perfecto. Nuestro stack incluye CRM + agente IA en WhatsApp y llamada. Â¿CuÃ¡ntos leads/mes manejas?</div>
+              <div class="fl-bubble">¡Hola! ✨ Perfecto. Nuestro stack incluye CRM + agente IA en WhatsApp y llamada. ¿Cuántos leads/mes manejas?</div>
             </div>
 
             <div class="fl-msg fl-user" data-delay="2800">
@@ -98,11 +119,11 @@
             </div>
 
             <div class="fl-msg fl-bot" data-delay="4000">
-              <div class="fl-bubble">Con esa volumetrÃ­a te recuperamos ~25%. Â¿Agendamos demo el jueves 16:00?</div>
+              <div class="fl-bubble">Con esa volumetría te recuperamos ~25%. ¿Agendamos demo el jueves 16:00?</div>
             </div>
 
             <div class="fl-msg fl-user" data-delay="5200">
-              <div class="fl-bubble">SÃ­, perfecto</div>
+              <div class="fl-bubble">Sí, perfecto</div>
             </div>
 
             <div class="fl-msg fl-bot" data-delay="6200">
@@ -114,7 +135,7 @@
                 </div>
                 <div class="fl-confirm-text">
                   <span class="fl-confirm-title">Demo confirmada</span>
-                  <span class="fl-confirm-sub">Jueves 16:00 Â· Estrategia IA Â· Flenixia</span>
+                  <span class="fl-confirm-sub">Jueves 16:00 · Estrategia IA · Flenixia</span>
                 </div>
               </div>
             </div>
@@ -147,13 +168,13 @@
             <svg width="13" height="13" fill="none" stroke="#A78BFA" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
-            <span>Responde en <strong>30s</strong></span>
+            <span><strong>Primer agente</strong> en 7 días</span>
           </div>
           <div class="fl-badge fl-badge-green">
             <svg width="13" height="13" fill="none" stroke="#34D399" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/>
             </svg>
-            <span><strong>+65%</strong> mÃ¡s conversiÃ³n</span>
+            <span>Resultados medibles <strong>desde la semana 1</strong></span>
           </div>
         </div>
 
@@ -197,6 +218,18 @@
     border: 1px solid rgba(192,132,252,0.25);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
+  }
+  .hero-sectores-label {
+    font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 500;
+    color: rgba(255,255,255,0.45);
+  }
+  .hero-sector-chip {
+    display: inline-flex; align-items: center;
+    font-family: 'Poppins', sans-serif; font-size: 0.74rem; font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 99px; padding: 0.32rem 0.85rem;
   }
   .founder-quote {
     font-family: 'Poppins', sans-serif; font-size: 0.78rem;
@@ -262,7 +295,7 @@
     color: #6B5FA6; margin-bottom: 0.1rem;
   }
 
-  /* Messages â€” hidden by default, JS reveals them */
+  /* Messages — hidden by default, JS reveals them */
   .fl-msg {
     display: flex; flex-direction: column; gap: 3px;
     opacity: 0;

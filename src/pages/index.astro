@@ -1,34 +1,77 @@
 ---
-import Layout      from '../layouts/Layout.astro';
-import Navbar      from '../components/Navbar.astro';
-import Hero        from '../components/Hero.astro';
-import Problema    from '../components/Problema.astro';
-import Sistemas    from '../components/Sistemas.astro';
-import Resultados  from '../components/Resultados.astro';
-import CasosReales from '../components/CasosReales.astro';
-import Testimonios from '../components/Testimonios.astro';
-import Proceso     from '../components/Proceso.astro';
-import FAQ         from '../components/FAQ.astro';
-import Comparativa from '../components/Comparativa.astro';
-import CTAFinal    from '../components/CTAFinal.astro';
+import Layout       from '../layouts/Layout.astro';
+import Navbar       from '../components/Navbar.astro';
+import Hero         from '../components/Hero.astro';
+import ImpactoRapido from '../components/ImpactoRapido.astro';
+import Problema     from '../components/Problema.astro';
+import Sistemas     from '../components/Sistemas.astro';
+import MercadoIA    from '../components/MercadoIA.astro';
+import Resultados   from '../components/Resultados.astro';
+import CasosReales  from '../components/CasosReales.astro';
+import Sectores     from '../components/Sectores.astro';
+import Testimonios  from '../components/Testimonios.astro';
+import Novedades    from '../components/Novedades.astro';
+import Proceso      from '../components/Proceso.astro';
+import FAQ          from '../components/FAQ.astro';
+import Comparativa  from '../components/Comparativa.astro';
+import CTAFinal     from '../components/CTAFinal.astro';
 import BookingWidget from '../components/BookingWidget.astro';
-import Footer      from '../components/Footer.astro';
+import Footer       from '../components/Footer.astro';
 ---
 
 <Layout
-  title="Plenixia — Sistema de IA que no descansa | CRM, Agentes IA y Automatizaciones"
-  description="Plenixia combina CRM, automatizaciones, landings de alta conversión y agentes IA (chat y voz) para que cada lead reciba la respuesta correcta en el momento exacto."
+  title="Flenixia — Sistema de IA que no descansa | CRM, Agentes IA y Automatizaciones"
+  description="Flenixia combina CRM, automatizaciones, landings de alta conversión y agentes IA (chat y voz) para que cada lead reciba la respuesta correcta en el momento exacto."
 >
   <Navbar />
+
+  <!-- Fondo oscuro -->
   <Hero />
-  <Sistemas />
+  <!-- Fondo claro -->
+  <ImpactoRapido />
+  <!-- Fondo oscuro -->
   <Problema />
+  <!-- Fondo claro -->
+  <Sistemas />
+  <!-- Fondo oscuro -->
+  <MercadoIA />
+  <!-- Fondo claro -->
   <Resultados />
+  <!-- Fondo oscuro -->
   <Comparativa />
+  <!-- Fondo claro -->
   <CasosReales />
+
+  <!-- Fondo oscuro — Franja: calculadora -->
+  <section class="py-16 text-center" style="background:#0F0A22; border-top:1px solid rgba(192,132,252,0.15); border-bottom:1px solid rgba(192,132,252,0.15)">
+    <div class="max-w-2xl mx-auto px-6 lg:px-10">
+      <h2 class="reveal font-display font-extrabold leading-tight mb-3"
+          style="font-size:clamp(1.4rem,3vw,1.9rem); color:#F0F0FF">
+        ¿Cuánto costaría implementar esto en tu negocio?
+      </h2>
+      <p class="reveal reveal-delay-1 mb-7" style="color:rgba(240,240,255,0.55); font-size:1rem">
+        Elige el servicio que te interesa y mira una estimación al instante — con o sin IVA. Sin formularios, sin esperas.
+      </p>
+      <a href="/calculadora" class="reveal reveal-delay-2 btn-primary">
+        Calcular mi inversión
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Fondo claro -->
   <Testimonios />
+  <!-- Fondo oscuro -->
+  <Sectores />
+  <!-- Fondo claro -->
+  <Novedades />
+  <!-- Fondo oscuro -->
   <Proceso />
+  <!-- Fondo claro -->
   <FAQ />
+  <!-- Fondo oscuro -->
   <CTAFinal>
     <BookingWidget />
   </CTAFinal>

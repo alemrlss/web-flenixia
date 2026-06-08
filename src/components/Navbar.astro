@@ -8,10 +8,10 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
 
     <!-- Logo -->
     <a href="/" class="logo-link font-display font-bold text-2xl leading-none">
-      Plenix<span class="logo-ia">ia</span>
+      Flenix<span class="logo-ia">ia</span>
     </a>
 
-    <!-- Links â€” desktop -->
+    <!-- Links — desktop -->
     <nav class="hidden md:flex items-center gap-1">
 
       <!-- Soluciones dropdown -->
@@ -73,7 +73,8 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
         </div>
       </div>
 
-      <a href="/flenixia" class="nav-btn">Plenixia</a>
+      <a href="/flenixia" class="nav-btn">Flenixia</a>
+      <a href="/calculadora" class="nav-btn">Calculadora</a>
     </nav>
 
     <!-- CTA + hamburger -->
@@ -109,7 +110,8 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
       <a href="/agentes/clinicas-esteticas" class="mob-link">Agente IA para Clinicas Esteticas</a>
     </div>
     <div class="mob-section">
-      <a href="/flenixia" class="mob-link">Plenixia</a>
+      <a href="/flenixia" class="mob-link">Flenixia</a>
+      <a href="/calculadora" class="mob-link">Calculadora</a>
     </div>
     <div class="px-5 py-4 border-t mob-border">
       <a href="/#agenda" class="btn-primary w-full justify-center">Agendar demo</a>
@@ -118,7 +120,7 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
 </header>
 
 <style>
-  /* â”€â”€ Base â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Base ─────────────────────────────────────── */
   .nav-header {
     background: transparent;
     transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
@@ -132,7 +134,7 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
     box-shadow: 0 1px 16px rgba(147,51,234,0.06);
   }
 
-  /* â”€â”€ Logo â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Logo ─────────────────────────────────────── */
   .logo-link { color: #fff; text-decoration: none; transition: color 0.25s; }
   .nav-header.scrolled .logo-link { color: #1F1635; }
   .logo-ia {
@@ -140,7 +142,7 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
 
-  /* â”€â”€ Nav buttons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Nav buttons ──────────────────────────────── */
   .nav-btn {
     background: none; border: none; cursor: pointer;
     font-family: 'Poppins', sans-serif; font-size: 0.875rem; font-weight: 500;
@@ -152,7 +154,7 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
   .nav-header.scrolled .nav-btn { color: #64647A; }
   .nav-header.scrolled .nav-btn:hover { color: #9333EA; background: #F3E8FF; }
 
-  /* â”€â”€ Dropdown â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Dropdown ─────────────────────────────────── */
   .dropdown { transition: opacity 0.15s, transform 0.15s, visibility 0.15s; }
   .drop-panel {
     background: #fff;
@@ -184,7 +186,7 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
   .agente-link:hover .agente-name { color: #9333EA; }
   .agente-sub  { font-family: 'Poppins', sans-serif; font-size: 0.72rem; color: #8B8BA8; margin-top: 1px; }
 
-  /* â”€â”€ CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── CTA ──────────────────────────────────────── */
   /* CTA degradado */
   .nav-cta {
     display: inline-flex; align-items: center; gap: 0.45rem;
@@ -207,7 +209,7 @@ const serviciosNav = servicios.map(s => ({ name: s.name, slug: s.slug, icon: s.i
   .ham-btn { background: none; border: none; cursor: pointer; color: #fff; padding: 4px; transition: color 0.25s; }
   .nav-header.scrolled .ham-btn { color: #1F1635; }
 
-  /* â”€â”€ Mobile â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Mobile ───────────────────────────────────── */
   .mob-panel {
     background: #fff; border-top: 1px solid #EDE9FE;
     box-shadow: 0 8px 24px rgba(147,51,234,0.08);

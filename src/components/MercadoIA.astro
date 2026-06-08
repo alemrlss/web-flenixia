@@ -1,0 +1,116 @@
+---
+const datos = [
+  { icon: '⚠️', cifra: '88,6%', label: 'de pymes españolas aún sin IA', fuente: 'ONTSI 2026' },
+  { icon: '📈', cifra: '+100%', label: 'crecimiento en adopción de IA en España (interanual)', fuente: 'INE 2025' },
+  { icon: '⏱️', cifra: '30h/sem.', label: 'de ahorro medio gracias a la automatización', fuente: 'Estimación interna Flenixia' },
+];
+---
+
+<section class="py-24 overflow-hidden" style="background:#0F0A22;color:#F0F0FF">
+  <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+    <div class="text-center mb-14">
+      <div class="reveal mb-4 flex justify-center">
+        <span class="dark-label">El mercado no espera</span>
+      </div>
+      <h2 class="reveal reveal-delay-1 font-display font-extrabold leading-tight mb-4"
+          style="font-size:clamp(1.8rem,3.5vw,2.6rem);color:#F0F0FF">
+        Mientras lo piensas,<br/>
+        <span class="gradient-text">tu competencia ya automatiza.</span>
+      </h2>
+    </div>
+
+    <!-- Datos sueltos -->
+    <div class="reveal reveal-delay-2 mercado-grid mb-16">
+      {datos.map(d => (
+        <div class="mercado-card">
+          <span class="mercado-icon">{d.icon}</span>
+          <div class="font-display font-black gradient-text mb-1" style="font-size:clamp(1.6rem,3vw,2.1rem);line-height:1">{d.cifra}</div>
+          <p class="mercado-label">{d.label}</p>
+          <p class="mercado-fuente">{d.fuente}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Pattern interrupt -->
+    <div class="reveal reveal-delay-3 interrupt-card">
+      <span class="interrupt-icon">💡</span>
+      <h3 class="interrupt-title">
+        Si 500 clientes nuevos llegaran mañana a tu negocio…<br/>
+        <span class="gradient-text">¿qué se rompería primero?</span>
+      </h3>
+      <p class="interrupt-body">
+        Esa pregunta revela exactamente qué hay que automatizar. Descúbrelo gratis en una llamada de diagnóstico con nuestro equipo.
+      </p>
+      <a href="/#agenda" class="btn-primary">
+        Descúbrelo gratis
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .dark-label {
+    display: inline-flex; align-items: center;
+    font-family: 'Poppins', sans-serif; font-weight: 600;
+    font-size: 0.73rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: #C084FC;
+    background: rgba(192,132,252,0.12);
+    border: 1px solid rgba(192,132,252,0.25);
+    border-radius: 99px; padding: 0.3rem 0.9rem;
+  }
+
+  /* ── Datos sueltos ─────────────────────────────── */
+  .mercado-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .mercado-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .mercado-card {
+    text-align: center;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(192,132,252,0.18);
+    border-radius: 1.25rem;
+    padding: 2rem 1.5rem;
+    transition: border-color 0.25s, background 0.25s;
+  }
+  .mercado-card:hover { border-color: rgba(192,132,252,0.4); background: rgba(255,255,255,0.05); }
+  .mercado-icon { font-size: 1.5rem; display: inline-block; margin-bottom: 0.75rem; }
+  .mercado-label {
+    font-family: 'Poppins', sans-serif; font-size: 0.85rem; line-height: 1.5;
+    color: rgba(240,240,255,0.65); margin-bottom: 0.6rem;
+  }
+  .mercado-fuente {
+    font-family: 'Poppins', sans-serif; font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    color: #7C6DAB;
+  }
+
+  /* ── Pattern interrupt ─────────────────────────── */
+  .interrupt-card {
+    text-align: center;
+    max-width: 42rem; margin: 0 auto;
+    background: linear-gradient(160deg, #271A4D 0%, #1A1033 100%);
+    border: 1px solid rgba(192,132,252,0.25);
+    border-radius: 1.5rem;
+    padding: 3rem 2rem;
+  }
+  .interrupt-icon { font-size: 1.75rem; display: inline-block; margin-bottom: 1rem; }
+  .interrupt-title {
+    font-family: 'Poppins', sans-serif; font-weight: 800;
+    font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+    line-height: 1.35; color: #F0F0FF; margin-bottom: 1rem;
+  }
+  .interrupt-body {
+    font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.65;
+    color: rgba(240,240,255,0.6); margin-bottom: 1.75rem;
+    max-width: 34rem; margin-left: auto; margin-right: auto;
+  }
+</style>

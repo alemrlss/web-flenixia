@@ -1,0 +1,660 @@
+---
+import { servicios, IVA_RATE, HOURLY_RATE, variantes, horasDisponibles } from '../data/calculadora';
+
+const fmtPrecio = (n: number) => n.toLocaleString('es-ES');
+---
+<div class="calc-widget" data-iva-rate={IVA_RATE} data-hourly-rate={HOURLY_RATE}>
+
+  <!-- Indicador de pasos -->
+  <div class="calc-steps">
+    <div class="calc-step-pill active" data-step-pill="1">
+      <span class="calc-step-num">1</span> Elige tu servicio
+    </div>
+    <div class="calc-step-line"></div>
+    <div class="calc-step-pill" data-step-pill="2">
+      <span class="calc-step-num">2</span> Tu estimación
+    </div>
+  </div>
+
+  <!-- ───────── PASO 1 — Selección de servicio (única) ───────── -->
+  <div class="calc-paso" data-paso="1">
+    <p class="calc-paso-intro">¿Qué necesita tu negocio ahora mismo? Elige <strong>un servicio</strong> para ver al instante una estimación orientativa.</p>
+
+    <div class="calc-grid-servicios">
+      {servicios.map(s => (
+        <button
+          type="button"
+          class="calc-service-card"
+          data-id={s.id}
+          data-nombre={s.nombre}
+          data-tag={s.tag}
+          data-icon={s.icon}
+          data-accent={s.accent}
+          data-resumen={s.resumen}
+          data-modalidad={s.modalidad}
+          data-precio={s.precioDesde}
+          data-unidad={s.unidad}
+          data-setup={s.setupDesde ?? ''}
+          data-incluye={s.incluye.join('|')}
+          data-plazo={s.plazo}
+        >
+          <span class="calc-sc-radio" aria-hidden="true"></span>
+          <div class="calc-sc-icon" style={`background:${s.accent}1A;border:1px solid ${s.accent}40`}>
+            <svg width="19" height="19" fill="none" stroke={s.accent} stroke-width="1.6" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d={s.icon}/>
+            </svg>
+          </div>
+          <span class="calc-sc-tag" style={`color:${s.accent};background:${s.accent}14;border:1px solid ${s.accent}33`}>{s.tag}</span>
+          <h3 class="calc-sc-nombre">{s.nombre}</h3>
+          <p class="calc-sc-resumen">{s.resumen}</p>
+          <p class="calc-sc-precio">
+            Desde <strong>{fmtPrecio(s.precioDesde)} €</strong>{s.unidad === '/mes' ? ' /mes' : ' · proyecto'}
+          </p>
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- ───────── PASO 2 — Detalle y estimación del servicio elegido ───────── -->
+  <div class="calc-paso hidden" data-paso="2">
+    <button type="button" class="calc-volver" id="calc-volver">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/>
+      </svg>
+      Elegir otro servicio
+    </button>
+
+    <div class="calc-detalle">
+      <div class="calc-detalle-head">
+        <div class="calc-d-icon" id="calc-d-icon"></div>
+        <div>
+          <span class="calc-d-tag" id="calc-d-tag"></span>
+          <h3 class="calc-d-nombre" id="calc-d-nombre"></h3>
+        </div>
+      </div>
+
+      <p class="calc-d-resumen" id="calc-d-resumen"></p>
+
+      <div class="calc-precio-box">
+        <div class="calc-precio-top">
+          <span class="calc-precio-label">Inversión estimada <span id="calc-d-modalidad"></span></span>
+          <label class="calc-iva-switch">
+            <input type="checkbox" id="calc-iva-toggle" />
+            <span class="calc-switch-track"><span class="calc-switch-thumb"></span></span>
+            <span class="calc-iva-switch-label">Ver precio con IVA</span>
+          </label>
+        </div>
+
+        <div class="calc-precio-num">
+          <span class="gradient-text" id="calc-d-precio"></span>
+          <span class="calc-precio-unidad" id="calc-d-unidad"></span>
+        </div>
+        <p class="calc-setup-line" id="calc-d-setup"></p>
+        <p class="calc-iva-note">
+          Precio mostrado <strong id="calc-iva-tag">sin IVA</strong> · IVA aplicable: <span id="calc-iva-pct"></span>
+        </p>
+      </div>
+
+      <ul class="calc-incluye-list" id="calc-d-incluye"></ul>
+
+      <p class="calc-plazo" id="calc-d-plazo"></p>
+
+      <!-- Configurador opcional: formato de acompañamiento + horas estimadas -->
+      <div class="calc-config">
+        <h4 class="calc-config-title">Personaliza tu propuesta <span class="calc-config-opt">(opcional)</span></h4>
+        <p class="calc-config-sub">Añade un formato de acompañamiento y unas horas estimadas a tu estimación.</p>
+
+        <div class="calc-variantes">
+          {variantes.map(v => (
+            <button
+              type="button"
+              class="calc-variante-card"
+              data-variante-id={v.id}
+              data-variante-nombre={v.nombre}
+            >
+              <div class="calc-variante-icon">
+                <svg width="16" height="16" fill="none" stroke="#C084FC" stroke-width="1.7" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d={v.icon}/>
+                </svg>
+              </div>
+              <span class="calc-variante-nombre">{v.nombre}</span>
+              <span class="calc-variante-desc">{v.desc}</span>
+            </button>
+          ))}
+        </div>
+
+        <div class="calc-horas">
+          <span class="calc-horas-label">Horas estimadas:</span>
+          <div class="calc-horas-pills">
+            {horasDisponibles.map(h => (
+              <button type="button" class="calc-hora-pill" data-horas={h}>{h} h</button>
+            ))}
+          </div>
+        </div>
+
+        <div class="calc-config-resultado hidden" id="calc-config-resultado">
+          <span id="calc-config-texto"></span>
+          <strong id="calc-config-precio"></strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mensajes de confianza -->
+    <div class="calc-trust">
+      <div class="calc-trust-item">
+        <svg width="15" height="15" fill="none" stroke="#22C55E" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+        Primera consulta gratuita y sin compromiso
+      </div>
+      <div class="calc-trust-item">
+        <svg width="15" height="15" fill="none" stroke="#22C55E" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+        Prototipo funcionando en menos de 15 días
+      </div>
+      <div class="calc-trust-item">
+        <svg width="15" height="15" fill="none" stroke="#22C55E" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+        Sin permanencia
+      </div>
+    </div>
+
+    <a href="/#agenda" class="btn-primary w-full justify-center">
+      Solicitar propuesta para este servicio
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+      </svg>
+    </a>
+
+    <p class="calc-note">Estimación orientativa. El precio final se ajusta en tu diagnóstico inicial gratuito.</p>
+  </div>
+
+</div>
+
+<style is:global>
+  /* ── Shell ─────────────────────────────────────────── */
+  .calc-widget { max-width: 56rem; margin: 0 auto; }
+  .calc-paso.hidden { display: none; }
+
+  /* ── Indicador de pasos ───────────────────────────── */
+  .calc-steps {
+    display: flex; align-items: center; justify-content: center; gap: 0.85rem;
+    margin-bottom: 2.5rem;
+  }
+  .calc-step-pill {
+    display: flex; align-items: center; gap: 0.55rem;
+    font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.82rem;
+    color: rgba(255,255,255,0.35);
+    transition: color 0.2s;
+  }
+  .calc-step-pill.active { color: #F5F3FF; }
+  .calc-step-num {
+    display: flex; align-items: center; justify-content: center;
+    width: 25px; height: 25px; border-radius: 50%; flex-shrink: 0;
+    font-size: 0.75rem; font-weight: 700;
+    background: rgba(255,255,255,0.06);
+    border: 1.5px solid rgba(192,132,252,0.25);
+    color: rgba(255,255,255,0.4);
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .calc-step-pill.active .calc-step-num { background: #9333EA; border-color: #9333EA; color: #fff; }
+  .calc-step-line { width: 44px; height: 1px; background: rgba(192,132,252,0.22); }
+  @media (max-width: 480px) {
+    .calc-step-pill span:not(.calc-step-num) { display: none; }
+  }
+
+  /* ── Paso 1 — Grid de servicios ───────────────────── */
+  .calc-paso-intro {
+    text-align: center; max-width: 34rem; margin: 0 auto 2rem;
+    font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.6;
+    color: rgba(255,255,255,0.55);
+  }
+  .calc-paso-intro strong { color: #F5F3FF; }
+
+  .calc-grid-servicios {
+    display: grid; grid-template-columns: 1fr; gap: 1rem;
+  }
+  @media (min-width: 640px)  { .calc-grid-servicios { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .calc-grid-servicios { grid-template-columns: repeat(3, 1fr); } }
+
+  .calc-service-card {
+    position: relative;
+    text-align: left; cursor: pointer;
+    background: #160F2C;
+    border: 1.5px solid #2D1B55;
+    border-radius: 1rem;
+    padding: 1.5rem 1.4rem 1.3rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.18s, background 0.18s, transform 0.12s;
+  }
+  .calc-service-card:hover { border-color: #6D4FB8; transform: translateY(-2px); }
+  .calc-service-card.calc-selected {
+    border-color: #9333EA;
+    background: linear-gradient(160deg, #271A4D 0%, #1E1640 100%);
+  }
+
+  .calc-sc-radio {
+    position: absolute; top: 1.2rem; right: 1.2rem;
+    width: 19px; height: 19px; border-radius: 50%;
+    border: 1.5px solid #4B3A82;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color 0.15s;
+  }
+  .calc-sc-radio::after {
+    content: ''; width: 9px; height: 9px; border-radius: 50%;
+    background: #9333EA; opacity: 0; transform: scale(0.4);
+    transition: opacity 0.15s, transform 0.15s;
+  }
+  .calc-service-card.calc-selected .calc-sc-radio { border-color: #9333EA; }
+  .calc-service-card.calc-selected .calc-sc-radio::after { opacity: 1; transform: scale(1); }
+
+  .calc-sc-icon {
+    width: 40px; height: 40px; border-radius: 0.7rem;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 0.9rem;
+  }
+  .calc-sc-tag {
+    display: inline-flex; align-items: center;
+    font-weight: 600; font-size: 0.65rem; letter-spacing: 0.06em; text-transform: uppercase;
+    border-radius: 99px; padding: 0.22rem 0.65rem;
+    margin-bottom: 0.65rem;
+  }
+  .calc-sc-nombre {
+    font-weight: 700; font-size: 0.96rem; color: #F5F3FF;
+    line-height: 1.3; margin-bottom: 0.4rem; padding-right: 1.5rem;
+  }
+  .calc-sc-resumen {
+    font-family: 'Inter', sans-serif; font-size: 0.8rem; line-height: 1.55;
+    color: rgba(255,255,255,0.5); margin-bottom: 1rem;
+    min-height: 2.5rem;
+  }
+  .calc-sc-precio {
+    font-family: 'Inter', sans-serif; font-size: 0.8rem; color: rgba(255,255,255,0.45);
+  }
+  .calc-sc-precio strong { font-family: 'Poppins', sans-serif; font-weight: 700; color: #C4B5FD; }
+
+  /* ── Paso 2 — Detalle ─────────────────────────────── */
+  .calc-volver {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.82rem;
+    color: rgba(255,255,255,0.5);
+    background: transparent; border: none; cursor: pointer;
+    margin-bottom: 1.5rem;
+    transition: color 0.15s;
+  }
+  .calc-volver:hover { color: #C4B5FD; }
+
+  .calc-detalle {
+    background: linear-gradient(160deg, #1A1033 0%, #2D1B69 60%, #1A1033 100%);
+    border: 1px solid rgba(192,132,252,0.2);
+    border-radius: 1.5rem;
+    padding: 2rem 2rem 1.75rem;
+    margin-bottom: 1.75rem;
+  }
+  .calc-detalle-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.9rem; }
+  .calc-d-icon {
+    width: 50px; height: 50px; border-radius: 0.85rem; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .calc-d-tag {
+    display: inline-flex; align-items: center;
+    font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.65rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    border-radius: 99px; padding: 0.2rem 0.6rem; margin-bottom: 0.35rem;
+  }
+  .calc-d-nombre {
+    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.2rem;
+    color: #F5F3FF; line-height: 1.25;
+  }
+  .calc-d-resumen {
+    font-family: 'Inter', sans-serif; font-size: 0.92rem; line-height: 1.6;
+    color: rgba(255,255,255,0.55); margin-bottom: 1.6rem;
+  }
+
+  /* Caja de precio + switch IVA */
+  .calc-precio-box {
+    background: rgba(0,0,0,0.18);
+    border: 1px solid rgba(192,132,252,0.18);
+    border-radius: 1.1rem;
+    padding: 1.4rem 1.5rem;
+    margin-bottom: 1.6rem;
+  }
+  .calc-precio-top {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 0.85rem; margin-bottom: 0.6rem;
+  }
+  .calc-precio-label {
+    font-family: 'Inter', sans-serif; font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+  }
+  .calc-precio-label span { color: rgba(255,255,255,0.6); }
+
+  .calc-iva-switch { display: inline-flex; align-items: center; gap: 0.55rem; cursor: pointer; }
+  .calc-iva-switch input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .calc-switch-track {
+    position: relative; display: inline-block;
+    width: 38px; height: 22px; border-radius: 99px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(192,132,252,0.3);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .calc-switch-thumb {
+    position: absolute; top: 2px; left: 2px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: #C4B5FD;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .calc-iva-switch input:checked + .calc-switch-track { background: #9333EA; border-color: #9333EA; }
+  .calc-iva-switch input:checked + .calc-switch-track .calc-switch-thumb { transform: translateX(16px); background: #fff; }
+  .calc-iva-switch-label {
+    font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 500;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .calc-precio-num {
+    display: flex; align-items: baseline; gap: 0.45rem;
+    font-family: 'Poppins', sans-serif; font-weight: 800;
+    font-size: clamp(2rem, 4vw, 2.6rem); line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .calc-precio-unidad {
+    font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.95rem;
+    color: rgba(255,255,255,0.45);
+  }
+  .calc-setup-line {
+    font-family: 'Inter', sans-serif; font-size: 0.85rem;
+    color: rgba(255,255,255,0.5); margin-bottom: 0.6rem;
+  }
+  .calc-iva-note {
+    font-family: 'Inter', sans-serif; font-size: 0.74rem;
+    color: rgba(255,255,255,0.35);
+  }
+  .calc-iva-note strong { color: rgba(255,255,255,0.6); }
+
+  /* Lista "incluye" */
+  .calc-incluye-list { display: grid; gap: 0.65rem; margin-bottom: 1.4rem; }
+  @media (min-width: 640px) { .calc-incluye-list { grid-template-columns: repeat(2, 1fr); } }
+  .calc-incluye-list li {
+    display: flex; align-items: flex-start; gap: 0.55rem;
+    font-family: 'Inter', sans-serif; font-size: 0.84rem; line-height: 1.5;
+    color: rgba(255,255,255,0.65);
+  }
+  .calc-incluye-list li svg { flex-shrink: 0; margin-top: 0.2rem; }
+
+  .calc-plazo {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 500;
+    color: #C4B5FD; margin-bottom: 1.6rem;
+  }
+  .calc-plazo::before { content: '⏱'; }
+
+  /* ── Configurador opcional (variantes + horas) ────── */
+  .calc-config {
+    border: 1px dashed rgba(192,132,252,0.3);
+    border-radius: 1.1rem;
+    padding: 1.4rem 1.5rem;
+  }
+  .calc-config-title {
+    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.95rem;
+    color: #F5F3FF; margin-bottom: 0.3rem;
+  }
+  .calc-config-opt {
+    font-weight: 500; font-size: 0.74rem; color: rgba(255,255,255,0.4);
+  }
+  .calc-config-sub {
+    font-family: 'Inter', sans-serif; font-size: 0.82rem; line-height: 1.55;
+    color: rgba(255,255,255,0.5); margin-bottom: 1.2rem;
+  }
+
+  .calc-variantes { display: grid; gap: 0.7rem; margin-bottom: 1.3rem; }
+  @media (min-width: 640px) { .calc-variantes { grid-template-columns: repeat(3, 1fr); } }
+  .calc-variante-card {
+    text-align: left; cursor: pointer;
+    background: rgba(255,255,255,0.03);
+    border: 1.5px solid rgba(192,132,252,0.18);
+    border-radius: 0.85rem;
+    padding: 0.95rem 1.05rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.18s, background 0.18s;
+  }
+  .calc-variante-card:hover { border-color: rgba(192,132,252,0.4); }
+  .calc-variante-card.calc-selected {
+    border-color: #9333EA;
+    background: rgba(147,51,234,0.14);
+  }
+  .calc-variante-icon {
+    width: 32px; height: 32px; border-radius: 0.6rem;
+    background: rgba(192,132,252,0.12);
+    border: 1px solid rgba(192,132,252,0.25);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 0.65rem;
+  }
+  .calc-variante-nombre {
+    display: block; font-weight: 700; font-size: 0.85rem;
+    color: #F5F3FF; margin-bottom: 0.25rem;
+  }
+  .calc-variante-desc {
+    display: block; font-family: 'Inter', sans-serif; font-size: 0.74rem; line-height: 1.5;
+    color: rgba(255,255,255,0.45);
+  }
+
+  .calc-horas {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0.85rem;
+    margin-bottom: 1.2rem;
+  }
+  .calc-horas-label {
+    font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 500;
+    color: rgba(255,255,255,0.55);
+  }
+  .calc-horas-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .calc-hora-pill {
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.04);
+    border: 1.5px solid rgba(192,132,252,0.22);
+    border-radius: 99px;
+    padding: 0.4rem 1.05rem;
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+  }
+  .calc-hora-pill:hover { border-color: rgba(192,132,252,0.45); }
+  .calc-hora-pill.calc-selected { border-color: #9333EA; background: #9333EA; color: #fff; }
+
+  .calc-config-resultado {
+    display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+    gap: 0.6rem;
+    background: rgba(0,0,0,0.18);
+    border: 1px solid rgba(192,132,252,0.18);
+    border-radius: 0.75rem;
+    padding: 0.85rem 1.1rem;
+    font-family: 'Inter', sans-serif; font-size: 0.84rem;
+    color: rgba(255,255,255,0.6);
+  }
+  .calc-config-resultado.hidden { display: none; }
+  .calc-config-resultado strong {
+    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.92rem;
+    color: #C4B5FD;
+  }
+
+  /* ── Mensajes de confianza ────────────────────────── */
+  .calc-trust {
+    display: grid; gap: 0.6rem; margin-bottom: 1.5rem;
+  }
+  @media (min-width: 768px) { .calc-trust { grid-template-columns: repeat(3, 1fr); } }
+  .calc-trust-item {
+    display: flex; align-items: center; gap: 0.55rem;
+    background: rgba(34,197,94,0.06);
+    border: 1px solid rgba(34,197,94,0.2);
+    border-radius: 0.85rem;
+    padding: 0.7rem 0.9rem;
+    font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 500;
+    color: rgba(255,255,255,0.7);
+  }
+  .calc-trust-item svg { flex-shrink: 0; }
+
+  .calc-note {
+    font-family: 'Inter', sans-serif; font-size: 0.7rem; line-height: 1.5;
+    color: rgba(255,255,255,0.35); margin-top: 1.1rem; text-align: center;
+  }
+</style>
+
+<script>
+  (function () {
+    const root = document.querySelector<HTMLElement>('.calc-widget');
+    if (!root) return;
+
+    const ivaRate    = parseFloat(root.dataset['ivaRate'] ?? '0.21');
+    const hourlyRate = parseFloat(root.dataset['hourlyRate'] ?? '75');
+    const cards   = Array.from(root.querySelectorAll<HTMLButtonElement>('.calc-service-card'));
+    const paso1   = root.querySelector<HTMLElement>('[data-paso="1"]');
+    const paso2   = root.querySelector<HTMLElement>('[data-paso="2"]');
+    const pills   = Array.from(root.querySelectorAll<HTMLElement>('.calc-step-pill'));
+    const volver  = root.querySelector<HTMLButtonElement>('#calc-volver');
+    const ivaToggle = root.querySelector<HTMLInputElement>('#calc-iva-toggle');
+
+    const varianteCards = Array.from(root.querySelectorAll<HTMLButtonElement>('.calc-variante-card'));
+    const horaPills     = Array.from(root.querySelectorAll<HTMLButtonElement>('.calc-hora-pill'));
+    const elConfigResultado = root.querySelector<HTMLElement>('#calc-config-resultado');
+    const elConfigTexto     = root.querySelector<HTMLElement>('#calc-config-texto');
+    const elConfigPrecio    = root.querySelector<HTMLElement>('#calc-config-precio');
+
+    const elIcon      = root.querySelector<HTMLElement>('#calc-d-icon');
+    const elTag       = root.querySelector<HTMLElement>('#calc-d-tag');
+    const elNombre    = root.querySelector<HTMLElement>('#calc-d-nombre');
+    const elResumen   = root.querySelector<HTMLElement>('#calc-d-resumen');
+    const elModalidad = root.querySelector<HTMLElement>('#calc-d-modalidad');
+    const elPrecio    = root.querySelector<HTMLElement>('#calc-d-precio');
+    const elUnidad    = root.querySelector<HTMLElement>('#calc-d-unidad');
+    const elSetup     = root.querySelector<HTMLElement>('#calc-d-setup');
+    const elIvaTag    = root.querySelector<HTMLElement>('#calc-iva-tag');
+    const elIvaPct    = root.querySelector<HTMLElement>('#calc-iva-pct');
+    const elIncluye   = root.querySelector<HTMLElement>('#calc-d-incluye');
+    const elPlazo     = root.querySelector<HTMLElement>('#calc-d-plazo');
+
+    const fmt = (n: number) => n.toLocaleString('es-ES');
+
+    let basePrecio = 0;
+    let baseSetup  = 0;
+    let selectedVarianteNombre: string | null = null;
+    let selectedHoras = 0;
+
+    function renderConfig() {
+      if (!selectedVarianteNombre || !selectedHoras) {
+        elConfigResultado?.classList.add('hidden');
+        return;
+      }
+      const conIva = !!ivaToggle?.checked;
+      const factor = conIva ? 1 + ivaRate : 1;
+      const total  = Math.round(selectedHoras * hourlyRate * factor);
+
+      if (elConfigTexto)  elConfigTexto.textContent  = `${selectedVarianteNombre} · ${selectedHoras} h estimadas`;
+      if (elConfigPrecio) elConfigPrecio.textContent = `≈ ${fmt(total)} € (${conIva ? 'con' : 'sin'} IVA)`;
+      elConfigResultado?.classList.remove('hidden');
+    }
+
+    function resetConfig() {
+      selectedVarianteNombre = null;
+      selectedHoras = 0;
+      varianteCards.forEach(c => c.classList.remove('calc-selected'));
+      horaPills.forEach(p => p.classList.remove('calc-selected'));
+      elConfigResultado?.classList.add('hidden');
+    }
+
+    function renderPrecio() {
+      const conIva = !!ivaToggle?.checked;
+      const factor = conIva ? 1 + ivaRate : 1;
+
+      if (elPrecio) elPrecio.textContent = `${fmt(Math.round(basePrecio * factor))} €`;
+
+      if (baseSetup > 0) {
+        if (elSetup) {
+          elSetup.textContent = `+ Setup inicial desde ${fmt(Math.round(baseSetup * factor))} €`;
+          elSetup.style.display = '';
+        }
+      } else if (elSetup) {
+        elSetup.style.display = 'none';
+      }
+
+      if (elIvaTag) elIvaTag.textContent = conIva ? 'con IVA' : 'sin IVA';
+      if (elIvaPct) elIvaPct.textContent = conIva
+        ? `${Math.round(ivaRate * 100)}% incluido`
+        : `${Math.round(ivaRate * 100)}% (no incluido)`;
+    }
+
+    function selectCard(card: HTMLButtonElement) {
+      cards.forEach(c => c.classList.remove('calc-selected'));
+      card.classList.add('calc-selected');
+      resetConfig();
+
+      const accent = card.dataset['accent'] || '#9333EA';
+      const icon   = card.dataset['icon'] || '';
+
+      if (elIcon) {
+        elIcon.style.background = `${accent}1A`;
+        elIcon.style.border = `1px solid ${accent}40`;
+        elIcon.innerHTML = `<svg width="22" height="22" fill="none" stroke="${accent}" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="${icon}"/></svg>`;
+      }
+      if (elTag) {
+        elTag.textContent = card.dataset['tag'] || '';
+        elTag.style.color = accent;
+        elTag.style.background = `${accent}14`;
+        elTag.style.border = `1px solid ${accent}33`;
+      }
+      if (elNombre)  elNombre.textContent  = card.dataset['nombre'] || '';
+      if (elResumen) elResumen.textContent = card.dataset['resumen'] || '';
+      if (elModalidad) elModalidad.textContent = `· ${card.dataset['modalidad'] || ''}`;
+
+      basePrecio = parseInt(card.dataset['precio'] ?? '0', 10);
+      baseSetup  = parseInt(card.dataset['setup']  ?? '0', 10);
+      if (elUnidad) elUnidad.textContent = card.dataset['unidad'] === '/mes' ? '/ mes' : '/ proyecto';
+
+      if (elIncluye) {
+        const items = (card.dataset['incluye'] || '').split('|').filter(Boolean);
+        elIncluye.innerHTML = items.map(item => `
+          <li>
+            <svg width="13" height="13" fill="none" stroke="${accent}" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            <span>${item}</span>
+          </li>
+        `).join('');
+      }
+      if (elPlazo) elPlazo.textContent = card.dataset['plazo'] || '';
+      if (elPlazo) elPlazo.style.color = accent;
+
+      renderPrecio();
+
+      paso1?.classList.add('hidden');
+      paso2?.classList.remove('hidden');
+      pills.forEach(p => p.classList.toggle('active', p.dataset['stepPill'] === '2'));
+      paso2?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => selectCard(card));
+    });
+
+    volver?.addEventListener('click', () => {
+      cards.forEach(c => c.classList.remove('calc-selected'));
+      resetConfig();
+      paso2?.classList.add('hidden');
+      paso1?.classList.remove('hidden');
+      pills.forEach(p => p.classList.toggle('active', p.dataset['stepPill'] === '1'));
+      paso1?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    varianteCards.forEach(card => {
+      card.addEventListener('click', () => {
+        varianteCards.forEach(c => c.classList.remove('calc-selected'));
+        card.classList.add('calc-selected');
+        selectedVarianteNombre = card.dataset['varianteNombre'] || null;
+        renderConfig();
+      });
+    });
+
+    horaPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        horaPills.forEach(p => p.classList.remove('calc-selected'));
+        pill.classList.add('calc-selected');
+        selectedHoras = parseInt(pill.dataset['horas'] ?? '0', 10);
+        renderConfig();
+      });
+    });
+
+    ivaToggle?.addEventListener('change', () => { renderPrecio(); renderConfig(); });
+  })();
+</script>

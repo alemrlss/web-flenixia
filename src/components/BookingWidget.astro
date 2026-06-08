@@ -13,11 +13,11 @@
       </div>
       <div>
         <p class="bk-brand">Flenixia</p>
-        <p class="bk-brand-sub">DiagnÃ³stico gratuito</p>
+        <p class="bk-brand-sub">Diagnóstico gratuito</p>
       </div>
     </div>
 
-    <h3 class="bk-title">Agenda tu sesiÃ³n de diagnÃ³stico</h3>
+    <h3 class="bk-title">Agenda tu sesión de diagnóstico</h3>
 
     <div class="bk-meta">
       <div class="bk-meta-item">
@@ -41,11 +41,11 @@
     </div>
 
     <p class="bk-desc">
-      En 30 minutos analizamos tu negocio y te decimos exactamente cuÃ¡nto puedes recuperar con IA.
+      En 30 minutos analizamos tu negocio y te decimos exactamente cuánto puedes recuperar con IA.
     </p>
 
     <ul class="bk-features">
-      {['DiagnÃ³stico de puntos de fuga', 'ROI estimado para tu negocio', 'Hoja de ruta concreta', 'Sin compromiso de contrataciÃ³n'].map(f => (
+      {['Diagnóstico de puntos de fuga', 'ROI estimado para tu negocio', 'Hoja de ruta concreta', 'Sin compromiso de contratación'].map(f => (
         <li class="bk-feature-item">
           <span class="bk-feature-dot">
             <svg width="10" height="10" fill="none" stroke="#C084FC" stroke-width="3" viewBox="0 0 24 24">
@@ -61,16 +61,16 @@
       <svg width="12" height="12" fill="none" stroke="#22C55E" stroke-width="2.5" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
       </svg>
-      Sin spam Â· Cancela cuando quieras
+      Sin spam · Cancela cuando quieras
     </div>
   </div>
 
   <!-- Panel derecho: calendario -->
   <div class="bk-right">
 
-    <!-- Step 1: Elige dÃ­a -->
+    <!-- Step 1: Elige día -->
     <div id="bk-step-day" class="bk-step">
-      <p class="bk-step-title">Elige un dÃ­a</p>
+      <p class="bk-step-title">Elige un día</p>
       <div class="bk-days-header">
         {['L','M','X','J','V','S','D'].map(d => <span class="bk-day-header">{d}</span>)}
       </div>
@@ -83,7 +83,7 @@
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/>
         </svg>
-        Cambiar dÃ­a
+        Cambiar día
       </button>
       <p class="bk-step-title">Elige una hora</p>
       <p class="bk-selected-day" id="bk-day-label"></p>
@@ -111,7 +111,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
         </svg>
       </button>
-      <p class="bk-form-note">Sin spam Â· RecibirÃ¡s el enlace de videollamada por email.</p>
+      <p class="bk-form-note">Sin spam · Recibirás el enlace de videollamada por email.</p>
     </div>
 
     <!-- Step 4: Confirmado -->
@@ -121,16 +121,16 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
         </svg>
       </div>
-      <h3 class="bk-success-title">Â¡Reserva confirmada!</h3>
+      <h3 class="bk-success-title">¡Reserva confirmada!</h3>
       <p class="bk-success-detail" id="bk-success-detail"></p>
-      <p class="bk-success-note">Te enviamos el enlace de videollamada a tu correo. Hasta pronto ðŸ‘‹</p>
+      <p class="bk-success-note">Te enviamos el enlace de videollamada a tu correo. Hasta pronto 👋</p>
     </div>
 
   </div>
 </div>
 
 <style is:global>
-  /* â”€â”€ Widget shell â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Widget shell ─────────────────────────────────── */
   .bk-widget {
     display: grid;
     grid-template-columns: 1fr;
@@ -143,7 +143,7 @@
     .bk-widget { grid-template-columns: 280px 1fr; }
   }
 
-  /* â”€â”€ Panel izquierdo â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Panel izquierdo ─────────────────────────────── */
   .bk-left {
     background: linear-gradient(160deg, #1A1033 0%, #2D1B69 60%, #1A1033 100%);
     padding: 2.25rem 2rem;
@@ -197,7 +197,7 @@
     font-size: 0.7rem; color: rgba(255,255,255,0.3);
   }
 
-  /* â”€â”€ Panel derecho â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Panel derecho ───────────────────────────────── */
   .bk-right {
     background: #FFFFFF;
     padding: 2.25rem 2rem;
@@ -215,7 +215,7 @@
   }
   .bk-back:hover { color: #7C3AED; }
 
-  /* DÃ­as */
+  /* Días */
   .bk-days-header {
     display: grid; grid-template-columns: repeat(7, 1fr);
     gap: 0.3rem; margin-bottom: 0.4rem;
@@ -297,7 +297,7 @@
     text-align: center; font-size: 0.7rem; color: #9CA3AF; margin-top: 0.75rem;
   }
 
-  /* Ã‰xito */
+  /* Éxito */
   .bk-success-step {
     display: flex; flex-direction: column; align-items: center;
     justify-content: center; text-align: center;
@@ -327,7 +327,7 @@
 <script>
   (function () {
     const SLOTS     = ['9:00','9:30','10:00','10:30','11:00','11:30','16:00','16:30','17:00','17:30'];
-    const DAY_SHORT = ['Dom','Lun','Mar','MiÃ©','Jue','Vie','SÃ¡b'];
+    const DAY_SHORT = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
     const MON_SHORT = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
     let selDayLabel = '';
 
@@ -335,7 +335,7 @@
     const slotsGrid = document.getElementById('bk-slots-grid');
     const today = new Date(); today.setHours(0,0,0,0);
 
-    // Generar los prÃ³ximos 14 dÃ­as
+    // Generar los próximos 14 días
     for (let i = 1; i <= 14; i++) {
       const d = new Date(today); d.setDate(today.getDate() + i);
       const dow = d.getDay();
@@ -375,7 +375,7 @@
       document.querySelectorAll('.bk-slot-btn').forEach(b => b.classList.remove('bk-selected'));
       btn.classList.add('bk-selected');
       const sum = document.getElementById('bk-summary');
-      if (sum) sum.textContent = `ðŸ“… ${selDayLabel}  Â·  ðŸ• ${slot}  Â·  30 min`;
+      if (sum) sum.textContent = `📅 ${selDayLabel}  ·  🕐 ${slot}  ·  30 min`;
       showStep('bk-step-form');
     }
 

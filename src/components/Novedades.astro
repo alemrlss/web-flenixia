@@ -1,0 +1,89 @@
+---
+const articulos = [
+  {
+    tag: 'Estrategia',
+    fecha: 'Junio 2026',
+    titulo: 'Cómo elegir tu primer caso de uso de IA sin perder 3 meses probando',
+    resumen: 'La mayoría de proyectos de IA fracasan no por la tecnología, sino por empezar en el sitio equivocado. Esta es la pregunta que define un buen primer caso de uso — y las tres señales de que estás a punto de elegir mal.',
+  },
+  {
+    tag: 'Agentes IA',
+    fecha: 'Mayo 2026',
+    titulo: 'Agentes de voz vs. chatbots: cuál necesita realmente tu negocio',
+    resumen: 'No son lo mismo ni resuelven lo mismo. Te contamos en qué momento del recorrido del cliente gana cada uno, y por qué combinarlos suele superar a elegir solo uno.',
+  },
+  {
+    tag: 'Automatización',
+    fecha: 'Mayo 2026',
+    titulo: 'El error más caro al automatizar: empezar por la herramienta y no por el proceso',
+    resumen: 'Comprar software de IA antes de mapear cómo trabaja realmente tu equipo es la forma más rápida de gastar presupuesto sin ver resultados. Así se diagnostica un proceso antes de automatizarlo.',
+  },
+];
+---
+
+<section class="py-24 overflow-hidden" style="background:#FAF8FF;color:#1F1635">
+  <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+    <div class="text-center mb-14">
+      <div class="reveal mb-4 flex justify-center">
+        <span class="section-label">Aprende con nosotros</span>
+      </div>
+      <h2 class="reveal reveal-delay-1 font-display font-extrabold leading-tight mb-4"
+          style="font-size:clamp(1.8rem,3.5vw,2.6rem);color:#1F1635">
+        Últimas novedades de IA<br/>
+        <span class="gradient-text">para empresas.</span>
+      </h2>
+      <p class="reveal reveal-delay-2 text-lg max-w-xl mx-auto" style="color:#64647A">
+        Ideas prácticas — sin tecnicismos — para que la IA empiece a trabajar para tu negocio.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-6">
+      {articulos.map((a, i) => (
+        <article class={`reveal reveal-delay-${Math.min(i+1,4)} art-card`}>
+          <div class="art-top mb-4">
+            <span class="art-tag">{a.tag}</span>
+            <span class="art-fecha">{a.fecha}</span>
+          </div>
+          <h3 class="art-title mb-3">{a.titulo}</h3>
+          <p class="art-resumen">{a.resumen}</p>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .art-card {
+    background: #FFFFFF;
+    border: 1px solid #EDE9FE;
+    border-radius: 1.25rem; padding: 1.85rem;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  }
+  .art-card:hover {
+    border-color: rgba(147,51,234,0.35);
+    box-shadow: 0 16px 48px rgba(147,51,234,0.1);
+    transform: translateY(-4px);
+  }
+  .art-top { display: flex; align-items: center; gap: 0.6rem; }
+  .art-tag {
+    font-family: 'Poppins', sans-serif; font-size: 0.65rem; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: #9333EA; background: #F3E8FF;
+    border: 1px solid #DDD6FE;
+    border-radius: 99px; padding: 0.2rem 0.65rem;
+  }
+  .art-fecha {
+    font-family: 'Poppins', sans-serif; font-size: 0.72rem;
+    color: #8B8BA8;
+  }
+  .art-title {
+    font-family: 'Poppins', sans-serif; font-weight: 700;
+    font-size: 1.05rem; line-height: 1.4; color: #1F1635;
+  }
+  .art-resumen {
+    font-family: 'Inter', sans-serif; font-size: 0.85rem; line-height: 1.65;
+    color: #64647A;
+  }
+</style>

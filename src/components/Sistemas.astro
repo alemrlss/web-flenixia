@@ -3,17 +3,17 @@ const sistemas = [
   {
     icon: 'M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6',
     name: 'CRM Inteligente', tag: 'CRM',
-    desc: 'Centraliza contactos, oportunidades y conversaciones. Lead scoring automÃ¡tico y seguimientos sin esfuerzo.',
+    desc: 'Centraliza contactos, oportunidades y conversaciones. Lead scoring automático y seguimientos sin esfuerzo.',
   },
   {
     icon: 'M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3',
-    name: 'Landings de Alta ConversiÃ³n', tag: 'Landings',
-    desc: 'PÃ¡ginas de captaciÃ³n con A/B testing automÃ¡tico y conexiÃ³n directa al CRM.',
+    name: 'Landings de Alta Conversión', tag: 'Landings',
+    desc: 'Páginas de captación con A/B testing automático y conexión directa al CRM.',
   },
   {
     icon: 'M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75',
     name: 'Email Automatizado', tag: 'Email',
-    desc: 'Secuencias que se activan segÃºn el comportamiento del lead, del primer contacto al cierre.',
+    desc: 'Secuencias que se activan según el comportamiento del lead, del primer contacto al cierre.',
   },
   {
     icon: 'M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z',
@@ -23,12 +23,12 @@ const sistemas = [
   {
     icon: 'M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z',
     name: 'Agente de Voz IA', tag: 'Voz IA',
-    desc: 'Llama, califica y agenda en tu calendario. Sin fricciÃ³n, sin esperas, sin leads perdidos.',
+    desc: 'Llama, califica y agenda en tu calendario. Sin fricción, sin esperas, sin leads perdidos.',
   },
   {
     icon: 'M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z',
     name: 'Workflows Automatizados', tag: 'Workflows',
-    desc: 'Conecta todas tus herramientas en flujos inteligentes: CRM, notificaciones, reportes y mÃ¡s.',
+    desc: 'Conecta todas tus herramientas en flujos inteligentes: CRM, notificaciones, reportes y más.',
   },
 ];
 ---
@@ -42,12 +42,12 @@ const sistemas = [
       <div class="reveal sis-avatar-col">
         <div class="sis-avatar-outer">
 
-          <!-- CuadrÃ­cula de puntos esquina superior derecha -->
+          <!-- Cuadrícula de puntos esquina superior derecha -->
           <div class="sis-dot-grid sis-dot-grid-tr">
             {Array.from({length: 12}).map(() => <span></span>)}
           </div>
 
-          <!-- CuadrÃ­cula de puntos esquina inferior izquierda -->
+          <!-- Cuadrícula de puntos esquina inferior izquierda -->
           <div class="sis-dot-grid sis-dot-grid-bl">
             {Array.from({length: 12}).map(() => <span></span>)}
           </div>
@@ -128,7 +128,7 @@ const sistemas = [
     .sis-avatar-col { display: flex; justify-content: center; }
   }
 
-  /* â”€â”€ Avatar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Avatar ─────────────────────────────────────────── */
   .sis-avatar-col {
     display: flex; justify-content: center; align-items: center;
   }
@@ -149,7 +149,7 @@ const sistemas = [
     padding: 3rem; min-height: 400px;
   }
 
-  /* CuadrÃ­cula de puntos */
+  /* Cuadrícula de puntos */
   .sis-dot-grid {
     position: absolute;
     display: grid; grid-template-columns: repeat(4, 1fr);
@@ -173,7 +173,7 @@ const sistemas = [
   }
 
 
-  /* â”€â”€ Content â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Content ─────────────────────────────────────────── */
   .sis-label {
     display: inline-flex; align-items: center;
     font-family: 'Poppins', sans-serif; font-weight: 600;
@@ -194,7 +194,7 @@ const sistemas = [
     color: #64647A; margin-bottom: 2rem; line-height: 1.6;
   }
 
-  /* Cards 3Ã—2 */
+  /* Cards 3×2 */
   .sis-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
